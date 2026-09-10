@@ -192,8 +192,10 @@ destroy them yet.
 
 **Stuck?**
 - Nothing rock-like turns up in the search results - search for `ball`
-  instead and click the sprite called `Ball`. You'll recolour it to look
-  like a rock in the Costumes tab using the fill tool.
+  instead and click a plain round ball sprite (it might be called something
+  like `Ball`, so check the names in the library and pick the round one).
+  You'll recolour it to look like a rock in the Costumes tab using the fill
+  tool.
 - Nothing falls - check `create clone of [myself v]` is snapped inside the
   `forever` block on the spawner script, and check `when I start as a clone`
   has its own blocks snapped together underneath it.
