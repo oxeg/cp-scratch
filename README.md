@@ -29,16 +29,6 @@ and what to check before teaching it. **Start there, not here.**
 
 ## Checking the materials
 
-```bash
-./tools/check-materials.sh all              # every course
-./tools/check-materials.sh space-shooter    # one course
-```
-
-It verifies structure only — no leftover placeholder markers, timing tables
-that add up, the milestone and "Stuck?" scaffolding being present — and prints
-an advisory count of numbered steps per milestone. It says nothing about
-whether the material is correct about Scratch or fits in the time allowed.
-Each course README explains what that actually takes.
-
-The file list is currently hardcoded to space-shooter's nine documents.
-It needs generalising once a second course exists.
+Each course README documents that course's own conventions and the checks
+that verify them. Read that README's "Checking the shape by hand" section
+for the exact commands to run before you teach or edit anything in it.

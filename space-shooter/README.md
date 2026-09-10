@@ -54,17 +54,51 @@ session.** Lesson 3's instructor plan shows that arithmetic explicitly.
 Note actual times on your first run and adjust. The likeliest overruns are
 Lesson 2, milestone 2, and Lesson 1's setup block if logins are slow.
 
-**A shape checker:** `tools/check-materials.sh space-shooter` verifies the mechanical
-things — no leftover placeholder markers, each instructor plan's timing table
-contiguous from `0:00` to `1:30` and summing to 90 minutes, each step-cards
-file having exactly four milestones each with a "Check it works" and a
-"Stuck?" box. It also prints an advisory count of numbered steps per
-milestone, which is the quickest way to spot a milestone that has quietly
-grown. **It says nothing at all about whether the material teaches well, is
-correct about Scratch, or fits in 90 minutes.** A passing run is not a
-substitute for the checklist above. The script lives at the repository root,
-one level up from this course, and runs from any directory:
-`./tools/check-materials.sh space-shooter`.
+### Checking the shape by hand
+
+There is no script for this any more. A reviewer confirms three things by
+hand:
+
+- Each `step-cards.md` has exactly four `## Milestone` headings, each
+  followed by a `**Check it works**` line and a `**Stuck?**` line.
+- Each `instructor-plan.md`'s timing table is contiguous, starts at `0:00`,
+  ends at `1:30`, and sums to 90 minutes.
+- No `TODO`, `TBD`, `FIXME` or `XXX` anywhere.
+
+Set `$F` to one of this course's documents — for example
+`F=space-shooter/lesson-1-fly-the-ship/step-cards.md` for a `step-cards.md`,
+or `F=space-shooter/lesson-1-fly-the-ship/instructor-plan.md` for an
+`instructor-plan.md` — and run:
+
+```bash
+# 1. Milestone scaffolding — all three must print 4
+grep -c '^## Milestone' "$F"; grep -c '^\*\*Check it works' "$F"; grep -c '^\*\*Stuck?' "$F"
+
+# 2. Placeholder scan — must print "clean"
+grep -nE 'TODO|TBD|FIXME|XXX' "$F" || echo clean
+
+# 3. Timing table — must print contiguous=True sum=90 start=0:00 end=1:30
+grep -oE '^\| [0-9]:[0-9]{2}-[0-9]{1}:[0-9]{2}' "$F" | sed 's/^| //' | python3 -c '
+import sys
+def m(t):
+    h, mm = t.split(":"); return int(h)*60 + int(mm)
+rows = [l.strip() for l in sys.stdin if l.strip()]
+tot = 0; prev = 0; ok = bool(rows)
+for r in rows:
+    a, b = r.split("-")
+    if m(a) != prev: ok = False
+    tot += m(b) - m(a); prev = m(b)
+print(f"rows={len(rows)} sum={tot} contiguous={ok} start={rows[0].split(chr(45))[0]} end={rows[-1].split(chr(45))[1]}")
+'
+
+# 4. Steps per milestone — advisory, feeds the timing arithmetic
+awk '/^## Milestone/{m=$0; c=0} /^[0-9]+\./{c++} /^\*\*Check it works/{print c" steps  "m}' "$F"
+```
+
+Commands 1, 2 and 4 want a `step-cards.md`; command 3 wants an
+`instructor-plan.md`. **None of this says anything about whether the
+material teaches well, is correct about Scratch, or fits in 90 minutes.**
+Passing these checks is not a substitute for the checklist above.
 
 ## The three lessons
 
