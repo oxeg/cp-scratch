@@ -78,10 +78,18 @@ lesson - you'll finish with the whole game.
     underneath `change [score v] by (5)`.
 54. Click its sound dropdown.
 55. Choose the sound you just added.
-56. Right-click the `go to x: (-230) y: (pick random (90) to (150))` block
-    (the one snapped underneath `show`) and choose **duplicate**.
-57. Drag the duplicate so it sits inside the `if` block, underneath
-    `start sound`.
+56. Click the Motion category in the palette.
+57. Drag a `go to x: () y: ()` block so it sits inside the `if` block,
+    underneath `start sound`.
+58. Click the x field on that block.
+59. Type `-230`.
+60. Click the Operators category in the palette.
+61. Drag a `pick random () to ()` block into the y number slot on that new
+    `go to x: () y: ()` block.
+62. Click the first field of that `pick random` block.
+63. Type `90`.
+64. Click the second field of that `pick random` block.
+65. Type `150`.
 
 Your script should now look like this:
 
@@ -435,29 +443,43 @@ below 0.4, however high your score gets.
 29. Click its sound dropdown.
 30. Choose the sound you just added.
 
-31. Click the Stage thumbnail, below the stage to the right of the sprite
-    list, to select it.
-32. Click the Backdrops tab.
-33. Right-click the space backdrop's thumbnail in the backdrop list and
-    choose **duplicate**.
-34. Click the duplicate backdrop's name box.
-35. Type `game-over` to rename it.
-36. Click the text tool (a "T" icon) in the paint editor's toolbar.
-37. Click on the canvas where you want the words to start.
-38. Type `GAME OVER`.
-39. Click somewhere else on the canvas to finish the text.
+31. Click the `EnemyLaser` sprite in the sprite list.
+32. Click the Sounds tab.
+33. Click the add-sound button at the bottom of the sound list.
+34. Click the search box at the top of the sound library.
+35. Type `crash`.
+36. Look through the results for the same crash or impact sound you picked
+    for `Asteroid` a moment ago, and click it.
+37. Click the Code tab.
+38. Drag a `start sound [sound v]` block so it sits inside the
+    `if <touching [Ship v]?> then` block, underneath
+    `change [lives v] by (-1)` (above `delete this clone`).
+39. Click its sound dropdown.
+40. Choose the sound you just added.
 
-40. Click the `Ship` sprite in the sprite list.
-41. Find the `if <(lives) = (0)> then` block at the bottom of `Ship`'s
+41. Click the Stage thumbnail, below the stage to the right of the sprite
+    list, to select it.
+42. Click the Backdrops tab.
+43. Right-click the space backdrop's thumbnail in the backdrop list and
+    choose **duplicate**.
+44. Click the duplicate backdrop's name box.
+45. Type `game-over` to rename it.
+46. Click the text tool (a "T" icon) in the paint editor's toolbar.
+47. Click on the canvas where you want the words to start.
+48. Type `GAME OVER`.
+49. Click somewhere else on the canvas to finish the text.
+
+50. Click the `Ship` sprite in the sprite list.
+51. Find the `if <(lives) = (0)> then` block at the bottom of `Ship`'s
     `forever` loop - the one you built in Lesson 2 - and drag the
     `stop [all v]` block out of it and onto the palette, to delete it.
-42. Click the Events category in the palette.
-43. Drag a `broadcast [message v]` block so it sits inside the same
+52. Click the Events category in the palette.
+53. Drag a `broadcast [message v]` block so it sits inside the same
     `if <(lives) = (0)> then` block, where `stop [all v]` used to be.
-44. Click the broadcast block's dropdown.
-45. Click **New message**.
-46. Type `game over`.
-47. Click **OK**.
+54. Click the broadcast block's dropdown.
+55. Click **New message**.
+56. Type `game over`.
+57. Click **OK**.
 
 `Ship`'s `if` block at the bottom of `forever` should now look like this:
 
@@ -466,19 +488,19 @@ below 0.4, however high your score gets.
     broadcast [game over v]
 ```
 
-48. Click the Stage thumbnail to select it.
-49. Click the Code tab.
-50. Click the Events category in the palette.
-51. Drag a `when I receive [message v]` block into the code area.
-52. Click its dropdown.
-53. Choose **game over**.
-54. Click the Looks category in the palette.
-55. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
+58. Click the Stage thumbnail to select it.
+59. Click the Code tab.
+60. Click the Events category in the palette.
+61. Drag a `when I receive [message v]` block into the code area.
+62. Click its dropdown.
+63. Choose **game over**.
+64. Click the Looks category in the palette.
+65. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
     `when I receive [game over v]`.
-56. Click its backdrop dropdown.
-57. Choose **game-over**.
-58. Click the Control category in the palette.
-59. Drag a `stop [all v]` block and snap it underneath
+66. Click its backdrop dropdown.
+67. Choose **game-over**.
+68. Click the Control category in the palette.
+69. Drag a `stop [all v]` block and snap it underneath
     `switch backdrop to [game-over v]`.
 
 This script must have the backdrop switch above `stop [all v]`, in this
@@ -492,14 +514,14 @@ switch backdrop to [game-over v]
 stop [all v]
 ```
 
-60. Click the Events category in the palette.
-61. Drag a `when green flag clicked` block into an empty spot in the code
+70. Click the Events category in the palette.
+71. Drag a `when green flag clicked` block into an empty spot in the code
     area - a new script on the Stage.
-62. Click the Looks category in the palette.
-63. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
+72. Click the Looks category in the palette.
+73. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
     the new `when green flag clicked` block.
-64. Click its backdrop dropdown.
-65. Choose your original space backdrop - the one you added back in Lesson
+74. Click its backdrop dropdown.
+75. Choose your original space backdrop - the one you added back in Lesson
     1. There are only two backdrops in the list by now, so just pick
     whichever one isn't `game-over`.
 
