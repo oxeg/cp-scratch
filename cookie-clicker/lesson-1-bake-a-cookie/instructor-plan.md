@@ -38,11 +38,23 @@ week-one beginners:
   step time. 12 min.
 - Milestone 3, 19 steps: 19 x 42s = 13 min.
 - Milestone 4, 12 steps: 12 x 42s = 8 min.
+- The tail, 15 min across three rows rather than one. Saving gets 5, and
+  that 5 is a floor rather than a target: the save check below is a walk
+  round every screen in the room, one at a time, and it will eat a combined
+  "play and save" slot whole - leaving the playing to happen and the saving
+  not to. Playing each other's games gets 4. "Make it yours" gets **6,
+  trimmed from 7**, because it is the only slot in the lesson with no fixed
+  content to get through - a kid who runs out of ideas at minute 4 is
+  finished, and one who doesn't can carry on tinkering while the room plays
+  each other's games. Nobody can tell it was ever 7.
 
-The tail is deliberately three rows rather than one. The save check below
-is a walk round every screen in the room, one at a time, and it will eat a
-combined "play and save" slot whole - leaving the playing to happen and the
-saving not to. Five minutes for saving is the floor, not a target.
+Those two trims - 2 minutes off Milestone 1's build row and 1 off "make it
+yours" - are the 3 minutes that let the tail be three rows instead of one.
+Both are deliberate, and neither is a step-count number, which is why they
+are argued here rather than just written into the table.
+
+Row by row, that is the whole 90: 10 welcome + 15 setup + 17 M1 + 12 M2 +
+13 M3 + 8 M4 + 6 make it yours + 4 playing + 5 saving.
 
 If you add or remove steps in the cards, redo this arithmetic and redo the
 table - nothing checks it for you.
@@ -181,9 +193,9 @@ would blow it up to 110 on the first click.
   that goes home with the stray script is what Lesson 2 opens on.
 - Also in Milestone 4: dragging a block takes everything below it with it.
   The cards use this deliberately, twice, to remove a whole script in one
-  gesture, and the `start sound` block and the three below it in another. A kid who grabs the wrong block
-  loses more than they meant to - undo is Ctrl+Z, or just rebuild the block
-  from the palette.
+  gesture, and the `start sound` block and the three below it in another. A
+  kid who grabs the wrong block loses more than they meant to - undo is
+  Ctrl+Z, or just rebuild the block from the palette.
 
 ## If the room is behind
 
