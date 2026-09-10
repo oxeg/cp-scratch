@@ -54,7 +54,7 @@ session.** Lesson 3's instructor plan shows that arithmetic explicitly.
 Note actual times on your first run and adjust. The likeliest overruns are
 Lesson 2, milestone 2, and Lesson 1's setup block if logins are slow.
 
-**A shape checker:** `tools/check-materials.sh all` verifies the mechanical
+**A shape checker:** `tools/check-materials.sh space-shooter` verifies the mechanical
 things — no leftover placeholder markers, each instructor plan's timing table
 contiguous from `0:00` to `1:30` and summing to 90 minutes, each step-cards
 file having exactly four milestones each with a "Check it works" and a
@@ -62,7 +62,9 @@ file having exactly four milestones each with a "Check it works" and a
 milestone, which is the quickest way to spot a milestone that has quietly
 grown. **It says nothing at all about whether the material teaches well, is
 correct about Scratch, or fits in 90 minutes.** A passing run is not a
-substitute for the checklist above. Run it from anywhere: `./tools/check-materials.sh all`.
+substitute for the checklist above. The script lives at the repository root,
+one level up from this course, and runs from any directory:
+`./tools/check-materials.sh space-shooter`.
 
 ## The three lessons
 

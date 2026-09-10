@@ -14,6 +14,7 @@ ok()  { echo "ok:   $*"; }
 target="${1:-all}"
 
 all_files=(
+  "README.md"
   "space-shooter/README.md"
   "space-shooter/reference/block-cheat-sheet.md"
   "space-shooter/reference/extra-challenges.md"
