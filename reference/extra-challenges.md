@@ -26,9 +26,9 @@ Stop `Ship` from sliding right up to (or past) the edge of the stage, so it
 always stays fully in view.
 
 **Hint:** Inside the same *amber* Control `forever` loop that holds your
-four movement `if`s, add four more `if` checks — one per edge. Use *pale
-blue* Sensing's `x position` and `y position` blocks together with *green*
-Operators' `>` and `<` blocks to test where `Ship` is, and *blue* Motion's
+four movement `if`s, add four more `if` checks — one per edge. Use *blue*
+Motion's `x position` and `y position` blocks together with *green*
+Operators' `>` and `<` blocks to test where `Ship` is, and Motion's
 `set x to ()` and `set y to ()` blocks to pull it back. One check looks
 like this: `if <(x position) > (220)> then set x to (220)` — you need
 three more like it, for the left, top and bottom edges.
@@ -60,12 +60,14 @@ to change how `Ship` looks when a key is pressed.
 Make `Laser` fire at a steady rate instead of the rattle you get from
 holding space down.
 
-**Hint:** Delete the *yellow* Events `when space key pressed` hat block and
-start instead with `when green flag clicked` followed by a `forever` loop.
-Inside it, put an `if` using Sensing's `key space pressed?` block, and move
-your `create clone of myself` block inside that `if`. Add a Control
-`wait () seconds` block straight after the clone block, so `Laser` can't
-fire again until a moment has passed.
+**Hint:** Swap out the *yellow* Events `when space key pressed` hat
+block — it's why holding space rattles instead of firing steadily. Rebuild
+the firing script using the same kind of pattern `Ship`'s movement script
+already uses: Control's `forever` and `if`, with *pale blue* Sensing's
+`key space pressed?` block as the condition. Your existing
+`create clone of myself` block still does the actual firing — a Control
+`wait () seconds` block is what slows the rate back down. Where you put it
+is up to you.
 
 ### ★ Laser colour and speed
 
@@ -92,10 +94,10 @@ Give `Asteroid` a second look, and have new clones pick one of the two at
 random.
 
 **Hint:** On the Costumes tab, duplicate `Asteroid`'s costume and change the
-copy — resize or recolour it so it's clearly different. Then, near the top
-of `Asteroid`'s `when I start as a clone` script, add a Looks
-`switch costume to ()` block and drop an Operators `pick random () to
-()` block into it, using the costume numbers `1` and `2`.
+copy — resize or recolour it so it's clearly different. Then look at
+Looks' `switch costume to ()` block and Operators' `pick random () to ()`
+block — between the two of them, they can make a fresh clone choose one of
+the two costumes when it's created.
 
 ## Lesson 3 — Enemies and polish
 
@@ -131,12 +133,13 @@ different costume helps sell it as a boss.
 
 Remember the best score anyone's gotten, even after the game restarts.
 
-**Hint:** Make a new variable called something like `high score`, "for all
-sprites". Near where the game checks `lives = 0`, add an `if` that compares
-`score` to `high score` with an Operators `>` block, and if `score` is
-bigger, `set [high score v] to (score)`. The trick to make it survive
-across plays: don't add `high score` to the list of variables `Ship` sets
-to `0` on green flag, or it'll reset itself every game.
+**Hint:** You'll need a new variable — call it something like `high score`,
+"for all sprites" (Variables' "Make a Variable" button). An Operators `>`
+block will let you compare it to `score`, and `set [high score v] to
+(score)` is how you'd update it. Think carefully about where you reset
+variables to `0` on green flag — `high score` needs different treatment
+from `score` and `lives` if it's going to survive from one play to the
+next.
 
 ### ★★ Ship explosion animation
 
