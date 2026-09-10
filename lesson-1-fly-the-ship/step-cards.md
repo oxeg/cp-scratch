@@ -5,27 +5,33 @@ arrow keys.
 
 ## Milestone 1: Set up your project
 
-1. Go to scratch.mit.edu and log in.
-2. Click **Create** to start a new project.
-3. Click the project name at the top of the screen and rename it to
-   `Space Shooter`.
-4. Click the backdrop button (bottom right, below the stage) to open the
-   backdrop library.
-5. Choose a space-themed backdrop - it might be called something like
+1. Go to scratch.mit.edu.
+2. Log in.
+3. Click **Create** to start a new project.
+4. Click the project name at the top of the screen.
+5. Type `Space Shooter` to rename it.
+6. Click the add-backdrop button to open the backdrop library. Look for it
+   in the stage-selector panel to the right of the sprite list, below the
+   stage - check the exact spot in your editor, since it can look a little
+   different depending on the version.
+7. Choose a space-themed backdrop - it might be called something like
    *Stars* or *Galaxy*, so check the names in the library and pick one that
    looks like space.
-6. Delete the cat sprite by clicking the trash can icon on its thumbnail in
+8. Delete the cat sprite by clicking the trash can icon on its thumbnail in
    the sprite list.
-7. Click the sprite button (bottom right, below the stage) to open the
-   sprite library.
-8. Add the rocket sprite - it's called something like *Rocketship*, so check
-   the names in the library and pick the one that looks like a rocket.
-9. Click the sprite's name box in the sprite info panel and rename it to
-   `Ship`.
-10. Change the size field in the sprite info panel to about `50`.
-11. Drag the `Ship` sprite on the stage down to the bottom middle.
-12. Click the rotation style icon in the sprite info panel and choose
-    **don't rotate**.
+9. Click the add-sprite button to open the sprite library. Look for it at
+   the bottom of the sprite list, the panel under the stage - check the
+   exact spot in your editor, since it can look a little different
+   depending on the version.
+10. Add the rocket sprite - it's called something like *Rocketship*, so
+    check the names in the library and pick the one that looks like a
+    rocket.
+11. Click the sprite's name box in the sprite info panel.
+12. Type `Ship` to rename it.
+13. Change the size field in the sprite info panel to about `50`.
+14. Drag the `Ship` sprite on the stage down to the bottom middle.
+15. Click the rotation style icon in the sprite info panel.
+16. Choose **don't rotate**.
 
 **Check it works**
 Look at the stage: it should show a space backdrop with a small ship sitting
@@ -50,8 +56,10 @@ near the bottom middle. The sprite list should show only `Ship` - no cat.
 5. Click the *blue* Motion category in the palette.
 6. Drag a `go to x: () y: ()` block and snap it underneath
    `when green flag clicked`.
-7. Click the x number field on that block and type `0`.
-8. Click the y number field on that block and type `-120`.
+7. Click the x number field on that block.
+8. Type `0` into it.
+9. Click the y number field on that block.
+10. Type `-120` into it.
 
 Your script should now look like this:
 
@@ -77,26 +85,30 @@ time you click it.
 
 1. Click the Events category in the palette.
 2. Drag a `when [key] key pressed` block into the code area.
-3. Click its key dropdown and choose **right arrow**.
-4. Click the Motion category in the palette.
-5. Drag a `change x by ()` block and snap it underneath the
+3. Click its key dropdown.
+4. Choose **right arrow**.
+5. Click the Motion category in the palette.
+6. Drag a `change x by ()` block and snap it underneath the
    `when right arrow key pressed` block.
-6. Type `5` into its number field.
-7. Drag another `when [key] key pressed` block into an empty spot in the
+7. Type `5` into its number field.
+8. Drag another `when [key] key pressed` block into an empty spot in the
    code area.
-8. Click its key dropdown and choose **left arrow**.
-9. Drag a `change x by ()` block and snap it underneath.
-10. Type `-5` into its number field.
-11. Drag another `when [key] key pressed` block into an empty spot in the
+9. Click its key dropdown.
+10. Choose **left arrow**.
+11. Drag a `change x by ()` block and snap it underneath.
+12. Type `-5` into its number field.
+13. Drag another `when [key] key pressed` block into an empty spot in the
     code area.
-12. Click its key dropdown and choose **up arrow**.
-13. Drag a `change y by ()` block and snap it underneath.
-14. Type `5` into its number field.
-15. Drag another `when [key] key pressed` block into an empty spot in the
+14. Click its key dropdown.
+15. Choose **up arrow**.
+16. Drag a `change y by ()` block and snap it underneath.
+17. Type `5` into its number field.
+18. Drag another `when [key] key pressed` block into an empty spot in the
     code area.
-16. Click its key dropdown and choose **down arrow**.
-17. Drag a `change y by ()` block and snap it underneath.
-18. Type `-5` into its number field.
+19. Click its key dropdown.
+20. Choose **down arrow**.
+21. Drag a `change y by ()` block and snap it underneath.
+22. Type `-5` into its number field.
 
 You should now have four separate scripts:
 
@@ -154,29 +166,33 @@ this in the next milestone.
 8. Click the *pale blue* Sensing category in the palette.
 9. Drag a `key [key] pressed?` block into the hexagonal slot on the `if`
    block.
-10. Click its key dropdown and choose **right arrow**.
-11. Click the Motion category in the palette.
-12. Drag a `change x by ()` block so it sits inside the `if` block.
-13. Type `5` into its number field.
-14. Right-click the `if` block and choose **Duplicate**.
-15. Drag the duplicate so it snaps inside the `forever` block, underneath
+10. Click its key dropdown.
+11. Choose **right arrow**.
+12. Click the Motion category in the palette.
+13. Drag a `change x by ()` block so it sits inside the `if` block.
+14. Type `5` into its number field.
+15. Right-click the `if` block and choose **Duplicate**.
+16. Drag the duplicate so it snaps inside the `forever` block, underneath
     the first `if`.
-16. Click the duplicate's key dropdown and choose **left arrow**.
-17. Change the duplicate's number to `-5`.
-18. Right-click the first `if` block again and choose **Duplicate**.
-19. Drag this new duplicate so it snaps inside the `forever` block,
+17. Click the duplicate's key dropdown.
+18. Choose **left arrow**.
+19. Change the duplicate's number to `-5`.
+20. Right-click the first `if` block again and choose **Duplicate**.
+21. Drag this new duplicate so it snaps inside the `forever` block,
     underneath the second `if`.
-20. Click its key dropdown and choose **up arrow**.
-21. Drag its `change x by ()` block out onto the palette to delete it.
-22. Drag a `change y by ()` block so it sits inside the `if` block instead.
-23. Type `5` into its number field.
-24. Right-click the first `if` block one more time and choose **Duplicate**.
-25. Drag this new duplicate so it snaps inside the `forever` block,
+22. Click its key dropdown.
+23. Choose **up arrow**.
+24. Drag its `change x by ()` block out onto the palette to delete it.
+25. Drag a `change y by ()` block so it sits inside the `if` block instead.
+26. Type `5` into its number field.
+27. Right-click the first `if` block one more time and choose **Duplicate**.
+28. Drag this new duplicate so it snaps inside the `forever` block,
     underneath the third `if`.
-26. Click its key dropdown and choose **down arrow**.
-27. Drag its `change x by ()` block out onto the palette to delete it.
-28. Drag a `change y by ()` block so it sits inside the `if` block instead.
-29. Type `-5` into its number field.
+29. Click its key dropdown.
+30. Choose **down arrow**.
+31. Drag its `change x by ()` block out onto the palette to delete it.
+32. Drag a `change y by ()` block so it sits inside the `if` block instead.
+33. Type `-5` into its number field.
 
 Your script should now look like this:
 
