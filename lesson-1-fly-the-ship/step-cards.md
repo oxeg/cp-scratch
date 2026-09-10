@@ -171,13 +171,15 @@ this in the next milestone.
 12. Click the Motion category in the palette.
 13. Drag a `change x by ()` block so it sits inside the `if` block.
 14. Type `5` into its number field.
-15. Right-click the `if` block and choose **Duplicate**.
+15. Right-click this `if` block (the one you just built) and choose
+    **Duplicate**.
 16. Drag the duplicate so it snaps inside the `forever` block, underneath
     the first `if`.
 17. Click the duplicate's key dropdown.
 18. Choose **left arrow**.
 19. Change the duplicate's number to `-5`.
-20. Right-click the first `if` block again and choose **Duplicate**.
+20. Right-click the second `if` block - the one you just changed to left
+    arrow - and choose **Duplicate**.
 21. Drag this new duplicate so it snaps inside the `forever` block,
     underneath the second `if`.
 22. Click its key dropdown.
@@ -185,14 +187,13 @@ this in the next milestone.
 24. Drag its `change x by ()` block out onto the palette to delete it.
 25. Drag a `change y by ()` block so it sits inside the `if` block instead.
 26. Type `5` into its number field.
-27. Right-click the first `if` block one more time and choose **Duplicate**.
+27. Right-click the third `if` block - the one you just changed to up
+    arrow - and choose **Duplicate**.
 28. Drag this new duplicate so it snaps inside the `forever` block,
     underneath the third `if`.
 29. Click its key dropdown.
 30. Choose **down arrow**.
-31. Drag its `change x by ()` block out onto the palette to delete it.
-32. Drag a `change y by ()` block so it sits inside the `if` block instead.
-33. Type `-5` into its number field.
+31. Change the duplicate's number to `-5`.
 
 Your script should now look like this:
 
@@ -225,6 +226,11 @@ than Milestone 3.
   the right number and sign.
 - The ship only moves left and right, never up and down - check the up and
   down `if`s use `change y by`, not a leftover `change x by` block.
+- You ended up with more than four `if` blocks - Duplicate copies the block
+  you right-click *and* everything snapped in underneath it, so
+  right-clicking the wrong `if` copies extra ones along with it. Drag the
+  extra `if` blocks out onto the palette to delete them, so you're left
+  with exactly four, one per arrow key.
 
 ## Make it yours
 
