@@ -40,8 +40,16 @@ Play an engine-type sound while `Ship` is moving.
 **Hint:** On the Sounds tab, open the sound library and search for
 something like "thruster" or "engine" — the exact name in your library
 might be different, so check the list and pick whichever sounds right. Then
-drop a *pink* Sound `start sound` block inside one of your `if key pressed`
-checks so it plays whenever that key is held.
+drop a *pink* Sound block inside one of your `if key pressed` checks.
+
+Watch out for this one: your `if` lives inside a `forever` loop, which comes
+round about thirty times a second, and `start sound` *restarts* the sound
+every single time. Held down, that isn't an engine — it's a buzz. Sound's
+`play sound () until done` block waits for the sound to finish before the
+loop moves on, which sounds much more like a real thruster. Try both and
+listen to the difference — then notice what `play sound () until done` does
+to how quickly your ship reacts to the key, and decide which trade you
+prefer. There isn't a single right answer here.
 
 ### ★ Give the ship a second costume
 
@@ -68,6 +76,13 @@ already uses: Control's `forever` and `if`, with *pale blue* Sensing's
 `create clone of myself` block still does the actual firing — a Control
 `wait () seconds` block is what slows the rate back down. Where you put it
 is up to you.
+
+**One thing to remember:** next week's step cards assume `Laser` still has
+its `when space key pressed` block, because most people's will. If you do
+this challenge, yours won't. That's fine — Lesson 3's cards have a note for
+you at two places (just above Milestone 2's step 27, and just above
+Milestone 4's step 43) telling you what to do instead. Look for it rather
+than following the step as written.
 
 ### ★ Laser colour and speed
 

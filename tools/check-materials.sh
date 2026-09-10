@@ -3,6 +3,9 @@
 # Usage: tools/check-materials.sh [all|reference|README.md|<lesson-dir>]
 set -uo pipefail
 
+# Run from the repo root whatever directory the caller is in.
+cd "$(dirname "$0")/.." || exit 1
+
 fail=0
 err() { echo "FAIL: $*"; fail=1; }
 ok()  { echo "ok:   $*"; }
@@ -77,12 +80,27 @@ check_milestones() {
   fi
 }
 
+# Advisory only. Prints the number of numbered steps under each '## Milestone'
+# heading so the next person editing these can see when a milestone has grown.
+# This NEVER fails and NEVER touches the exit code - the checks above are the
+# only things that gate.
+advise_step_counts() {
+  local file="$1" counts
+  counts=$(awk '
+    /^## Milestone/ { if (seen) printf("%d ", n); seen=1; n=0; next }
+    /^## /          { if (seen) printf("%d ", n); seen=0; n=0; next }
+    /^[0-9]+\. /    { if (seen) n++ }
+    END             { if (seen) printf("%d ", n) }
+  ' "$file")
+  echo "note: $file steps per milestone: ${counts% }"
+}
+
 for f in "${selected[@]}"; do
   if [ ! -f "$f" ]; then err "$f is missing"; continue; fi
   check_placeholders "$f"
   case "$f" in
     *instructor-plan.md) check_timing "$f" ;;
-    *step-cards.md)      check_milestones "$f" ;;
+    *step-cards.md)      check_milestones "$f"; advise_step_counts "$f" ;;
   esac
 done
 

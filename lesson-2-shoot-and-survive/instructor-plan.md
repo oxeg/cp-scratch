@@ -56,12 +56,19 @@ near the end - let them stop wherever they've got to.
 ## Blocks introduced today
 
 - *Amber* Control: `create clone of [myself]`, `when I start as a clone`,
-  `delete this clone`, `repeat until <>`
+  `delete this clone`, `repeat until <>`, `wait () seconds`, `stop [all]`
 - *Pale blue* Sensing: `touching [sprite]?`
 - *Green* Operators: `pick random () to ()`, `() > ()`, `() < ()`, `() = ()`
 - *Orange* Variables: making a variable, `set [variable] to ()`,
   `change [variable] by ()`
-- *Blue* Motion: `go to [sprite]`
+- *Blue* Motion: `go to [sprite]`, `y position`
+- *Purple* Looks: `hide`, `show`
+
+`hide` and `show` look like throwaways and are not: together they are the
+mechanism that makes the clone pattern work at all - the original sprite
+hides itself on green flag and every clone shows itself as it is born. They
+are also sticking point #2 below. Say what they are for out loud when the
+laser is built, not just what to drag.
 
 ## Teaching clones
 
@@ -168,8 +175,11 @@ And at the bottom of the `Ship`'s `forever` loop:
     stop [all v]
 ```
 
-This is crude on purpose - **say so out loud**: *"we'll make this nicer next
-week."* Lesson 3 replaces it with a broadcast and a proper game-over screen.
+This is crude on purpose - **say so out loud**: *"next week you'll get the
+chance to make this nicer."* Lesson 3 replaces it with a broadcast and a
+proper game-over screen. Word it as a chance, not a guarantee: in Lesson 3
+that work is Milestone 4, which is an optional target reached by the kids
+who get there, not something the whole room is promised.
 
 ## Sticking points and fixes
 
@@ -192,6 +202,14 @@ week."* Lesson 3 replaces it with a broadcast and a proper game-over screen.
   both `score` (Milestone 3) and `lives` (Milestone 4) - watch for it both
   times. Fix: right-click the variable in the palette, delete it, and make it
   again with "For all sprites" selected.
+- **The game never ends, and `lives` runs off into negative numbers.**
+  `if <(lives) = (0)>` only fires if a script happens to look at `lives` on
+  the exact tick it equals 0. Two asteroid clones can each take a life in
+  the same frame, taking `lives` 1 → 0 → -1 before the `=` block ever sees
+  0, and then the game runs forever. Fix: change the `=` block to a `<`
+  block and the `0` to a `1`, giving `if <(lives) < (1)> then`. This is on
+  the README's pre-teaching checklist for a reason - it gets worse in Lesson
+  3, where an asteroid and an `EnemyLaser` bolt can also land together.
 
 ## Stretch goals
 
@@ -223,6 +241,17 @@ forever
   `change y by ()` block on the asteroid's clone script."
 - "Can you give `Asteroid` a second costume, and make new clones pick one at
   random?"
+
+## Wrap-up (1:22-1:30)
+
+The step cards end with a numbered save step (**File → Save now**). Don't
+assume it happened: **walk the room and confirm every single project
+actually saved before anyone logs off.** Look at each screen yourself.
+Lesson 3's step cards open by asking the kid to open `Space Shooter` again,
+and a kid whose project didn't save has nothing to open and cannot follow
+next week's cards at all. Watch for the two quiet failures - a kid who never
+reached the last card, and a "save" that failed because the login had
+expired, which looks identical to a successful one from across the room.
 
 ## Notes for next week
 

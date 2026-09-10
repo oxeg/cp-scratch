@@ -1,95 +1,102 @@
 # Lesson 3 - Enemies and polish
 
-By the end of today your game will have an enemy ship that shoots back,
-will get harder the longer you survive, will have sound effects, and will
-show a real GAME OVER screen when you run out of lives. This is the last
-lesson - you'll finish with the whole game.
+By the end of today your game will have an enemy ship that glides across the
+top of the screen and shoots back at you. That's Milestones 1 and 2, and
+that's what today is really about - everyone gets that far.
+
+Milestones 3 and 4 are extra targets for anyone who finishes Milestone 2
+with time to spare: making the game get harder the longer you survive, and a
+real GAME OVER screen with sound effects. Get to them if you get to them.
+Nobody is behind if they don't - the game you take home today is a better
+game than the one you took home last week either way.
+
+**Words used in these cards**
+
+- **Palette** - the panel of coloured block categories down the left, the
+  one you drag blocks *out of*.
+- **Code area** - the big middle panel, the one you drop blocks *into* to
+  build a script.
+- **Reporter block** - a small oval block with a name on it, like `score` or
+  `x position`. It stands for a number. You drop a reporter *into a slot* on
+  another block, instead of snapping it underneath one.
 
 ## Milestone 1: An enemy ship
 
-1. Click the add-sprite button in the sprite list panel to open the sprite
+1. Go to scratch.mit.edu.
+2. Log in.
+3. Click your `Space Shooter` project from last week to open it.
+4. Click **See inside** to open the editor.
+5. Click the add-sprite button in the sprite list panel to open the sprite
    library.
-2. Click the search box at the top of the library.
-3. Type `alien`.
-4. Look through the results for a sprite that looks like an enemy
-   spaceship - it might be called something like `Cyclops` or `Ghost`, so
-   check the names and pictures in the library and pick one that looks like
-   it could shoot at you.
-5. Click the sprite's name box in the sprite info panel.
-6. Type `Enemy` to rename it.
-7. Click the Code tab.
-8. Click the *yellow* Events category in the palette.
-9. Drag a `when green flag clicked` block into the code area.
-10. Click the *purple* Looks category in the palette.
-11. Drag a `show` block and snap it underneath `when green flag clicked`.
-12. Click the *amber* Control category in the palette.
-13. Drag a `forever` block and snap it underneath `show`.
-14. Click the *blue* Motion category in the palette.
-15. Drag a `go to x: () y: ()` block so it sits inside the `forever` block.
-16. Click the x field on that block.
-17. Type `-230`.
-18. Click the *green* Operators category in the palette.
-19. Drag a `pick random () to ()` block into the y number slot on the
+6. Click the search box at the top of the library.
+7. Type `space`.
+8. Look through the results for something that would work as an enemy -
+   another spaceship, a flying saucer, or an alien creature. Library names
+   change from version to version, so go by the pictures rather than hunting
+   for one exact name, and click whichever one looks like it could shoot at
+   you.
+9. Click the sprite's name box in the sprite info panel.
+10. Type `Enemy` to rename it.
+11. Change the size field in the sprite info panel to about `50`, so the
+    enemy is about the same size as your ship.
+12. Click the Code tab.
+13. Click the *yellow* Events category in the palette.
+14. Drag a `when green flag clicked` block into the code area.
+15. Click the *purple* Looks category in the palette.
+16. Drag a `show` block and snap it underneath `when green flag clicked`.
+17. Click the *amber* Control category in the palette.
+18. Drag a `forever` block and snap it underneath `show`.
+19. Click the *blue* Motion category in the palette.
+20. Drag a `go to x: () y: ()` block so it sits inside the `forever` block.
+21. Click the x field on that block.
+22. Type `-230`.
+23. Click the *green* Operators category in the palette.
+24. Drag a `pick random () to ()` block into the y number slot on the
     `go to x: () y: ()` block.
-20. Click the first field of that `pick random` block.
-21. Type `90`.
-22. Click the second field of that `pick random` block.
-23. Type `150`.
-24. Click the Control category in the palette.
-25. Drag a `repeat until <>` block so it sits inside the `forever` block,
+25. Click the first field of that `pick random` block.
+26. Type `90`.
+27. Click the second field of that `pick random` block.
+28. Type `150`.
+29. Click the Control category in the palette.
+30. Drag a `repeat until <>` block so it sits inside the `forever` block,
     underneath `go to x: (-230) y: (pick random (90) to (150))`.
-26. Click the Operators category in the palette.
-27. Drag an `() > ()` block into the hexagon slot on the `repeat until`
+31. Click the Operators category in the palette.
+32. Drag an `() > ()` block into the hexagon slot on the `repeat until`
     block.
-28. Click the Motion category in the palette.
-29. Drag an `x position` block into the left slot of the `>` block.
-30. Click the right field of the `>` block.
-31. Type `230`.
-32. Click the Motion category in the palette.
-33. Drag a `change x by ()` block so it sits inside the `repeat until`
+33. Click the Motion category in the palette.
+34. Drag an `x position` block into the left slot of the `>` block.
+35. Click the right field of the `>` block.
+36. Type `230`.
+37. Click the Motion category in the palette.
+38. Drag a `change x by ()` block so it sits inside the `repeat until`
     block.
-34. Type `4` into its number field.
-35. Click the Control category in the palette.
-36. Drag an `if <> then` block so it sits inside the `repeat until` block,
+39. Type `4` into its number field.
+40. Click the Control category in the palette.
+41. Drag an `if <> then` block so it sits inside the `repeat until` block,
     underneath `change x by (4)`.
-37. Click the *pale blue* Sensing category in the palette.
-38. Drag a `touching [sprite]?` block into the hexagon slot on the new `if`
+42. Click the *pale blue* Sensing category in the palette.
+43. Drag a `touching [sprite]?` block into the hexagon slot on the new `if`
     block.
-39. Click its sprite dropdown.
-40. Choose **Laser**.
-41. Click the *orange* Variables category in the palette.
-42. Drag a `change [variable v] by ()` block so it sits inside the `if`
+44. Click its sprite dropdown.
+45. Choose **Laser**.
+46. Click the *orange* Variables category in the palette.
+47. Drag a `change [variable v] by ()` block so it sits inside the `if`
     block.
-43. Click its variable dropdown.
-44. Choose **score**.
-45. Type `5` into its number field.
-46. Click the Sounds tab.
-47. Click the add-sound button (a speaker icon) at the bottom of the sound
-    list - check the exact spot in your editor, since it can look a little
-    different depending on the version.
-48. Click the search box at the top of the sound library.
-49. Type `pop`.
-50. Look through the results for a short "something got hit" sound - it
-    might not be called exactly `pop`, so check the names in the library
-    and click the one that sounds right.
-51. Click the Code tab.
-52. Click the *pink* Sound category in the palette.
-53. Drag a `start sound [sound v]` block so it sits inside the `if` block,
+48. Click its variable dropdown.
+49. Choose **score**.
+50. Type `5` into its number field.
+51. Click the Motion category in the palette.
+52. Drag a `go to x: () y: ()` block so it sits inside the `if` block,
     underneath `change [score v] by (5)`.
-54. Click its sound dropdown.
-55. Choose the sound you just added.
-56. Click the Motion category in the palette.
-57. Drag a `go to x: () y: ()` block so it sits inside the `if` block,
-    underneath `start sound`.
-58. Click the x field on that block.
-59. Type `-230`.
-60. Click the Operators category in the palette.
-61. Drag a `pick random () to ()` block into the y number slot on that new
+53. Click the x field on that block.
+54. Type `-230`.
+55. Click the Operators category in the palette.
+56. Drag a `pick random () to ()` block into the y number slot on that new
     `go to x: () y: ()` block.
-62. Click the first field of that `pick random` block.
-63. Type `90`.
-64. Click the second field of that `pick random` block.
-65. Type `150`.
+57. Click the first field of that `pick random` block.
+58. Type `90`.
+59. Click the second field of that `pick random` block.
+60. Type `150`.
 
 Your script should now look like this:
 
@@ -102,17 +109,21 @@ forever
     change x by (4)
     if <touching [Laser v]?> then
       change [score v] by (5)
-      start sound [pop v]
       go to x: (-230) y: (pick random (90) to (150))
 ```
 
 **Check it works**
 Click the green flag. The enemy should appear on the left and glide across
-the top of the stage. Shoot it with your laser - it should play a sound,
-`score` should go up by 5, and the enemy should jump straight back to the
-left edge and start gliding across again.
+the top of the stage. Shoot it with your laser - `score` should go up by 5,
+and the enemy should jump straight back to the left edge and start gliding
+across again.
 
 **Stuck?**
+- Nothing turns up when you search `space` - clear the search box and try
+  `alien`, then `rocket`, then `monster`. If none of those help, scroll
+  through the whole library and pick any creature or vehicle you like the
+  look of. It does not have to be a spaceship: rename it `Enemy` and every
+  script below works exactly the same.
 - Nothing appears when you click the green flag - check `show` is snapped
   directly under `when green flag clicked`, and `forever` is snapped under
   `show`.
@@ -122,9 +133,8 @@ left edge and start gliding across again.
 - Shooting the enemy doesn't do anything - check the `touching [Laser v]?`
   block's dropdown really says Laser, and that your laser is actually
   reaching that high up the screen.
-- No sound plays when you hit it - go to the Sounds tab and check you have
-  a sound added there, then check the `start sound` block's dropdown is set
-  to it.
+- The enemy is enormous next to your ship - check the size field in the
+  sprite info panel says about 50.
 
 ## Milestone 2: The enemy shoots back
 
@@ -170,6 +180,17 @@ forever
 24. Click a different colour swatch to pick a new colour.
 25. Click on the bolt shape in the canvas to recolour it.
 26. Click the Code tab.
+
+    **Did you do the fire-rate fix last week?** Then `EnemyLaser` has no
+    `when [space v] key pressed` block at all - your firing script is a
+    `forever` loop hanging under `when green flag clicked` instead. Do steps
+    27 and 28 like this instead: drag `create clone of [myself v]` out of
+    the loop to an empty spot in the code area, then grab the `forever`
+    block itself and drag it onto the palette to delete it. That leaves
+    `when green flag clicked` / `hide`, which is exactly what everyone else
+    has. If you skip this, `EnemyLaser` will fire from the enemy every time
+    *you* press the space bar.
+
 27. Drag the `create clone of [myself v]` block away from underneath
     `when [space v] key pressed`, to an empty spot in the code area, so it's
     on its own.
@@ -248,13 +269,17 @@ delete this clone
 **Check it works**
 Click the green flag. Every couple of seconds the enemy should fire a bolt
 downward from wherever it currently is. If a bolt hits your ship, `lives`
-should go down by 1.
+should go down by 1. This is the game you take home today: fly, shoot,
+dodge, and now duel an enemy that shoots back.
 
 **Stuck?**
 - **enemy fire** doesn't appear in the `when I receive` dropdown - the
   message only exists once you've built the `broadcast [enemy fire v]`
   block on `Enemy` (Milestone 2, steps 13-18). Build that first, then come
   back to `EnemyLaser`.
+- `EnemyLaser` fires a bolt every time *you* press the space bar - you've
+  still got last week's fire-rate `forever` loop sitting on `EnemyLaser`.
+  See the note just above step 27 and delete that loop.
 - Bolts appear in the middle of the stage instead of coming from the
   enemy - check the `go to [sprite]` block in the clone script says Enemy,
   not Ship.
@@ -265,6 +290,17 @@ should go down by 1.
   [sprite]?` block inside the new `if` says Ship, and that `lives` was made
   "for all sprites" back in Lesson 2 (this is the same fix as Lesson 2's
   Milestone 4).
+
+---
+
+**You've reached today's finish line.** Milestone 2 is where everyone is
+aiming, and your game is complete and playable right now. Save it (there are
+steps at the bottom of these cards) and go and show somebody.
+
+**Still got time?** Milestones 3 and 4 below are the extra targets. They are
+independent - you can do either one without the other. If you only have time
+for one, do **Milestone 4**: that's the proper GAME OVER screen you were
+promised last week.
 
 ## Milestone 3: Getting harder
 
@@ -360,13 +396,18 @@ forever
       set [spawn gap v] to (0.4)
 ```
 
+Now hand the asteroid's timing over to `spawn gap`. If you changed those two
+numbers yourself in last week's "make it yours", yours will say something
+other than `0.5` and `1.5` - that's fine, just replace whatever numbers are
+in there. From here on `spawn gap` is what decides how fast asteroids come.
+
 57. Click the `Asteroid` sprite in the sprite list.
 58. Click the first field of the `pick random () to ()` block inside the
     `wait () seconds` block on `Asteroid`'s spawner script.
-59. Type `0.3` to replace `0.5`.
+59. Type `0.3` to replace whatever number is there.
 60. Click the Variables category in the palette.
 61. Drag a `spawn gap` reporter block into the second field of that
-    `pick random () to ()` block, replacing `1.5`.
+    `pick random () to ()` block, replacing the number that's there.
 
 `Asteroid`'s spawner script should now look like this:
 
@@ -399,108 +440,36 @@ below 0.4, however high your score gets.
 - The game becomes unplayable at a high score - almost always means the 0.4
   floor isn't actually connected right; see the fix above.
 
-## Milestone 4: Sound and a proper game over
+## Milestone 4: A proper game over, and sound
 
-1. Click the `Laser` sprite in the sprite list.
-2. Click the Sounds tab.
-3. Click the add-sound button at the bottom of the sound list.
-4. Click the search box at the top of the sound library.
-5. Type `laser`.
-6. Look through the results for a short "pew" or zap sound - it might not
-   be called exactly `laser`, so check the names in the library and click
-   the one that sounds right.
-7. Click the Code tab.
-8. Click the Sound category in the palette.
-9. Drag a `start sound [sound v]` block so it sits underneath
-   `create clone of [myself v]`, inside `Laser`'s
-   `when [space v] key pressed` script.
-10. Click its sound dropdown.
-11. Choose the sound you just added.
-12. Click the `Asteroid` sprite in the sprite list.
-13. Click the Sounds tab.
-14. Click the add-sound button at the bottom of the sound list.
-15. Click the search box at the top of the sound library.
-16. Type `pop`.
-17. Look through the results for the same kind of short "something got hit"
-    sound you picked for `Enemy` back in Milestone 1, and click it.
-18. Click the Code tab.
-19. Drag a `start sound [sound v]` block so it sits inside the
-    `if <touching [Laser v]?> then` block, underneath
-    `change [score v] by (1)` (above `delete this clone`).
-20. Click its sound dropdown.
-21. Choose the sound you just added.
-22. Click the Sounds tab.
-23. Click the add-sound button at the bottom of the sound list.
-24. Click the search box at the top of the sound library.
-25. Type `crash`.
-26. Look through the results for a short impact or crash sound - it might
-    not be called exactly `crash`, so check the names in the library and
-    click the one that sounds right.
-27. Click the Code tab.
-28. Drag a `start sound [sound v]` block so it sits inside the
-    `if <touching [Ship v]?> then` block, underneath
-    `change [lives v] by (-1)` (above `delete this clone`).
-29. Click its sound dropdown.
-30. Choose the sound you just added.
+First the GAME OVER screen - the thing you were promised last week. Sound
+comes after it, from step 35 on.
 
-31. Click the `EnemyLaser` sprite in the sprite list.
-32. Click the Sounds tab.
-33. Click the add-sound button at the bottom of the sound list.
-34. Click the search box at the top of the sound library.
-35. Type `crash`.
-36. Look through the results for the same crash or impact sound you picked
-    for `Asteroid` a moment ago, and click it.
-37. Click the Code tab.
-38. Drag a `start sound [sound v]` block so it sits inside the
-    `if <touching [Ship v]?> then` block, underneath
-    `change [lives v] by (-1)` (above `delete this clone`).
-39. Click its sound dropdown.
-40. Choose the sound you just added.
-
-41. Click the Stage thumbnail, below the stage to the right of the sprite
-    list, to select it.
-42. Click the Backdrops tab.
-43. Right-click the space backdrop's thumbnail in the backdrop list and
-    choose **duplicate**.
-44. Click the duplicate backdrop's name box.
-45. Type `game-over` to rename it.
-46. Click the text tool (a "T" icon) in the paint editor's toolbar.
-47. Click on the canvas where you want the words to start.
-48. Type `GAME OVER`.
-49. Click somewhere else on the canvas to finish the text.
-
-50. Click the `Ship` sprite in the sprite list.
-51. Find the `if <(lives) = (0)> then` block at the bottom of `Ship`'s
-    `forever` loop - the one you built in Lesson 2 - and drag the
-    `stop [all v]` block out of it and onto the palette, to delete it.
-52. Click the Events category in the palette.
-53. Drag a `broadcast [message v]` block so it sits inside the same
-    `if <(lives) = (0)> then` block, where `stop [all v]` used to be.
-54. Click the broadcast block's dropdown.
-55. Click **New message**.
-56. Type `game over`.
-57. Click **OK**.
-
-`Ship`'s `if` block at the bottom of `forever` should now look like this:
-
-```
-  if <(lives) = (0)> then
-    broadcast [game over v]
-```
-
-58. Click the Stage thumbnail to select it.
-59. Click the Code tab.
-60. Click the Events category in the palette.
-61. Drag a `when I receive [message v]` block into the code area.
-62. Click its dropdown.
-63. Choose **game over**.
-64. Click the Looks category in the palette.
-65. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
+1. Click the Stage thumbnail, below the stage to the right of the sprite
+   list, to select it.
+2. Click the Backdrops tab.
+3. Right-click the space backdrop's thumbnail in the backdrop list and
+   choose **duplicate**.
+4. Click the duplicate backdrop's name box.
+5. Type `game-over` to rename it.
+6. Click the text tool (a "T" icon) in the paint editor's toolbar.
+7. Click on the canvas where you want the words to start.
+8. Type `GAME OVER`.
+9. Click somewhere else on the canvas to finish the text.
+10. Click the Code tab.
+11. Click the Events category in the palette.
+12. Drag a `when I receive [message v]` block into the code area.
+13. Click its dropdown.
+14. Click **New message**.
+15. Type `game over`.
+16. Click **OK**.
+17. Click the Looks category in the palette.
+18. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
     `when I receive [game over v]`.
-66. Click its backdrop dropdown.
-67. Choose **game-over**.
-68. Click the Control category in the palette.
-69. Drag a `stop [all v]` block and snap it underneath
+19. Click its backdrop dropdown.
+20. Choose **game-over**.
+21. Click the Control category in the palette.
+22. Drag a `stop [all v]` block and snap it underneath
     `switch backdrop to [game-over v]`.
 
 This script must have the backdrop switch above `stop [all v]`, in this
@@ -514,14 +483,14 @@ switch backdrop to [game-over v]
 stop [all v]
 ```
 
-70. Click the Events category in the palette.
-71. Drag a `when green flag clicked` block into an empty spot in the code
+23. Click the Events category in the palette.
+24. Drag a `when green flag clicked` block into an empty spot in the code
     area - a new script on the Stage.
-72. Click the Looks category in the palette.
-73. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
+25. Click the Looks category in the palette.
+26. Drag a `switch backdrop to [backdrop v]` block and snap it underneath
     the new `when green flag clicked` block.
-74. Click its backdrop dropdown.
-75. Choose your original space backdrop - the one you added back in Lesson
+27. Click its backdrop dropdown.
+28. Choose your original space backdrop - the one you added back in Lesson
     1. There are only two backdrops in the list by now, so just pick
     whichever one isn't `game-over`.
 
@@ -532,28 +501,141 @@ when green flag clicked
 switch backdrop to [your space backdrop v]
 ```
 
+Nothing shouts `game over` yet, so nothing has changed when you play - the
+Stage is listening for a message nobody sends. That's on purpose. Now go and
+make `Ship` send it.
+
+29. Click the `Ship` sprite in the sprite list.
+30. Find the `if <(lives) = (0)> then` block at the bottom of `Ship`'s
+    `forever` loop - the one you built in Lesson 2 - and drag the
+    `stop [all v]` block out of it and onto the palette, to delete it.
+31. Click the Events category in the palette.
+32. Drag a `broadcast [message v]` block so it sits inside the same
+    `if <(lives) = (0)> then` block, where `stop [all v]` used to be.
+33. Click its dropdown.
+34. Choose **game over**.
+
+`Ship`'s `if` block at the bottom of `forever` should now look like this:
+
+```
+  if <(lives) = (0)> then
+    broadcast [game over v]
+```
+
+Notice the order you did that in: you built the Stage's listener *first*,
+and only then swapped `Ship`'s block over. That way your game never spent a
+single minute unable to end. It's a good habit - build the new thing before
+you take the old thing out.
+
+Now for sound.
+
+35. Click the `Laser` sprite in the sprite list.
+36. Click the Sounds tab.
+37. Click the add-sound button (a speaker icon) at the bottom of the sound
+    list - check the exact spot in your editor, since it can look a little
+    different depending on the version.
+38. Click the search box at the top of the sound library.
+39. Type `laser`.
+40. Look through the results for a short "pew" or zap sound - it might not
+    be called exactly `laser`, so check the names in the library and click
+    the one that sounds right.
+41. Click the Code tab.
+42. Click the *pink* Sound category in the palette.
+
+    **Did you do the fire-rate fix last week?** Then `Laser` has no
+    `when [space v] key pressed` script. In step 43, drop the
+    `start sound` block underneath `create clone of [myself v]` inside your
+    `forever` loop's `if` instead - same place in the story, different
+    script.
+
+43. Drag a `start sound [sound v]` block so it sits underneath
+    `create clone of [myself v]`, inside `Laser`'s
+    `when [space v] key pressed` script.
+44. Click its sound dropdown.
+45. Choose the sound you just added.
+46. Click the `Asteroid` sprite in the sprite list.
+47. Click the Sounds tab.
+48. Click the add-sound button at the bottom of the sound list.
+49. Click the search box at the top of the sound library.
+50. Type `pop`.
+51. Look through the results for a short "something got hit" sound - it
+    might not be called exactly `pop`, so check the names in the library
+    and click the one that sounds right.
+52. Click the Code tab.
+53. Drag a `start sound [sound v]` block so it sits inside the
+    `if <touching [Laser v]?> then` block, underneath
+    `change [score v] by (1)` (above `delete this clone`).
+54. Click its sound dropdown.
+55. Choose the sound you just added.
+56. Click the Sounds tab.
+57. Click the add-sound button at the bottom of the sound list.
+58. Click the search box at the top of the sound library.
+59. Type `crash`.
+60. Look through the results for a short impact or crash sound - it might
+    not be called exactly `crash`, so check the names in the library and
+    click the one that sounds right.
+61. Click the Code tab.
+62. Drag a `start sound [sound v]` block so it sits inside the
+    `if <touching [Ship v]?> then` block, underneath
+    `change [lives v] by (-1)` (above `delete this clone`).
+63. Click its sound dropdown.
+64. Choose the sound you just added.
+65. Click the `Enemy` sprite in the sprite list.
+66. Click the Sounds tab.
+67. Click the add-sound button at the bottom of the sound list.
+68. Click the search box at the top of the sound library.
+69. Type `pop`.
+70. Look through the results for the same short "something got hit" sound
+    you picked for `Asteroid` a moment ago, and click it.
+71. Click the Code tab.
+72. Drag a `start sound [sound v]` block so it sits inside the
+    `if <touching [Laser v]?> then` block on `Enemy`, underneath
+    `change [score v] by (5)`.
+73. Click its sound dropdown.
+74. Choose the sound you just added.
+75. Click the `EnemyLaser` sprite in the sprite list.
+76. Click the Sounds tab.
+77. Click the add-sound button at the bottom of the sound list.
+78. Click the search box at the top of the sound library.
+79. Type `crash`.
+80. Look through the results for the same crash or impact sound you picked
+    for `Asteroid`, and click it.
+81. Click the Code tab.
+82. Drag a `start sound [sound v]` block so it sits inside the
+    `if <touching [Ship v]?> then` block, underneath
+    `change [lives v] by (-1)` (above `delete this clone`).
+83. Click its sound dropdown.
+84. Choose the sound you just added.
+
 **Check it works**
-Click the green flag and play. You should hear a sound when you fire, when
-an asteroid is destroyed, and when your ship gets hit. When `lives` reaches
-0, the backdrop should switch to your GAME OVER screen and everything
-should stop. Click the green flag again to play a second time - the game
-should start back on your space backdrop, not on GAME OVER.
+Click the green flag and play. When `lives` reaches 0, the backdrop should
+switch to your GAME OVER screen and everything should stop. Click the green
+flag again to play a second time - the game should start back on your space
+backdrop, not on GAME OVER. You should also hear a sound when you fire, when
+an asteroid or the enemy is destroyed, and when your ship gets hit.
 
 **Stuck?**
 - No GAME OVER screen appears, but the game does stop - check `stop [all v]`
   isn't sitting *above* `switch backdrop to [game-over v]` on the Stage's
   `when I receive [game over v]` script; it needs to be below it.
-- The game doesn't stop at all at 0 lives - check you replaced
-  `stop [all v]` on `Ship` with `broadcast [game over v]` inside the
-  existing `if <(lives) = (0)> then` block, rather than leaving the old
-  block in place alongside a new one.
+- The game doesn't stop at all at 0 lives - first check `Ship` really has
+  `broadcast [game over v]` inside the `if <(lives) = (0)> then` block, and
+  that its dropdown says `game over`.
+- The game still doesn't stop, and you can see the `lives` number shooting
+  straight past 0 into -1, -2, -3 - two things hit you in the same instant,
+  so `lives` was never sitting exactly on 0 for the `=` block to catch. Fix
+  it on `Ship`: drag the `() = ()` block out of the `if` onto the palette to
+  delete it, drop an Operators `() < ()` block into the empty hexagon,
+  put the `lives` reporter in its left slot, and type `1` in its right slot.
+  `if <(lives) < (1)> then` catches 0 *and* anything below it.
 - The second play-through starts on the GAME OVER screen even though the
   game is running underneath it - the Stage is missing its own
   `when green flag clicked` / `switch backdrop to [your space backdrop v]`
   script.
-- A sound doesn't play - check the sprite has a sound added on its Sounds
-  tab, and that the `start sound` block's dropdown is actually set to it,
-  not left on a default.
+- A sound doesn't play, or the dropdown is empty - check that sprite has a
+  sound added on its own Sounds tab (each sprite has its own list), and that
+  the `start sound` block's dropdown is actually set to it, not left on a
+  default.
 
 ## Make it yours
 
@@ -565,3 +647,16 @@ should start back on your space backdrop, not on GAME OVER.
   colours, extra drawings, a different font from the text tool's options.
 - Once you've tried those, check out `reference/extra-challenges.md` for
   more ideas to fill the rest of today's build time.
+
+## Before you log off
+
+Do this every week, and do it now even if you're mid-milestone. A project
+that isn't saved doesn't survive the week.
+
+1. Click **File** at the top of the editor.
+2. Click **Save now** (in some versions it just says **Save**).
+3. Look at the top of the screen for the message saying your project was
+   saved.
+
+Didn't see that message, or does it say you're not logged in? Put your hand
+up before you close the tab - don't just try again and hope.

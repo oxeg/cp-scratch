@@ -35,6 +35,7 @@ table below.
 | `change x by ()` | Moves sideways by that many steps (right if positive, left if negative). |
 | `change y by ()` | Moves up/down by that many steps (up if positive, down if negative). |
 | `set x to ()` | Jumps sideways to that exact x position, ignoring where it was. |
+| `set y to ()` | Jumps up/down to that exact y position, ignoring where it was. |
 | `x position` | Reports how far left/right this sprite currently is. |
 | `y position` | Reports how far up/down this sprite currently is. |
 
@@ -75,3 +76,4 @@ table below.
 |---|---|
 | `set [variable] to ()` | Sets the variable to exactly that value, wiping whatever it was before. |
 | `change [variable] by ()` | Adds that amount to the variable's current value (use a negative number to subtract). |
+| `(score)`, `(lives)`, `(level)`, `(spawn gap)` — the small orange ovals | Each variable you make gets one of these, with its name on it. It stands for whatever that variable's number is right now. Blocks shaped like this are called **reporter blocks**: you drop one *into a slot* on another block (like `() > ()` or a `wait` block's number slot), instead of snapping it underneath one. Motion's `x position` and `y position` are reporter blocks too — same shape, same idea, different colour. |

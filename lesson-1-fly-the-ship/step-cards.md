@@ -3,6 +3,13 @@
 By the end of today you'll have a ship you can fly around space with the
 arrow keys.
 
+**Words used in these cards**
+
+- **Palette** - the panel of coloured block categories down the left, the
+  one you drag blocks *out of*.
+- **Code area** - the big middle panel, the one you drop blocks *into* to
+  build a script.
+
 ## Milestone 1: Set up your project
 
 1. Go to scratch.mit.edu.
@@ -173,15 +180,16 @@ this in the next milestone.
 14. Type `5` into its number field.
 15. Right-click this `if` block (the one you just built) and choose
     **Duplicate**.
-16. Drag the duplicate so it snaps inside the `forever` block, underneath
-    the first `if`.
+16. The copy is now stuck to your mouse pointer - you don't hold any button
+    down. Move it so it lines up inside the `forever` block, underneath the
+    first `if`, and click to drop it there.
 17. Click the duplicate's key dropdown.
 18. Choose **left arrow**.
 19. Change the duplicate's number to `-5`.
 20. Right-click the second `if` block - the one you just changed to left
     arrow - and choose **Duplicate**.
-21. Drag this new duplicate so it snaps inside the `forever` block,
-    underneath the second `if`.
+21. Move the copy on your mouse pointer so it lines up inside the `forever`
+    block, underneath the second `if`, and click to drop it there.
 22. Click its key dropdown.
 23. Choose **up arrow**.
 24. Drag its `change x by ()` block out onto the palette to delete it.
@@ -189,8 +197,8 @@ this in the next milestone.
 26. Type `5` into its number field.
 27. Right-click the third `if` block - the one you just changed to up
     arrow - and choose **Duplicate**.
-28. Drag this new duplicate so it snaps inside the `forever` block,
-    underneath the third `if`.
+28. Move the copy on your mouse pointer so it lines up inside the `forever`
+    block, underneath the third `if`, and click to drop it there.
 29. Click its key dropdown.
 30. Choose **down arrow**.
 31. Change the duplicate's number to `-5`.
@@ -240,3 +248,17 @@ than Milestone 3.
   paint tools, or try a colour effect from the *purple* Looks category.
 - Make your ship bigger or smaller using the size field in the sprite info
   panel.
+
+## Before you log off
+
+Do this every week, and do it now even if you're mid-milestone. Next week's
+cards start by opening this same project again - a project that isn't saved
+doesn't survive the week.
+
+1. Click **File** at the top of the editor.
+2. Click **Save now** (in some versions it just says **Save**).
+3. Look at the top of the screen for the message saying your project was
+   saved.
+
+Didn't see that message, or does it say you're not logged in? Put your hand
+up before you close the tab - don't just try again and hope.

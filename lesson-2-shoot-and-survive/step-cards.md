@@ -4,59 +4,73 @@ By the end of today you'll be shooting lasers, dodging falling asteroids,
 racking up a score, and losing lives when you get hit - with a game over
 when you run out.
 
+**Words used in these cards**
+
+- **Palette** - the panel of coloured block categories down the left, the
+  one you drag blocks *out of*.
+- **Code area** - the big middle panel, the one you drop blocks *into* to
+  build a script.
+- **Reporter block** - a small oval block with a name on it, like `lives` or
+  `y position`. It stands for a number. You drop a reporter *into a slot* on
+  another block, instead of snapping it underneath one.
+
 ## Milestone 1: Shoot lasers
 
-First you'll draw your own laser bolt, then build the scripts that let you
-fire it.
+First you'll open last week's project and draw your own laser bolt, then
+build the scripts that let you fire it.
 
-1. Click the paint-new-sprite button (a paintbrush icon) at the bottom of
+1. Go to scratch.mit.edu.
+2. Log in.
+3. Click your `Space Shooter` project from last week to open it.
+4. Click **See inside** to open the editor.
+5. Click the paint-new-sprite button (a paintbrush icon) at the bottom of
    the sprite list, next to the sprite-library button - check the exact spot
    in your editor, since it can look a little different depending on the
    version.
-2. Click the new sprite's name box in the sprite info panel.
-3. Type `Laser` to rename it.
-4. In the paint editor, click a bright colour swatch to pick a colour for
+6. Click the new sprite's name box in the sprite info panel.
+7. Type `Laser` to rename it.
+8. In the paint editor, click a bright colour swatch to pick a colour for
    your laser.
-5. Click the rectangle tool in the paint editor's toolbar.
-6. Draw a small, thin rectangle right on top of the crosshair (the little +
-   mark in the middle of the canvas) - just a few pixels wide and about 15
-   tall. Keep it small and centred on the crosshair: a laser that's too big
-   or off to one side causes problems later.
-7. Click the Code tab.
-8. Click the *yellow* Events category in the palette.
-9. Drag a `when green flag clicked` block into the code area.
-10. Click the *purple* Looks category in the palette.
-11. Drag a `hide` block and snap it underneath `when green flag clicked`.
-12. Click the Events category in the palette.
-13. Drag a `when [key] key pressed` block into an empty spot in the code
+9. Click the rectangle tool in the paint editor's toolbar.
+10. Draw a small, thin rectangle right on top of the crosshair (the little +
+    mark in the middle of the canvas) - just a few pixels wide and about 15
+    tall. Keep it small and centred on the crosshair: a laser that's too big
+    or off to one side causes problems later.
+11. Click the Code tab.
+12. Click the *yellow* Events category in the palette.
+13. Drag a `when green flag clicked` block into the code area.
+14. Click the *purple* Looks category in the palette.
+15. Drag a `hide` block and snap it underneath `when green flag clicked`.
+16. Click the Events category in the palette.
+17. Drag a `when [key] key pressed` block into an empty spot in the code
     area.
-14. Click its key dropdown.
-15. Choose **space**.
-16. Click the *amber* Control category in the palette.
-17. Drag a `create clone of [myself v]` block and snap it underneath
+18. Click its key dropdown.
+19. Choose **space**.
+20. Click the *amber* Control category in the palette.
+21. Drag a `create clone of [myself v]` block and snap it underneath
     `when [space v] key pressed`.
-18. Drag a `when I start as a clone` block into an empty spot in the code
+22. Drag a `when I start as a clone` block into an empty spot in the code
     area.
-19. Click the *blue* Motion category in the palette.
-20. Drag a `go to [sprite]` block and snap it underneath
+23. Click the *blue* Motion category in the palette.
+24. Drag a `go to [sprite]` block and snap it underneath
     `when I start as a clone`.
-21. Click its sprite dropdown.
-22. Choose **Ship**.
-23. Click the Looks category in the palette.
-24. Drag a `show` block and snap it underneath `go to [Ship v]`.
-25. Click the Control category in the palette.
-26. Drag a `repeat until <>` block and snap it underneath `show`.
-27. Click the *green* Operators category in the palette.
-28. Drag a `() > ()` block into the hexagon slot on the `repeat until` block.
-29. Click the Motion category in the palette.
-30. Drag a `y position` block into the left slot of the `>` block.
-31. Click the right field of the `>` block.
-32. Type `170`.
+25. Click its sprite dropdown.
+26. Choose **Ship**.
+27. Click the Looks category in the palette.
+28. Drag a `show` block and snap it underneath `go to [Ship v]`.
+29. Click the Control category in the palette.
+30. Drag a `repeat until <>` block and snap it underneath `show`.
+31. Click the *green* Operators category in the palette.
+32. Drag a `() > ()` block into the hexagon slot on the `repeat until` block.
 33. Click the Motion category in the palette.
-34. Drag a `change y by ()` block so it sits inside the `repeat until` block.
-35. Type `12` into its number field.
-36. Click the Control category in the palette.
-37. Drag a `delete this clone` block and snap it underneath the
+34. Drag a `y position` block into the left slot of the `>` block.
+35. Click the right field of the `>` block.
+36. Type `170`.
+37. Click the Motion category in the palette.
+38. Drag a `change y by ()` block so it sits inside the `repeat until` block.
+39. Type `12` into its number field.
+40. Click the Control category in the palette.
+41. Drag a `delete this clone` block and snap it underneath the
     `repeat until` block itself (below it, not inside it).
 
 Your three scripts should now look like this:
@@ -95,6 +109,10 @@ nothing to hit yet.
 - A laser-shaped shape sits stuck in the middle of the stage the moment you
   click the green flag - you forgot the `hide` block on the
   `when green flag clicked` script.
+- The bolt flies up crooked - off at an angle, or drifting sideways instead
+  of straight up. Your scripts are fine; it's the drawing. Go to the
+  `Laser` sprite's Costumes tab and drag your rectangle so the little +
+  crosshair sits right in the middle of it.
 - Lasers keep firing forever and never disappear, and the game gets slower
   the longer you play - check `delete this clone` is snapped underneath
   `repeat until`, not missing or stuck somewhere else.
@@ -392,7 +410,8 @@ Click the green flag and play. Each time an asteroid touches your ship,
 scripts, everything, the moment `lives` reaches 0. Your game is playable
 right now, and it's the full core game: fly, shoot, dodge, score, and
 survive as long as you can. It just stops bluntly rather than showing a nice
-game-over screen - that's on purpose, and you'll fix it next week.
+game-over screen - that's on purpose, and next week you'll get the chance to
+turn it into a real GAME OVER screen.
 
 **Stuck?**
 - `lives` doesn't go down when an asteroid hits you - check `lives` was made
@@ -401,6 +420,14 @@ game-over screen - that's on purpose, and you'll fix it next week.
   `if <(lives) = (0)> then` / `stop [all v]` block is snapped inside the
   `forever` block on `Ship`, underneath the four arrow-key `if` blocks, not
   sitting below `forever` on its own.
+- The game still never stops, and you can see the `lives` number shooting
+  straight past 0 into -1, -2, -3 - two asteroids hit you in the same
+  instant, so `lives` was never sitting exactly on 0 for the `=` block to
+  catch. Change the `=` block to a `<` block and the `0` to a `1`:
+  `if <(lives) < (1)> then` catches 0 *and* anything below it. Drag the
+  `() = ()` block out onto the palette to delete it, drop an Operators
+  `() < ()` block into the empty hexagon, put the `lives` reporter block in
+  its left slot, and type `1` in its right slot.
 - The game stops the moment you click the green flag - check
   `set [lives v] to (3)` really says `3`, and check the `=` block compares
   `lives` to `0`, not some other number.
@@ -409,11 +436,27 @@ game-over screen - that's on purpose, and you'll fix it next week.
 
 - What colour and size should your laser be? Try redrawing it in the
   Costumes tab.
-- How fast should your laser fire? Ask a volunteer to show you the fire-rate
-  fix if you want a steadier rate instead of the key-repeat rattle.
+- How fast should your laser fire? If you want a steadier rate instead of
+  the key-repeat rattle, work through the **Fix the fire rate** challenge in
+  `reference/extra-challenges.md` - it gives you the hint, you do the
+  building.
 - How often should asteroids appear? Try different numbers in the
   `pick random () to ()` block inside `Asteroid`'s `wait () seconds` block.
 - How fast should asteroids fall? Try a different number in the
   `change y by ()` block on the asteroid's clone script.
 - Can you give `Asteroid` a second costume in the Costumes tab, and make new
   clones pick one at random?
+
+## Before you log off
+
+Do this every week, and do it now even if you're mid-milestone. Next week's
+cards start by opening this project again - a project that isn't saved
+doesn't survive the week.
+
+1. Click **File** at the top of the editor.
+2. Click **Save now** (in some versions it just says **Save**).
+3. Look at the top of the screen for the message saying your project was
+   saved.
+
+Didn't see that message, or does it say you're not logged in? Put your hand
+up before you close the tab - don't just try again and hope.
