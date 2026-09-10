@@ -14,9 +14,12 @@ every helper you buy costs more than the last one.
   `(cookies)`. You don't snap an oval under another block. You drop it
   *into a slot* on a block, like the empty holes in `() < ()`.
 - **Mouth** - the C-shaped gap inside a block like `if <> then` or
-  `forever`. Blocks put in the mouth are *inside* that block. Blocks
-  snapped under the whole thing are outside it, and that is a different
-  thing entirely.
+  `forever`. Blocks put in the mouth are *inside* that block. With an
+  `if <> then`, blocks snapped under the whole thing are outside it, and
+  that is a different thing entirely. A `forever` works differently: look
+  at its bottom edge and you'll see it has no bump, so **nothing can be
+  attached under a `forever` at all.** It is always the last block in its
+  script.
 
 ## Milestone 1: Open the shop
 
@@ -179,10 +182,10 @@ if <not <(cookies) < (grandma cost)>> then
 ```
 
 **Check it works**
-Press the green flag, then click Grandma straight away - with only a few
-cookies, nothing at all happens, and that's right. Now click your cookie up
-past 50 and click Grandma again: `cookies` drops by 50, `per second`
-becomes 1, and `grandma cost` becomes 100.
+Press the green flag, then click Grandma straight away - you have 0 cookies
+at that moment, so nothing at all happens, and that's right. Now click your
+cookie up past 50 and click Grandma again: `cookies` drops by 50,
+`per second` becomes 1, and `grandma cost` becomes 100.
 
 **Stuck?**
 - Clicking Grandma does nothing even when you've got plenty of cookies -
@@ -199,12 +202,14 @@ becomes 1, and `grandma cost` becomes 100.
   when you could afford her - the two ovals in the `() - ()` block are the
   wrong way round. `(cookies)` goes on the left, `(grandma cost)` on the
   right.
-- She never gets more expensive, so you can buy her over and over at the
-  same price - the `set [grandma cost v] to ((grandma cost) * (2))` block
-  is missing. Build it and drop it in at the bottom, inside the mouth of
-  the `if`. If that block is there but sitting *underneath* the `if`
-  instead of inside it, the price doubles on every single click of her,
-  including the clicks that buy nothing - drag it into the mouth.
+- She never gets more expensive, so you can buy her over and over at 50 -
+  the `set [grandma cost v] to ((grandma cost) * (2))` block is missing.
+  Build it and drop it in at the bottom, inside the mouth of the `if`.
+- Her price runs away on its own, doubling and doubling until you can never
+  afford her - that same `set [grandma cost v] to ((grandma cost) * (2))`
+  block is sitting *underneath* the whole `if` block instead of inside its
+  mouth, so it fires on every single click of her, including all the clicks
+  that buy nothing. Drag it into the mouth, below the other two.
 - Buying her costs you far more than 50 - the three blocks inside the mouth
   are in the wrong order, with the price-doubling block running before you
   pay. Top to bottom they must read: `set [cookies v] to ...`, then
@@ -255,19 +260,31 @@ every second.
   Grandma yet, so `per second` is still 0 and the script is faithfully
   adding zero cookies every second. Look at the `per second` readout on the
   stage: if it says 0, go and buy her first.
-- Still nothing, and `per second` says 1 - the `wait` and `change` blocks
-  are snapped *underneath* the `forever` block instead of sitting in its
-  mouth. Nothing below a `forever` ever runs, because the `forever` never
-  finishes. Drag them into the mouth.
-- Cookies race up far too fast to read - the `wait (1) seconds` block is
-  missing from the mouth of the `forever`, or it's below the `forever`
-  instead of inside it. Without it the `change` block fires about thirty
-  times a second.
+- Still nothing, and `per second` says 1 - look at the slot on the
+  `change [cookies v] by ()` block. If that slot is empty, Scratch reads it
+  as 0, so the script is faithfully adding nothing once a second. Drag a
+  `(per second)` oval into it.
+- The counter climbs by exactly one a second however many Grandmas you buy
+  - the `(per second)` oval landed *beside* the slot instead of in it. It's
+  lying loose in the code area and the block is still using its own number.
+  Drag the oval right onto the slot and wait for the slot to light up
+  before you let go.
+- Cookies race up far too fast to read - the `wait (1) seconds` block isn't
+  in the mouth of the `forever`. Either it's missing, or it got snapped
+  *above* the `forever`, in between it and `when green flag clicked`. Up
+  there it waits one second once, and then the loop runs flat out for the
+  rest of the game. Get the `wait` block into the mouth, above the
+  `change` block.
 - The counter climbs on its own, but your cookie stopped making its sound
   and stopped squashing - the `forever` block landed in the middle of the
-  click script. Everything below a `forever` is stranded, so the sound and
-  squash blocks under it never run. Drag the `forever` block out to an
-  empty spot and snap it under a fresh `when green flag clicked` block.
+  click script. Nothing can stay attached under a `forever`, so the four
+  blocks that used to sit below that spot got knocked loose, and they're
+  lying in the code area now as a separate little stack starting with
+  `start sound`. There are two things to put right here. Drag the `forever`
+  block out to an empty spot and snap it under a fresh
+  `when green flag clicked` block. Then drag that loose stack back and snap
+  it under `change [cookies v] by (1)` in the click script, which is where
+  it came from.
 - Your new blocks got snapped onto the bottom of last week's green-flag
   script instead of standing on their own. **You can't spot this one by
   playing** - the game behaves exactly the same either way - so check it on

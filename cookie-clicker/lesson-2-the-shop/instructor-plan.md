@@ -23,7 +23,8 @@ before the session, not during it.
 | 0:00-0:08 | Recap last week, demo today's game |
 | 0:08-0:14 | **M1 steps 1-7** Log in, open `Cookie Clicker`, check last week still works |
 | 0:14-0:28 | **M1 steps 8-31** The shop opens - `Grandma`, `per second`, `grandma cost` |
-| 0:28-0:52 | **M2** Buying her - *the hard idea, do not rush it* |
+| 0:28-0:36 | **M2 steps 1-11** Assembling `not <(cookies) < (grandma cost)>` - *the hard idea* |
+| 0:36-0:52 | **M2 steps 12-32** What happens when she's bought - pay, count, double the price |
 | 0:52-0:54 | The detour: you bought her, and nothing happened |
 | 0:54-1:01 | **M3** Cookies bake themselves - *this is the floor* |
 | 1:01-1:16 | **M4** The `Baker` *(second shop item - everyone should reach)* |
@@ -34,8 +35,9 @@ before the session, not during it.
 Where those minutes come from. The step cards hold 101 numbered steps, and
 this room is in its second week, so the nominal rate is 35 seconds a step -
 faster than Lesson 1's 42, because nobody is meeting the editor for the
-first time. Two rows are deliberately not at that rate, and both are argued
-below rather than quietly written into the table.
+first time. Three rows are deliberately not at that rate - the opening row
+and both Milestone 2 rows - and each is argued below rather than quietly
+written into the table.
 
 - **Recap and demo, 8 min.** No step content.
 - **Milestone 1 steps 1-7, budgeted 6 min.** Seven steps at 35 seconds is
@@ -48,7 +50,7 @@ below rather than quietly written into the table.
   minutes over the nominal rate are for the forgotten passwords and the
   kid who cannot find **My Stuff**.
 - **Milestone 1 steps 8-31, 24 steps: 24 x 35s = 14 min.** Exactly 14.
-- **Milestone 2, 32 steps: 32 x 45s = 24 min.** Exactly 24, and not 35
+- **Milestone 2, 32 steps at 45s = 24 min, split across two rows.** Not 35
   seconds a step. Nesting a `() < ()` inside a `not <>` inside an
   `if <> then`, and then dropping two ovals into the slots of the `<`, is
   the fiddliest block assembly in the whole course. Beginners miss the drop
@@ -56,6 +58,17 @@ below rather than quietly written into the table.
   again. 45 seconds a step is the honest rate for this milestone and it is
   a quarter of the lesson. If you find yourself wanting the time back, take
   it from Milestone 4, not from here.
+
+  The split costs nothing and buys you a checkpoint. Steps 1-11 build the
+  condition and steps 12-32 build everything the `if` does when it fires,
+  so **steps 1-11: 11 x 45s = 8.25 min, budgeted 8** and **steps 12-32:
+  21 x 45s = 15.75 min, budgeted 16** - 8 + 16 = the same 24, with the
+  0.25 minute moved from the first row to the second rather than lost.
+  Announce the checkpoint: **everyone should have the condition assembled
+  by 0:36.** A table that hasn't is a table to sit down with, and it is far
+  better to know that at 0:36 than at 0:52. Do not push anyone past the
+  condition to make the checkpoint - it is a signal to you, not a deadline
+  for them.
 - **The detour, 2 min.** Discussion time, not step time. See below.
 - **Milestone 3, 12 steps: 12 x 35s = 7 min.** Exactly 7. This is the
   cheapest milestone in the course and it is the one that turns the game
@@ -74,13 +87,15 @@ below rather than quietly written into the table.
   it will eat a combined "play and save" slot whole - leaving the playing
   to happen and the saving not to. It gets its own row for that reason.
 
-Row by row, that is the whole 90: 8 recap + 6 opening + 14 M1 + 24 M2 +
-2 detour + 7 M3 + 15 M4 + 6 make it yours + 3 playing + 5 saving.
+Row by row, that is the whole 90: 8 recap + 6 opening + 14 M1 + 8 M2
+condition + 16 M2 payload + 2 detour + 7 M3 + 15 M4 + 6 make it yours +
+3 playing + 5 saving. Eleven rows.
 
 Every minute in that list is either a step count times a rate (M1's two
-rows, M2, M3, M4) or an argued fixed slot (recap, detour, make it yours,
-playing, saving). The only number that is neither is the 1.9 minutes of
-slack in the opening row, and it is there on purpose, for logins.
+rows, M2's two rows, M3, M4) or an argued fixed slot (recap, detour, make
+it yours, playing, saving). The only number that is neither is the 1.9
+minutes of slack in the opening row, and it is there on purpose, for
+logins.
 
 If you add or remove steps in the cards, redo this arithmetic and redo the
 table - nothing checks it for you.
@@ -126,9 +141,10 @@ kid trying to snap an oval underneath something.
 
 Do this at the whiteboard, to the whole room, at the start of Milestone 2.
 It takes ninety seconds and a volunteer who fumbles it loses the milestone
-for their table. The step cards give each kid one sentence on this, so you
-are not revealing anything - you are drawing out the sentence they have
-already read.
+for their table. The step cards already explain this to each kid in a short
+paragraph, sitting between the eleven steps that build the condition and
+the steps that build the rest, so you are not revealing anything - you are
+drawing out on the board what they have already read on the card.
 
 Say roughly this:
 
@@ -209,10 +225,15 @@ just as well once their game is idling.
   price-doubling block runs before the paying block, the kid is charged the
   new price instead of the old one. Symptom: buying costs 100, not 50.
 - **A variable made "for this sprite only".** `Grandma` reads `cookies` and
-  writes `per second`; if either was made for one sprite only, her script
-  silently works on the wrong copy of the number. Fix: right-click the
-  variable in the palette, delete it, make it again with **For all
-  sprites** chosen, then repoint any dropdowns that lost their target.
+  writes `per second`. A variable made for one sprite only belongs to the
+  sprite it was made on and **does not appear in any other sprite's
+  palette at all** - so the kid is not silently misled, they are stopped
+  dead: they get to Milestone 2 step 10, go looking for a `(cookies)` oval
+  in `Grandma`'s Variables palette, and it simply isn't there. That "I
+  can't find the block" is the report you will actually hear, and this is
+  the first thing to check when you do. Fix: right-click the variable in
+  the palette, delete it, make it again with **For all sprites** chosen,
+  then repoint any dropdowns that lost their target.
 - **A typo in `per second` or `grandma cost`.** Two-word names with a
   space, typed by twelve-year-olds. `persecond` and `per Second` are
   different variables as far as Scratch is concerned, and the script will
@@ -230,11 +251,21 @@ just as well once their game is idling.
   shoulder, `Cookie` should have three scripts by the end of Milestone 3.
 - **The `forever` block landing in the middle of the click script.** This
   one does have a symptom, and a confusing one: the counter climbs on its
-  own, but the sound and the squash stop. Everything below a `forever` is
-  stranded. Fix: drag the `forever` out to an empty spot and give it its
-  own `when green flag clicked` hat.
-- **The `wait (1) seconds` block missing or outside the `forever`.**
-  Cookies race up about thirty times too fast. Easy to spot, easy to fix.
+  own, but the sound and the squash stop. **A `forever` is a cap block** -
+  no bump on its bottom edge, nothing can attach below it - so dropping one
+  into the middle of a stack knocks the blocks that were below it loose,
+  and they end up sitting in the code area as a separate stack starting
+  with `start sound`. **The fix has two halves and kids stop after the
+  first one:** drag the `forever` out to an empty spot and give it its own
+  `when green flag clicked` hat, *and then* snap the loose four-block stack
+  back under `change [cookies v] by (1)`. A kid who only does the first
+  half still has no sound and no squash, and will tell you the fix didn't
+  work.
+- **The `wait (1) seconds` block missing, or snapped above the `forever`.**
+  Cookies race up about thirty times too fast. It cannot be *below* the
+  `forever` - nothing can - so the place to look is between the `forever`
+  and the `when green flag clicked` hat, where a `wait` waits one second
+  once and then never again. Easy to spot, easy to fix.
 - **In Milestone 4, edits made on the wrong sprite.** `Grandma` and
   `Baker` have near-identical code areas. Have them click the sprite in the
   sprite list and read the name in the sprite info panel before touching a
