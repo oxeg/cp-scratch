@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Structural checks for the course materials.
-# Usage: tools/check-materials.sh [all|reference|README.md|<lesson-dir>]
+# Usage: tools/check-materials.sh [all|<course>|<course>/<lesson-dir>|<path-prefix>]
+#   e.g. all | space-shooter | space-shooter/lesson-1-fly-the-ship
 set -uo pipefail
 
 # Run from the repo root whatever directory the caller is in.
@@ -13,15 +14,15 @@ ok()  { echo "ok:   $*"; }
 target="${1:-all}"
 
 all_files=(
-  "README.md"
-  "reference/block-cheat-sheet.md"
-  "reference/extra-challenges.md"
-  "lesson-1-fly-the-ship/instructor-plan.md"
-  "lesson-1-fly-the-ship/step-cards.md"
-  "lesson-2-shoot-and-survive/instructor-plan.md"
-  "lesson-2-shoot-and-survive/step-cards.md"
-  "lesson-3-enemies-and-polish/instructor-plan.md"
-  "lesson-3-enemies-and-polish/step-cards.md"
+  "space-shooter/README.md"
+  "space-shooter/reference/block-cheat-sheet.md"
+  "space-shooter/reference/extra-challenges.md"
+  "space-shooter/lesson-1-fly-the-ship/instructor-plan.md"
+  "space-shooter/lesson-1-fly-the-ship/step-cards.md"
+  "space-shooter/lesson-2-shoot-and-survive/instructor-plan.md"
+  "space-shooter/lesson-2-shoot-and-survive/step-cards.md"
+  "space-shooter/lesson-3-enemies-and-polish/instructor-plan.md"
+  "space-shooter/lesson-3-enemies-and-polish/step-cards.md"
 )
 
 selected=()
