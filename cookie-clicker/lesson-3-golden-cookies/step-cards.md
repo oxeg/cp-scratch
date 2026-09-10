@@ -85,10 +85,19 @@ change [cookies v] by (10)
 ```
 
 Yours might say a different number, and that's fine - Milestone 2 throws
-this whole script away and builds a better one. There might be a spare
-`when green flag clicked` script sitting there too, left over from when you
-made this sprite; that's harmless, so leave it alone. First, let's make the
-cookie look worth chasing.
+this whole script away and builds a better one.
+
+If you built this sprite two weeks ago, there might be a spare
+`when green flag clicked` script sitting there as well, with
+`set [cookies v] to (0)` under it. That one is harmless - leave it alone.
+
+If you built this sprite just now, in steps 8 to 17, it is different: there
+should be **no** green-flag script left at all. If you can still see one with
+a `forever` in it, step 16 didn't take, and left there it will quietly bake
+you double cookies all game. Drag its `when green flag clicked` block onto
+the palette before you carry on.
+
+First, let's make the cookie look worth chasing.
 
 18. Click `Special Cookie` in the sprite list.
 19. Click the **Costumes** tab at the top left of the editor.
@@ -316,8 +325,10 @@ Now the sprite that listens. That's `Cookie`.
 20. Choose **bonus**.
 21. Click that block's number field.
 22. Type `1` into it. **This one matters.** A `set` block arrives from the
-    palette saying `0`, and a `bonus` of 0 makes every cookie you click
-    worth nothing at all, from the green flag onwards.
+    palette saying `0`. Left at `0`, nothing in your game counts at all when
+    it starts - and it stays that way until the first golden cookie you
+    click, which quietly puts it right. A bug that fixes itself while you're
+    looking for it is a horrible one to hunt, so get this number right now.
 
 That script should now look like this:
 
@@ -462,17 +473,21 @@ put `15` and `30` back afterwards.
   `when I receive [sugar rush v]` script, or its dropdown is pointing at a
   different variable. It has to be the last block in that script and it has
   to say `bonus`.
-- Your game counts nothing at all, right from the green flag - clicking the
-  big cookie does nothing and the counter never moves, golden cookie or no
-  golden cookie. The `set [bonus v] to ()` block you added to the green-flag
-  script in steps 18 to 22 still says `0`. Click its number field and type
-  `1`. (`0` is the number a `set` block arrives with, so this is an easy one
-  to end up with.)
-- After your first golden cookie the game stops counting altogether - your
-  clicks are worth nothing and the per-second income dries up too. This is a
-  different block from the one above: it's the *last* block in the
-  `when I receive [sugar rush v]` script, and it says
-  `set [bonus v] to (0)`. Click its number field and type `1`.
+- Nothing counts at all when the game starts - clicking the big cookie does
+  nothing and the counter never moves - and then your first golden cookie
+  makes everything start working normally. The `set [bonus v] to ()` block
+  you added to the green-flag script in steps 18 to 22 still says `0`, so
+  `bonus` is 0 from the green flag until a sugar rush sets it to 2 and then
+  to 1, and after that the game is fine for the rest of the run. Click that
+  block's number field and type `1`. (`0` is the number a `set` block arrives
+  with, so this is an easy one to end up with.)
+- Your game works perfectly until your first golden cookie, and then it stops
+  counting altogether - clicks are worth nothing and the per-second income
+  dries up too. **This one is the exact opposite of the one above**, so it's
+  easy to tell them apart: that one is broken until your first golden cookie,
+  this one is broken from your first golden cookie onwards. It's a different
+  block, too: the *last* block in the `when I receive [sugar rush v]` script,
+  which says `set [bonus v] to (0)`. Click its number field and type `1`.
 - `bonus` never seems to move at all, even though the golden cookie vanishes
   when you click it - the `wait (10) seconds` block is missing, so the two
   `set` blocks run one straight after the other and `bonus` is back to 1

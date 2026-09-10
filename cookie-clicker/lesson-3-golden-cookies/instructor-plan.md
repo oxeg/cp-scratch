@@ -359,11 +359,11 @@ Four things to say while you build it:
   instead of the clones. **The green-flag check after step 41 catches that
   one for you**, which is most of why it is there - the kid finds it
   themselves, at the moment they built it, instead of you finding it at 0:40.
-  If `hide` is inside the `forever`'s mouth rather
-  than above it, **there is no symptom at all** - the game behaves
-  identically, because what you see on the stage is a clone and the clone
-  shows itself. The card makes that second one a deliberate look-at-the-
-  script check rather than pretending it can be played.
+  If `hide` is inside the `forever`'s mouth rather than above it, **there is
+  no symptom at all** - the game behaves identically, because what you see on
+  the stage is a clone and the clone shows itself. The card makes that second
+  one a deliberate look-at-the-script check rather than pretending it can be
+  played.
 - **The `wait` block above the `forever` instead of in its mouth.** The loop
   runs flat out and the stage fills with golden cookies within a second of
   the green flag. It cannot be *below* the `forever` - nothing can - so the
@@ -379,20 +379,29 @@ Four things to say while you build it:
   number that was already typed there, so every golden cookie appears in the
   same place or the same vertical line. Same fix as last week's ovals: drag
   it right onto the hole and wait for the hole to light up.
-- **The paint bucket filling a chocolate chip instead of the cookie.**
-  Ctrl+Z, then click a part of the big circle with no chip on it. Also worth
-  a "that's gold enough" cue around 0:22, the same way Lesson 1 cues "that's
-  good enough" during the painting - a kid can spend the whole 21-minute row
-  on the Brightness slider.
+- **The paint bucket filling a chocolate chip instead of the cookie.** Undo
+  it - Ctrl+Z, or Cmd+Z on a Mac, and the paint editor has an undo arrow
+  above the canvas too - then click a part of the big circle with no chip on
+  it. Also worth a "that's gold enough" cue around 0:22, the same way Lesson
+  1 cues "that's good enough" during the painting - a kid can spend the whole
+  22-minute row on the Brightness slider.
 - **The clone does not respond to being clicked.** See the whole section
   above. Do not debug this one kid at a time.
-- **The second `set [bonus v] to (1)` left saying `0`.** A `set` block
-  arrives from the palette saying `0`, and card step 42 is the one that
-  changes it. Get this wrong and the first golden cookie of the game kills
-  the game: `bonus` becomes 0 ten seconds later, clicks are worth 0 and
-  `(per second) * (bonus)` is 0. The symptom - "my game stopped counting" -
-  arrives ten seconds after a moment of triumph, so kids do not connect the
-  two. First thing to check when you hear it.
+- **A `set [bonus v] to ()` block left saying `0`.** A `set` block arrives
+  from the palette saying `0`, and there are **two** places the card has to
+  type over it - step 22 and step 42. Both produce "my game stopped
+  counting", and they are exact opposites in time, which is how you tell them
+  apart in one question: **"did it work before you clicked a golden cookie?"**
+  - **Step 42**, the last block of the receiver. The game works normally
+    until the first golden cookie, then dies ten seconds after it. The
+    symptom arrives ten seconds after a moment of triumph, so kids do not
+    connect the two.
+  - **Step 22**, in the green-flag script. Nothing counts at all from the
+    green flag - and then the first golden cookie *fixes it*, because the
+    receiver sets `bonus` to 2 and then to 1. **A bug that heals itself is
+    the worst kind to be handed second-hand**, so if a kid reports "it wasn't
+    counting and now it is", this is what happened and their green-flag
+    script still needs correcting.
 - **The `wait (10) seconds` missing from the receiver.** The two `set`
   blocks run back to back and `bonus` is never observably 2. Reported as
   "nothing happens when I click a golden cookie", which is also the
