@@ -26,7 +26,10 @@ click and squashes and pops when you hit it.
 8. Pick any backdrop you like. There's no right answer here - your cookie
    can sit in space or on a football pitch.
 9. Hold your mouse over the add-sprite button at the bottom of the sprite
-   list until a little row of extra buttons pops up above it.
+   list until a little row of extra buttons pops up above it. Look for that
+   button at the bottom of the sprite list, the panel under the stage -
+   check the exact spot in your editor, since it can look a little
+   different depending on the version.
 10. Click the **Paint** button (the paintbrush) in that row. A new empty
     sprite opens in the paint editor.
 11. Click the **Fill** colour swatch above the canvas to open the colour
@@ -84,16 +87,21 @@ go up by one every single click.
 - Your cookie is a tiny dot on the stage - it was drawn small, so open its
   Costumes tab and draw it bigger there, because changing the Size field
   instead will break the squash you build in Milestone 3.
+- The **Size** field says anything other than `100` - click it and type
+  `100`. If that leaves your cookie too small, open its Costumes tab and
+  redraw it bigger there, because Milestone 3's squash needs this field on
+  `100` to work.
+- The little row of extra buttons never pops up above the add-sprite button
+  - hold your mouse still on the button itself and wait, rather than moving
+  it up towards where you expect the row to appear.
 
 ## Milestone 2: Make the green flag reset it
 
 1. Click your cookie on the stage twenty or thirty times, until you have a
    score you're proud of.
 2. Click the green flag above the stage.
-3. Look at the number. It did **not** go back to 0 - that's not your
-   mistake, and nothing is broken. The green flag doesn't know anything
-   about your cookies yet, because you haven't told it anything. Every game
-   that starts fresh has to be told to start fresh.
+3. Look at the number. It did **not** go back to 0. What did you expect
+   the green flag to do? And who ever told your cookie to go back to 0?
 4. Click the Events category in the palette.
 5. Drag a `when green flag clicked` block into an empty spot in the code
    area, well away from your click script.
@@ -115,6 +123,12 @@ change [cookies v] by (1)
 when green flag clicked
 set [cookies v] to (0)
 ```
+
+Nothing was broken back in step 3, and it wasn't your mistake. A variable
+holds whatever it was last told to hold, forever, until something tells it
+otherwise - and until now, nothing ever did. The green flag had no
+instructions about your cookies at all. Every game that starts fresh has to
+be *told* to start fresh, and that's exactly what these two blocks do.
 
 **Check it works**
 Click up any score you like, then press the green flag. The number should
@@ -230,10 +244,12 @@ however many times you click it.
 - The small cookie grows when you click it - the `set size to` blocks are
   still there. Drag the `set size to (110) %` block onto the palette to
   take it and the blocks below it away.
-- Pressing the green flag resets your score twice over, or the small cookie
-  disappears - the copied green-flag script is still on `Special Cookie`.
-  Select `Special Cookie`, then drag its `when green flag clicked` block
-  onto the palette.
+- The copied green-flag script is one you can't spot by looking - the game
+  behaves exactly the same whether it's there or not, so check it on
+  purpose. Click `Special Cookie` in the sprite list and count the scripts
+  in its code area. There should be exactly one, the two-block one above.
+  If a `when green flag clicked` block is still sitting there, drag it onto
+  the palette.
 - The small cookie still only adds 1 - you changed the number on the wrong
   sprite. Click `Special Cookie` in the sprite list first, then change the
   number in the code area you see after that.

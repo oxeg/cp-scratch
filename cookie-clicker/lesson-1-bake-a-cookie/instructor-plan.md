@@ -13,12 +13,13 @@ a corner, worth 10 a click.
 |---|---|
 | 0:00-0:10 | Welcome, demo today's game, quick peek at the finished Lesson 3 game to sell the course |
 | 0:10-0:25 | Setup: log in, Create, name it `Cookie Clicker`, delete the cat, any backdrop (this genuinely takes 15 min - see below) |
-| 0:25-0:44 | **M1** Paint the cookie, make the `cookies` variable, click script |
-| 0:44-0:56 | **M2** The green flag resets it - *the deliberate detour, do not cut* |
-| 0:56-1:09 | **M3** Make it feel good - sound and squash |
-| 1:09-1:17 | **M4** The `Special Cookie` *(bonus round, if you get there)* |
-| 1:17-1:24 | Make it yours |
-| 1:24-1:30 | Play each other's games, save, wrap up |
+| 0:25-0:42 | **M1** Paint the cookie, make the `cookies` variable, click script |
+| 0:42-0:54 | **M2** The green flag resets it - *the deliberate detour, do not cut* |
+| 0:54-1:07 | **M3** Make it feel good - sound and squash |
+| 1:07-1:15 | **M4** The `Special Cookie` *(bonus round, if you get there)* |
+| 1:15-1:21 | Make it yours |
+| 1:21-1:25 | Play each other's games |
+| 1:25-1:30 | Save, confirm every project saved, wrap up |
 
 Where those minutes come from. The step cards hold 76 numbered steps, and
 Lesson 1 of the other course measures out at about 42 seconds a step with
@@ -27,12 +28,21 @@ week-one beginners:
 - Milestone 1, 35 steps. The first 8 are setup and login, which do not run
   at 42 seconds a step - they run at whatever the slowest password takes,
   so they get their own 15-minute slot. The other 27 are painting and
-  block-building: 27 x 42s = 19 min.
+  block-building: 27 x 42s = 19 min at the nominal rate, **budgeted at 17**.
+  Thirteen of those 27 are paint-editor steps, and how long those take is
+  set by when you give the "that's good enough" cue below, not by the step
+  count - so this is the one row in the table you control directly. If the
+  painting still overruns, Milestone 4 is the cut, not this row.
 - Milestone 2, 10 steps, but only 7 of them build blocks: 7 x 42s = 5 min,
   plus ~7 min for the detour in steps 1-3, which is discussion time, not
   step time. 12 min.
 - Milestone 3, 19 steps: 19 x 42s = 13 min.
 - Milestone 4, 12 steps: 12 x 42s = 8 min.
+
+The tail is deliberately three rows rather than one. The save check below
+is a walk round every screen in the room, one at a time, and it will eat a
+combined "play and save" slot whole - leaving the playing to happen and the
+saving not to. Five minutes for saving is the floor, not a target.
 
 If you add or remove steps in the cards, redo this arithmetic and redo the
 table - nothing checks it for you.
@@ -72,13 +82,13 @@ version of:
 > "That's good enough - it counts clicks either way. You get time at the
 > end in Make It Yours to make it beautiful."
 
-**Give that cue early**, around 0:32, not at 0:40 when they are already
-behind. A kid told at 0:32 shrugs and moves on; a kid told at 0:40 feels
+**Give that cue early**, around 0:32, not at 0:38 when they are already
+behind. A kid told at 0:32 shrugs and moves on; a kid told at 0:38 feels
 their drawing was taken away from them.
 
-One thing in the painting is load-bearing, and it is card step 15: **they
-draw the cookie big in the paint editor and leave the sprite's Size field
-at 100.** If a kid instead draws it small and sets Size to 150, Milestone
+One thing in the painting is load-bearing, and it is card steps 15 and 16:
+**they draw the cookie big in the paint editor and leave the sprite's Size
+field at 100.** If a kid instead draws it small and sets Size to 150, Milestone
 3's squash - `set size to (110) %` - will *shrink* the cookie on every
 click instead of growing it. If you see a Size field that isn't 100, fix it
 back to 100 there and then and have them redraw bigger.
@@ -92,7 +102,7 @@ back to 100 there and then and have them redraw bigger.
 - *Purple* Looks: `set size to () %`
 - *Amber* Control: `wait () seconds`
 
-## The deliberate detour (0:44-0:56)
+## The deliberate detour (0:42-0:54)
 
 This is the pedagogical point of the week, and a volunteer who doesn't
 understand it will skip it by "helping" a kid past the interesting part too
@@ -162,9 +172,16 @@ would blow it up to 110 on the first click.
   `Special Cookie` have near-identical code areas. Have them click the
   sprite in the sprite list first, every time, and check the name in the
   sprite info panel before touching a block.
+- In Milestone 4, the copied green-flag script left behind on
+  `Special Cookie`. This one has **no visible symptom** - two blocks setting
+  the same variable to 0 on the same green flag look exactly like one - so
+  no kid will report it and no play-test will surface it. The card makes it
+  a deliberate check instead, and it is worth your eyes too: click
+  `Special Cookie` and count the scripts, expecting exactly one. A project
+  that goes home with the stray script is what Lesson 2 opens on.
 - Also in Milestone 4: dragging a block takes everything below it with it.
-  The cards use this deliberately, twice, to remove a whole script and a
-  three-block run in one gesture each. A kid who grabs the wrong block
+  The cards use this deliberately, twice, to remove a whole script in one
+  gesture, and the `start sound` block and the three below it in another. A kid who grabs the wrong block
   loses more than they meant to - undo is Ctrl+Z, or just rebuild the block
   from the palette.
 
@@ -174,11 +191,11 @@ Cut in this order:
 
 1. **Milestone 4**, the `Special Cookie`. It sits above the floor by design
    and Lesson 3 opens by offering it to anyone who hasn't got one.
-2. **"Make it yours" at 1:17** - shorten it to four or five minutes.
+2. **"Make it yours" at 1:15** - shorten it to three or four minutes.
 3. **The quick peek at the finished Lesson 3 game**, if you haven't given it
    yet.
 
-**Do not cut the deliberate detour at 0:44-0:56.** See above.
+**Do not cut the deliberate detour at 0:42-0:54.** See above.
 
 ## "Make it yours" prompts to read out
 
@@ -192,7 +209,7 @@ Cut in this order:
 - "Where do you want the score to sit on the stage? Drag the readout
   wherever you like."
 
-## Wrap-up and saving (1:24-1:30)
+## Wrap-up and saving (1:25-1:30)
 
 The step cards end with a numbered save step (**File -> Save now**). Don't
 assume it happened: **walk the room and confirm every single project
@@ -212,4 +229,6 @@ finish the session with a variant of it:
 - the variable named exactly `cookies`, lower-case, **For all sprites**;
 - a green-flag script on `Cookie` that sets `cookies` to 0 - Lesson 2 adds
   three more `set` blocks to that same script, so it has to exist;
-- if they built the bonus round, a sprite named exactly `Special Cookie`.
+- if they built the bonus round, a sprite named exactly `Special Cookie`,
+  carrying exactly one script - the two-block one - and no copy of the
+  green-flag script.
