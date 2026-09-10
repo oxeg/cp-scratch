@@ -21,6 +21,10 @@ your shop bakes for you.
   at its bottom edge and you'll see it has no bump, so **nothing can be
   attached under a `forever` at all.** It is always the last block in its
   script.
+- **Undo** - Ctrl+Z (Cmd+Z on a Mac) takes back the last thing you did, in
+  the code area and in the paint editor alike. The paint editor has an undo
+  arrow above the canvas as well. Check the exact spot in your editor, since
+  it can look a little different depending on the version.
 - **Clone** - a copy of a sprite that the game makes for itself while it's
   running, out of nothing, as many times as you ask. A clone is not a new
   sprite in the sprite list and you can't see it in the editor. It has its
@@ -72,8 +76,8 @@ your shop bakes for you.
     blocks *have* to go: `set size to (110) %` means "be exactly 110%", so
     on a cookie shrunk to 50 every click would blow it up to 110.
 
-**Everybody, from here on.** Your `Special Cookie` has exactly one script in
-it, and it looks like this:
+**Everybody, from here on.** Your `Special Cookie` has a click script in it,
+and it looks like this:
 
 ```
 when this sprite clicked
@@ -81,7 +85,9 @@ change [cookies v] by (10)
 ```
 
 Yours might say a different number, and that's fine - Milestone 2 throws
-this whole script away and builds a better one. First, let's make the
+this whole script away and builds a better one. There might be a spare
+`when green flag clicked` script sitting there too, left over from when you
+made this sprite; that's harmless, so leave it alone. First, let's make the
 cookie look worth chasing.
 
 18. Click `Special Cookie` in the sprite list.
@@ -102,7 +108,7 @@ makes clones of it for ever.
 
 26. Click the *yellow* Events category in the palette.
 27. Drag a `when green flag clicked` block into an empty spot in the code
-    area, well away from the script that's already there.
+    area, well away from anything that's already in there.
 28. Click the *purple* Looks category in the palette.
 29. Drag a `hide` block and snap it underneath the new
     `when green flag clicked` block.
@@ -136,6 +142,14 @@ The real `Special Cookie` hides at the green flag and stays hidden for the
 whole game. You never see it again. What you see is the clones it makes, and
 a clone starts out exactly as hidden as the sprite it came from - so the
 next script has to tell each clone where to go and to show itself.
+
+**Try this before you go any further.** Press the green flag. The small gold
+cookie should disappear from the stage the moment you do, and stay gone.
+That's your `hide` block working, and it's the only part of this script you
+can see from the outside - the clones are being made, but nothing has told
+them to show themselves yet, so they arrive invisible. If the gold cookie is
+still sitting there after the green flag, read the first thing in the
+`Stuck?` box at the end of this milestone before you build the next script.
 
 42. Drag a `when I start as a clone` block into another empty spot in the
     code area.
@@ -205,8 +219,14 @@ back when you've seen enough.
   - the `wait` block isn't in the mouth of the `forever`. It can't be
   *below* the `forever` - nothing can be - so look between the `forever` and
   the `hide` above it. Up there it waits once and then the loop runs flat
-  out for the rest of the game. Drag it into the mouth, above the
-  `create clone of [myself v]` block.
+  out for the rest of the game. Putting it right takes three drags, and they
+  have to be in this order, because dragging a block always brings everything
+  below it along. **One:** drag the `forever` block away to an empty spot -
+  the `create clone of [myself v]` block travels inside its mouth, which is
+  what you want. **Two:** drag the `wait` block - it's the bottom block of
+  what's left, so nothing comes along with it - into the mouth of the
+  `forever`, above the `create clone of [myself v]` block.
+  **Three:** snap the `forever` back underneath the `hide` block.
 - A golden cookie appears and then never leaves - the `delete this clone`
   block is missing from the bottom of the `when I start as a clone` script.
   Drag one on and snap it under the `wait (5) seconds` block.
@@ -220,10 +240,10 @@ back when you've seen enough.
   bucket isn't the tool that's selected. Click the **Fill** tool in the
   toolbar down the left of the canvas, then click the cookie again.
 - One chocolate chip turned gold instead of the cookie - the paint bucket
-  fills whichever shape you click on. Press Ctrl+Z (Cmd+Z on a Mac) to undo,
-  then click a part of the big circle with no chip on it.
+  fills whichever shape you click on. Undo it, then click a part of the big
+  circle with no chip on it.
 - You did steps 8 to 17 and dragged the wrong script onto the palette -
-  press Ctrl+Z (Cmd+Z on a Mac) to undo it and try again.
+  undo it and try again.
 - You did steps 8 to 17 and your copy has only one `when green flag clicked`
   script in it, not two - that's fine. It means you didn't get as far as the
   `forever` loop last week. Do step 15 and skip step 16.
@@ -232,8 +252,14 @@ back when you've seen enough.
   because the golden cookie you see is a clone and the clone shows itself.
   So check it on purpose: `hide` should be lined up directly under
   `when green flag clicked`, not indented inside the `forever`'s mouth. If
-  it's indented, drag the `forever` block away, snap the `hide` under the
-  hat, and snap the `forever` back under the `hide`.
+  it's indented, it takes three drags to put right, in this order, because
+  dragging a block always brings everything below it along. **One:** drag the
+  `wait` block out of the `forever`'s mouth and drop it in an empty spot -
+  the `create clone of [myself v]` block comes with it, which is fine.
+  **Two:** drag the `hide` block, which is on its own in the mouth now, out
+  and snap it in between `when green flag clicked` and the `forever`.
+  **Three:** drag the loose `wait` block back into the mouth of the
+  `forever`.
 
 ## Milestone 2: Click one for a sugar rush
 
@@ -289,7 +315,9 @@ Now the sprite that listens. That's `Cookie`.
 19. Click the dropdown on the new `set` block.
 20. Choose **bonus**.
 21. Click that block's number field.
-22. Type `1` into it.
+22. Type `1` into it. **This one matters.** A `set` block arrives from the
+    palette saying `0`, and a `bonus` of 0 makes every cookie you click
+    worth nothing at all, from the green flag onwards.
 
 That script should now look like this:
 
@@ -434,9 +462,16 @@ put `15` and `30` back afterwards.
   `when I receive [sugar rush v]` script, or its dropdown is pointing at a
   different variable. It has to be the last block in that script and it has
   to say `bonus`.
+- Your game counts nothing at all, right from the green flag - clicking the
+  big cookie does nothing and the counter never moves, golden cookie or no
+  golden cookie. The `set [bonus v] to ()` block you added to the green-flag
+  script in steps 18 to 22 still says `0`. Click its number field and type
+  `1`. (`0` is the number a `set` block arrives with, so this is an easy one
+  to end up with.)
 - After your first golden cookie the game stops counting altogether - your
-  clicks are worth nothing and the per-second income dries up too. The last
-  block in the `when I receive [sugar rush v]` script says
+  clicks are worth nothing and the per-second income dries up too. This is a
+  different block from the one above: it's the *last* block in the
+  `when I receive [sugar rush v]` script, and it says
   `set [bonus v] to (0)`. Click its number field and type `1`.
 - `bonus` never seems to move at all, even though the golden cookie vanishes
   when you click it - the `wait (10) seconds` block is missing, so the two
@@ -445,8 +480,14 @@ put `15` and `30` back afterwards.
   it.
 - A golden cookie gives you a rush, but `bonus` drops back to 1 the moment
   you click the big cookie - the `set [bonus v] to (1)` from step 18 landed
-  in the click script instead of the green-flag script. Drag it out and snap
-  it under the last `set` block in the script that sets `cookies` to 0.
+  in the click script instead of the green-flag script. It has almost
+  certainly landed at the very bottom of the click script, under
+  `set size to (100) %`, and if it has you can drag it straight out and snap
+  it under the last `set` block in the script that sets `cookies` to 0. If it
+  landed part way up the click script, don't drag it yet: dragging a block
+  brings everything below it along, so first drag the block *underneath* it
+  off to an empty spot, then take the `set [bonus v] to (1)` away, then snap
+  that loose stack back onto the bottom of the click script.
 - During a rush your clicks are still only worth 1 - the `(bonus)` oval
   didn't land in the slot on `change [cookies v] by (1)`. If there's an oval
   lying loose in the code area beside that block, that's the one. Drag it
@@ -571,8 +612,13 @@ at the numbers. Ten seconds later everything goes back to how it was.
 - The bubble appears, but `bonus` doesn't jump to 2 until the bubble has
   gone - the `say` block ended up above `set [bonus v] to (2)` instead of
   below it. `say [] for () seconds` holds up everything underneath it for
-  the whole two seconds, so the doubling was waiting its turn. Drag the
-  `say` block down so it sits under `start sound`.
+  the whole two seconds, so the doubling was waiting its turn. You can't just
+  drag the `say` block down, because dragging a block brings everything below
+  it along and there are four blocks under it. Two drags instead. **One:**
+  drag `set [bonus v] to (2)` - the rest of the script comes with it - and
+  snap the whole lot in between `when I receive [sugar rush v]` and the `say`
+  block. The `say` block is now the bottom block, on its own. **Two:** drag
+  the `say` block and snap it under `start sound`.
 - The bubble only turns up when the rush is already over - the `say` block
   is at the very bottom of the script, under `set [bonus v] to (1)`, so it
   waits out the whole ten seconds first. Drag it up under `start sound`.
@@ -648,14 +694,16 @@ Press the green flag and get past 1000 cookies. The message appears once,
 for three seconds, and then never again.
 
 **Stuck?**
-- The message never appears, however many cookies you get - three things to
+- The message never appears, however many cookies you get - two things to
   check. The number in the `() > ()` block might say `9999` instead of
   `999`; an extra 9 is very easy to type. Or the `() > ()` block is lying
   beside the `wait until` block's six-sided hole instead of inside it, which
   leaves the hole empty and the script waiting for ever - drag it right into
-  the hole and wait for the hole to light up before you let go. Or the
-  `when I receive` dropdown is pointing at `sugar rush` instead of
-  `cookie master`.
+  the hole and wait for the hole to light up before you let go.
+- "Cookie Master!" pops up every single time you click a golden cookie, and
+  never at a thousand cookies - the `when I receive` dropdown is pointing at
+  `sugar rush` instead of `cookie master`, so it's answering the wrong shout.
+  Click the dropdown and choose `cookie master`.
 - The message appears the instant you press the green flag - the two things
   in the `() > ()` block are the wrong way round. It has to read
   `(cookies) > (999)`, with the `(cookies)` oval on the left and the number

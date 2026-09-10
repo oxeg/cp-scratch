@@ -25,10 +25,10 @@ once and has a full fallback written out below, and **the hedge in Milestone
 |---|---|
 | 0:00-0:08 | Recap last week, demo today's game, say plainly what today delivers |
 | 0:08-0:16 | **M1 steps 1-17** Log in, open `Cookie Clicker` - and build a `Special Cookie` if you haven't got one |
-| 0:16-0:37 | **M1 steps 18-62** Recolour it gold, hide it, clone it - *the hard idea* |
-| 0:37-0:43 | **M2 steps 1-11** The golden cookie's new click script - **and the whole-room clone check** |
-| 0:43-1:01 | **M2 steps 12-51** `bonus`, the receiver, and the two edits that turn it into money - *this is the floor* |
-| 1:01-1:17 | **M3 and M4** *(further targets - one slot, kids take what they can)* |
+| 0:16-0:38 | **M1 steps 18-62** Recolour it gold, hide it, clone it - *the hard idea* - and the green-flag check after step 41 |
+| 0:38-0:44 | **M2 steps 1-11** The golden cookie's new click script - **and the whole-room clone check** |
+| 0:44-1:02 | **M2 steps 12-51** `bonus`, the receiver, and the two edits that turn it into money - *this is the floor* |
+| 1:02-1:17 | **M3 and M4** *(further targets - one slot, kids take what they can)* |
 | 1:17-1:22 | Make it yours |
 | 1:22-1:25 | Play each other's games |
 | 1:25-1:30 | Save, confirm every project saved, wrap up |
@@ -48,25 +48,37 @@ an argued fixed slot, and each one that is neither is named as such.
   who already has a `Special Cookie` does steps 1-7 only, which is 3.3
   minutes, and then starts the next row early. That is fine and intended -
   do not hold them. If you add steps to this row, add minutes to this row.
-- **Milestone 1 steps 18-62, 45 steps: 45 x 28s = 1260s = 21 min.** Exactly
-  21, no rounding. This is the biggest single row in the course and it is
-  the week's hard idea, so it gets its honest number. Ten of those 45 steps
-  are two `pick random` blocks being filled in four slots each, which is
-  dull but fast; the eight paint-editor steps at the start are the ones that
-  will drift, and the "that's gold enough" cue below is how you stop them
-  drifting.
-- **Milestone 2 steps 1-11, 11 steps: 11 x 28s = 308s = 5.1 min, budgeted
-  6.** The extra **0.9 min** is not step time. It is the whole-room clone
-  check: the card stops the kid at step 11 and tells them to press the green
-  flag, wait for a golden cookie and click it. Waiting for a spawn can take
-  half a minute on its own, and this is the checkpoint where you find out
-  whether the room needs the fallback. It is worth the minute. See **The
-  clone-click risk** below.
+- **Milestone 1 steps 18-62, 45 steps: 45 x 28s = 1260s = 21 min, plus 0.5
+  min for the green-flag check, budgeted 22.** This is the biggest single row
+  in the course and it is the week's hard idea, so it gets its honest number.
+  Ten of those 45 steps are two `pick random` blocks being filled in four
+  slots each, which is dull but fast; the eight paint-editor steps at the
+  start are the ones that will drift, and the "that's gold enough" cue below
+  is how you stop them drifting. The **0.5 min** is not step time: after step
+  41 the card stops the kid with an un-numbered check - press the green flag
+  and watch the small gold cookie disappear and stay gone. That lands about
+  41 steps and 27 minutes into the lesson, and it is the first time anything
+  the kid has built today does something they can see. Without it the room
+  goes 62 steps and 29 minutes from opening the project to the first golden
+  cookie, which is the longest unrewarded stretch in the course and it sits
+  on the week's hard idea. Do not let anybody skip it, and do not treat its
+  half-minute as free. The remaining **0.5 min** of the row is buffer against
+  the paint-editor drift.
+- **Milestone 2 steps 1-11, 11 steps: 11 x 28s = 308s = 5.1 min, plus 0.8 min
+  for the whole-room clone check, budgeted 6.** The 0.8 is not step time: the
+  card stops the kid at step 11 and tells them to press the green flag, wait
+  for a golden cookie and click it. Waiting for a spawn can take half a
+  minute on its own, and this is the checkpoint where you find out whether
+  the room needs the fallback. See **The clone-click risk** below.
 - **Milestone 2 steps 12-51, 40 steps: 40 x 28s = 1120s = 18.7 min, budgeted
-  18.** Rounded **down by 0.7 min**, which is where the 0.9 above comes back
-  from. Across both rows Milestone 2 gets 24 minutes against 23.8 minutes of
-  step time.
-- **Milestones 3 and 4 share one 16-minute slot**, and this is the only row
+  18.** This row is **deliberately budgeted 40 seconds under its nominal
+  pace**, and that 40 seconds is most of what pays for the two un-numbered
+  checks above. It is the right row to take it from: it is the second half of
+  a milestone the room is already inside, and it is straight block-dragging
+  with no new idea in it. Across both rows Milestone 2 gets 24 minutes
+  against 23.8 minutes of step time plus a 0.8-minute check, so it is running
+  about 40 seconds tight. Watch the clock on it.
+- **Milestones 3 and 4 share one 15-minute slot**, and this is the only row
   in the table that is not sized to finish what it contains. The honest
   arithmetic:
   - **Milestone 3 is 30 numbered steps, but no kid runs all 30.** Steps 1-12
@@ -75,8 +87,8 @@ an argued fixed slot, and each one that is neither is named as such.
     route is 17 steps = **7.9 min**. The backdrop route is 25 steps =
     **11.7 min**.
   - **Milestone 4 is 26 steps = 12.1 min.**
-  - Sixteen minutes buys Milestone 3 by either route, and 8 minutes of
-    Milestone 4 by the fast route or 4 by the slow one. **Most of the room
+  - Fifteen minutes buys Milestone 3 by either route, and 7 minutes of
+    Milestone 4 by the fast route or 3 by the slow one. **Most of the room
     will not finish Milestone 4**, and the table is not pretending
     otherwise. Both milestones are named "further target" on the card and in
     the header above, and the 0:05 announcement tells the room the same
@@ -95,15 +107,21 @@ an argued fixed slot, and each one that is neither is named as such.
   playing to happen and the saving not to. It gets its own row for that
   reason.
 
-Row by row, that is the whole 90: 8 recap + 8 M1 opening and hedge + 21 M1
-build + 6 M2 clone script and check + 18 M2 sugar rush + 16 M3 and M4 + 5
+Row by row, that is the whole 90: 8 recap + 8 M1 opening and hedge + 22 M1
+build + 6 M2 clone script and check + 18 M2 sugar rush + 15 M3 and M4 + 5
 make it yours + 3 playing + 5 saving. Nine rows.
 
-The four step-derived rows come to 8 + 21 + 6 + 18 = 53 minutes against
-52.7 minutes of measured step time (113 steps x 28s), so there are 0.3
-minutes of rounding in the whole table, and it sits in Milestone 2 where the
-clone check needs it. The five fixed slots are 8 + 16 + 5 + 3 + 5 = 37. 53 +
-37 = 90.
+The four step-derived rows are budgeted at 8 + 22 + 6 + 18 = **54 minutes**
+against **52.7 minutes** of measured step time (113 steps x 28s = 3164s).
+That leaves **1.3 minutes** across those four rows for content that is not
+numbered steps, and there are exactly two such things: the green-flag check
+after Milestone 1 step 41 (**0.5 min**) and the whole-room clone check after
+Milestone 2 step 11 (**0.8 min**). 0.5 + 0.8 = 1.3. Row by row the slack is
++0.07 (opening), +0.5 (M1 build, after the check is paid for), +0.07 (M2
+first row, after the check is paid for) and **-0.67** (M2 second row, run
+deliberately fast) - which nets to -0.03, so the four rows are subscribed to
+within two seconds of their budget. The five fixed slots are 8 + 15 + 5 + 3 +
+5 = 36. 54 + 36 = 90.
 
 If you add or remove steps in the cards, redo this arithmetic and redo the
 table - nothing checks it for you.
@@ -132,13 +150,13 @@ table - nothing checks it for you.
   > lesson."
 
   Say it before anybody opens their project. Milestones 3 and 4 sit in one
-  16-minute slot that cannot hold both, and a room that was promised four
+  15-minute slot that cannot hold both, and a room that was promised four
   milestones will finish the session feeling like it failed at a game that
   actually works.
 
 Do **not** demo the clone fallback, and do not mention `touching` or
 `mouse down?` at all unless you need them. If the room needs them you will
-find out at 0:43 and can teach it then.
+find out at 0:44 and can teach it then.
 
 ## Blocks introduced today
 
@@ -248,23 +266,45 @@ minute.** The card builds `Special Cookie`'s new script in eleven steps and
 then stops the kid with a deliberate mid-milestone test: press the green
 flag, wait for a golden cookie, click it, and it should vanish. Nothing else
 should happen yet - nothing is listening to the broadcast - but it should
-vanish. That test lands at about 0:43 for most of the room, and it is why
-that row has an extra minute in it.
+vanish. That test lands at about 0:44 for most of the room, and it is why
+that row carries 0.8 minutes it did not earn from its step count.
 
-At 0:43, **stop the room and take a show of hands**: "everyone who has
-clicked a golden cookie and watched it disappear, hands up." Do not debug
-anybody until you have counted.
+At 0:44, **stop the room and take a show of hands - but ask two questions,
+not one.** Do not debug anybody until you have counted both.
 
-- **Most hands up.** It works. The few who did not are ordinary mistakes -
-  wrong sprite, wrong dropdown on the `broadcast` block, or they clicked the
-  small gold sprite that is now hidden rather than a clone. Deal with them
-  individually and carry on.
-- **Almost no hands up.** It is not their mistake, it is the editor. Stop
-  the room, say so plainly - "this is Scratch, not you" - and teach the
+> **First:** "hands up if you've finished step 11 - the golden cookie's new
+> script is built and you've pressed the green flag."
+>
+> **Then, to those hands only:** "keep your hand up if you clicked a golden
+> cookie and watched it disappear."
+
+**Two questions, because one is confoundable and this is the single
+mechanism the lesson's biggest risk rests on.** This room is deliberately
+desynchronised: the kids who already had a `Special Cookie` skipped ten
+steps at 0:09 and are running about five minutes ahead, and the kids who
+built one have no slack at all. A single question - "did your golden cookie
+vanish?" - counts everybody who has not got to step 11 yet as a failure, so a
+room that is merely *behind* reads as a room that needs the fallback. That
+mistake costs four minutes of whole-room teaching plus a Sensing detour
+nobody needed, on the tightest row in the table.
+
+Read the second count as a fraction of the first:
+
+- **Nearly all of the first group's hands stay up.** It works. The few that
+  drop are ordinary mistakes - wrong sprite, wrong dropdown on the
+  `broadcast` block, or they clicked the small gold sprite that is now hidden
+  rather than a clone. Deal with them individually and carry on.
+- **Nearly all of them drop.** It is not their mistake, it is the editor.
+  Stop the room - the whole room, including the kids who have not reached
+  step 11 - say so plainly ("this is Scratch, not you") and teach the
   fallback to everybody at once, on the projector. It costs about four
   minutes of Milestone 2's second row and it is recoverable; four minutes
   spent going desk to desk finding out the same thing eleven times over is
   not.
+- **Very few hands went up to the first question at all.** You have learnt
+  nothing about clones, only that the room is behind. Do not teach the
+  fallback. Circulate, get people to step 11, and re-ask both questions three
+  or four minutes later.
 
 **The fallback, in full.** Delete the `when this sprite clicked` script the
 kid has just built (drag it onto the palette). In its place, on
@@ -316,7 +356,10 @@ Four things to say while you build it:
 - **The `hide` in the wrong place.** Two different problems that sound the
   same. If `hide` is *missing* from the green-flag script, the real
   `Special Cookie` sits visibly on the stage all game and kids click it
-  instead of the clones. If `hide` is inside the `forever`'s mouth rather
+  instead of the clones. **The green-flag check after step 41 catches that
+  one for you**, which is most of why it is there - the kid finds it
+  themselves, at the moment they built it, instead of you finding it at 0:40.
+  If `hide` is inside the `forever`'s mouth rather
   than above it, **there is no symptom at all** - the game behaves
   identically, because what you see on the stage is a clone and the clone
   shows itself. The card makes that second one a deliberate look-at-the-
@@ -409,7 +452,7 @@ Cut in this order:
 **Milestones 1 and 2 are the floor and neither can go.** Milestone 2 is what
 makes the golden cookie worth clicking; a kid who goes home after Milestone
 1 has a decoration, not a game. If you are at 1:00 and the room is still
-mid-Milestone 2, take the whole 16-minute further-targets slot and spend it
+mid-Milestone 2, take the whole 15-minute further-targets slot and spend it
 finishing Milestone 2 with them. That is a good outcome, not a failure - it
 is the outcome the 0:05 announcement promised.
 
