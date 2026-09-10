@@ -16,14 +16,14 @@ arrow keys.
 2. Log in.
 3. Click **Create** to start a new project.
 4. Click the project name at the top of the screen.
-5. Type `Space Shooter` to rename it.
+5. Type `Space Shooter` to rename it.![img_1.png](img_1.png)
 6. Click the add-backdrop button to open the backdrop library. Look for it
    in the stage-selector panel to the right of the sprite list, below the
    stage - check the exact spot in your editor, since it can look a little
-   different depending on the version.
+   different depending on the version.![img.png](img.png)
 7. Choose a space-themed backdrop - it might be called something like
    *Stars* or *Galaxy*, so check the names in the library and pick one that
-   looks like space.
+   looks like space.![img_2.png](img_2.png)
 8. Delete the cat sprite by clicking the trash can icon on its thumbnail in
    the sprite list.
 9. Click the add-sprite button to open the sprite library. Look for it at
@@ -36,7 +36,7 @@ arrow keys.
 11. Click the sprite's name box in the sprite info panel.
 12. Type `Ship` to rename it.
 13. Change the size field in the sprite info panel to about `50`.
-14. Drag the `Ship` sprite on the stage down to the bottom middle.
+14. Drag the `Ship` sprite on the stage down to the bottom middle.![img_3.png](img_3.png)
 15. Click the rotation style icon in the sprite info panel.
 16. Choose **don't rotate**.
 
@@ -59,7 +59,7 @@ near the bottom middle. The sprite list should show only `Ship` - no cat.
    already selected.
 2. Click the **Code** tab.
 3. Click the *yellow* Events category in the palette.
-4. Drag a `when green flag clicked` block into the code area.
+4. Drag a `when green flag clicked` block into the code area.![img_4.png](img_4.png)
 5. Click the *blue* Motion category in the palette.
 6. Drag a `go to x: () y: ()` block and snap it underneath
    `when green flag clicked`.
