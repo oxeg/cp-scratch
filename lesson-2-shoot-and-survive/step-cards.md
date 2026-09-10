@@ -112,9 +112,7 @@ Now add asteroids that fall from the top of the screen.
 3. Type `rock`.
 4. Look through the results for a sprite that looks like a rock or an
    asteroid - it might be called something like `Rocks` or `Meteor`, so
-   check the names in the library and click the one that looks right. If
-   nothing rock-like turns up, search for `ball` instead and click the
-   sprite called `Ball` - you'll recolour it in a moment.
+   check the names in the library and click the one that looks right.
 5. Click the sprite's name box in the sprite info panel.
 6. Type `Asteroid` to rename it.
 7. Change the size field in the sprite info panel to about `50`.
@@ -193,6 +191,9 @@ falling asteroids, and shoot into space - even though shooting doesn't
 destroy them yet.
 
 **Stuck?**
+- Nothing rock-like turns up in the search results - search for `ball`
+  instead and click the sprite called `Ball`. You'll recolour it to look
+  like a rock in the Costumes tab using the fill tool.
 - Nothing falls - check `create clone of [myself v]` is snapped inside the
   `forever` block on the spawner script, and check `when I start as a clone`
   has its own blocks snapped together underneath it.

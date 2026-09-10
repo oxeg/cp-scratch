@@ -3,9 +3,10 @@
 **New idea this week:** clones.
 **Floor (everyone must reach):** Milestone 3 - shooting an asteroid increases
 `score`. The game is a real shooter at this point.
-**Stretch (everyone should reach):** Milestone 4 - `lives` and game over.
-**Stretch goals beyond that:** the fire-rate fix, laser colour and speed,
-asteroid spawn rate and fall speed, a second asteroid costume.
+**Second target (everyone should reach):** Milestone 4 - `lives` and game over.
+**Stretch goals (cosmetic/tuning, optional):** the fire-rate fix, laser
+colour and speed, asteroid spawn rate and fall speed, a second asteroid
+costume.
 
 This is the heavy lesson. It's built as four stacked milestones, and the game
 is playable after every single one - so whatever the clock does, nobody goes
@@ -43,8 +44,10 @@ home with something broken.
 
 State this explicitly, to the kids and to yourself: **Milestone 3 is the
 floor everyone must reach** - after it, the game is a real shooter with a
-score, and nobody has anything broken. **Milestone 4 is the stretch everyone
-should reach** - it adds lives and a game over. Because the game is playable
+score, and nobody has anything broken. **Milestone 4 is the second target
+everyone should reach** - it adds lives and a game over, and unlike the
+Stretch goals below it is not optional cosmetic tuning: Lesson 3 upgrades
+this exact mechanic, so it's worth the extra push. Because the game is playable
 after every single milestone, nobody goes home with something broken,
 whatever the clock does. **Lesson 3 opens with a 10-minute repair window for
 anyone who didn't reach Milestone 4**, so don't panic-rush a kid through it
