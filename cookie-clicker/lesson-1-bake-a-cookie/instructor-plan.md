@@ -1,11 +1,14 @@
 # Lesson 1 - Bake a cookie: instructor plan
 
 **New idea this week:** variables, and `when this sprite clicked`.
-**Milestone (everyone must reach):** end of Milestone 3 - a hand-painted
+**Floor (everyone must reach):** end of Milestone 3 - a hand-painted
 cookie that counts every click, resets to 0 on the green flag, and pops and
 squashes when you hit it.
 **Bonus round (if they get there):** a `Special Cookie`, shrunk and parked in
 a corner, worth 10 a click.
+**Stretch (cosmetic tuning, optional):** what the cookie looks like, which
+click sound it makes, how hard it squashes, what the `Special Cookie` is
+worth, and where the `cookies` readout sits on the stage.
 
 ## Timing
 
@@ -152,7 +155,15 @@ reversed, and kids who wander off-card will find both.
   makes the script sit and wait for the sound to finish before it does
   anything else. A kid clicking fast - which is the entire game - would see
   the counter stall and lag behind their clicking. `start sound` fires the
-  sound and carries straight on.
+  sound and carries straight on. **Swapping the wrong block out is not one
+  drag**, and this is the one to watch: by the time the symptom shows, the
+  three squash blocks are chained below the sound block, and dragging a
+  block takes everything below it along. A kid who drags the wrong block
+  straight onto the palette loses the squash in the same motion and gets no
+  warning at all - the sound is fixed, the squash is silently gone. The
+  card's procedure is three moves: drag `set size to (110) %` and the two
+  blocks under it out to an empty spot first, *then* swap the sound block,
+  *then* snap the squash blocks back under it.
 - **`set size to`, not `change size by`.** Clicking the cookie again
   restarts the click script from the top, wherever it had got to. With
   `change size by (10)` and `change size by (-10)`, a fast second click

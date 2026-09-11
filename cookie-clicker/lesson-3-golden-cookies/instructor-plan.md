@@ -371,7 +371,15 @@ Four things to say while you build it:
   vanished, because `Cookie` is now the sprite hiding itself, and it can't
   be clicked while it is hidden. The card's fix is to throw the new script
   away in one drag and rebuild it on `Special Cookie`; steps 26 to 41 take
-  about seven minutes the second time.
+  about seven minutes the second time. **Deleting the script does not
+  un-hide `Cookie`** - visibility is sprite state that sticks, the green
+  flag does not reset it, and `Cookie` has no `show` block anywhere in this
+  course. Miss this and the big cookie stays invisible and unclickable for
+  the rest of today and every session after, with no symptom the kid can
+  describe beyond "it's gone". The card now says to click the **show**
+  button - the open eye in the sprite info panel - with `Cookie` selected,
+  before rebuilding. Watch for it: a kid who only deletes the script will
+  tell you the fix didn't work.
 - **The `wait` block above the `forever` instead of in its mouth.** The loop
   runs flat out and the stage fills with golden cookies within a second of
   the green flag. It cannot be *below* the `forever` - nothing can - so the

@@ -9,6 +9,13 @@ click and squashes and pops when you hit it.
   one you drag blocks *out of*.
 - **Code area** - the big middle panel, the one you drop blocks *into* to
   build a script.
+- **Dragging a block** - when you pick a block up, every block joined on
+  underneath it comes along with it. That is the single most surprising
+  thing about Scratch, and it catches everybody. A block only moves on its
+  own when it is the bottom block of its script. If it isn't, drag the
+  block below it out to an empty spot in the code area first - the rest of
+  the stack travels with that one - then move the block you wanted, then
+  snap the stack back on.
 
 ## Milestone 1: Paint your cookie and make it count
 
@@ -194,8 +201,17 @@ number should still go up by one every click.
   `set size to (100) %`.
 - The counter stalls or lags behind when you click fast - you've got a
   `play sound until done` block instead of `start sound`. That one makes
-  the script sit and wait for the sound to finish. Drag it out onto the
-  palette and put a `start sound` block in its place.
+  the script sit and wait for the sound to finish. You can't just drag the
+  wrong block out, because dragging a block brings everything below it
+  along and the three squash blocks are under it - you'd lose the squash
+  and nothing would tell you. Three moves instead. **One:** drag
+  `set size to (110) %` out to an empty spot in the code area - the
+  `wait (0.05) seconds` and the last `set size to` come with it, which is
+  what you want. **Two:** the wrong sound block is now the bottom block of
+  what's left, with nothing under it, so drag it onto the palette on its
+  own, then snap a `start sound` block under `change [cookies v] by (1)`
+  in its place and point its dropdown at your sound. **Three:** drag
+  `set size to (110) %` back and snap it under the new `start sound`.
 - The cookie jumps to a strange size on the very first click - the sprite's
   Size field isn't 100. Set that field back to `100`, and make your cookie
   bigger by drawing it bigger in the Costumes tab instead.
@@ -241,9 +257,10 @@ still goes up by 1, with its sound and squash. The small one stays small
 however many times you click it.
 
 **Stuck?**
-- The small cookie grows when you click it - the `set size to` blocks are
-  still there. Drag the `set size to (110) %` block onto the palette to
-  take it and the blocks below it away.
+- The small cookie grows when you click it - step 10 didn't take. Drag the
+  `start sound` block onto the palette: the three blocks below it, both
+  `set size to` blocks included, come along in the same drag, and
+  `Special Cookie` is left with the two-block script above.
 - The copied green-flag script is one you can't spot by looking - the game
   behaves exactly the same whether it's there or not, so check it on
   purpose. Click `Special Cookie` in the sprite list and count the scripts

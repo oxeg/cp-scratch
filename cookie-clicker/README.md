@@ -156,7 +156,7 @@ Every lesson follows the same 90-minute shape, on purpose — kids learn the
 rhythm:
 
 - **~8 to 10 min** — recap and demo of the game they'll have by the end of today
-- **~65 min** — hands-on, working from their step cards, instructor(s) circulating
+- **~65 to 69 min** — hands-on, working from their step cards, instructor(s) circulating (65 in Lesson 1, 68 in Lesson 2, 69 in Lesson 3)
 - **~5 to 6 min** — "make it yours" (a few pre-planned personalisation prompts, in each instructor plan)
 - **~8 to 9 min** — play each other's games, save, wrap up
 

@@ -270,11 +270,22 @@ every second.
   Drag the oval right onto the slot and wait for the slot to light up
   before you let go.
 - Cookies race up far too fast to read - the `wait (1) seconds` block isn't
-  in the mouth of the `forever`. Either it's missing, or it got snapped
-  *above* the `forever`, in between it and `when green flag clicked`. Up
-  there it waits one second once, and then the loop runs flat out for the
-  rest of the game. Get the `wait` block into the mouth, above the
-  `change` block.
+  in the mouth of the `forever`. It can't be *below* the `forever` -
+  nothing can - so there are two things it might be. If it's simply
+  missing, drag a `wait (1) seconds` block into the mouth of the `forever`,
+  above the `change` block, and type `1` into it. If instead it got snapped
+  *above* the `forever`, in between it and `when green flag clicked`, then
+  up there it waits one second once and the loop runs flat out for the rest
+  of the game. You can't just drag it down into the mouth, because dragging
+  a block brings everything below it along, and what's below it is the
+  `forever` itself - a stack can never be dropped into the mouth of a
+  `forever` it is carrying. Three drags, and they have to be in this order.
+  **One:** drag the `forever` block away to an empty spot - the `change`
+  block travels inside its mouth, which is what you want. **Two:** drag the
+  `wait` block - it's the bottom block of what's left, so nothing comes
+  along with it - into the mouth of the `forever`, above the `change`
+  block. **Three:** snap the `forever` back underneath
+  `when green flag clicked`.
 - The counter climbs on its own, but your cookie stopped making its sound
   and stopped squashing - the `forever` block landed in the middle of the
   click script. Nothing can stay attached under a `forever`, so the four

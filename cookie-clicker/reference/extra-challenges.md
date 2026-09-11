@@ -140,8 +140,8 @@ end of the rush a signal of its own too, since right now `bonus` just
 quietly drops back to 1 with nothing marking it.
 
 **Hint:** If you haven't built Milestone 3 yet, its pattern is the one to
-copy for the start: a `start sound` block (*pink* Sound) and either a
-`say [] for () seconds` or a `switch backdrop to []` block (*purple* Looks),
+copy for the start: a `start sound` block (Sound) and either a
+`say [] for () seconds` or a `switch backdrop to []` block (Looks),
 living inside `Cookie`'s `when I receive [sugar rush v]` script, near where
 `bonus` is set to `2`. For the ending, the same kinds of blocks belong near
 the bottom of that script, where `bonus` is set back to `1` — just make
@@ -150,11 +150,11 @@ the same.
 
 ### ★★ A bigger milestone
 
-`Cookie Master` fires once, just past 1000 cookies. Add a second message
+`cookie master` fires once, just past 1000 cookies. Add a second message
 for an even bigger number.
 
-**Hint:** The pattern is the one you already built for `Cookie Master`: a
-`wait until <>` block holding an Operators `() > ()` block with the
+**Hint:** The pattern is the one you already built for `cookie master`: a
+`wait until <>` block holding a *green* Operators `() > ()` block with the
 `(cookies)` oval inside it, a `broadcast` with a message of your own, and a
 `when I receive` script somewhere that reacts to it — a
 `say [] for () seconds` block works, or anything else you fancy. Pick your

@@ -265,7 +265,16 @@ just as well once their game is idling.
   Cookies race up about thirty times too fast. It cannot be *below* the
   `forever` - nothing can - so the place to look is between the `forever`
   and the `when green flag clicked` hat, where a `wait` waits one second
-  once and then never again. Easy to spot, easy to fix.
+  once and then never again. **Easy to spot, awkward to fix** - do not tell
+  them otherwise. The `wait` cannot simply be dragged down into the mouth:
+  the `forever` is joined on below it and comes along with it, and that
+  stack can never be dropped into the mouth of the `forever` it is
+  carrying. A kid who tries the one-drag version ends up holding a stack
+  nothing will accept, and usually drops it somewhere random. The card
+  gives three drags in order - `forever` out to an empty spot (its `change`
+  block riding inside the mouth), `wait` into that mouth above the `change`
+  block, `forever` back under the hat. Read it with them rather than
+  talking them through it from memory.
 - **In Milestone 4, edits made on the wrong sprite.** `Grandma` and
   `Baker` have near-identical code areas. Have them click the sprite in the
   sprite list and read the name in the sprite info panel before touching a

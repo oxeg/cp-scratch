@@ -25,6 +25,15 @@ your shop bakes for you.
   the code area and in the paint editor alike. The paint editor has an undo
   arrow above the canvas as well. Check the exact spot in your editor, since
   it can look a little different depending on the version.
+- **Show and hide** - two buttons in the sprite info panel, the strip above
+  the sprite list: an open eye, and an eye with a line through it. They do
+  by hand what the `show` and `hide` blocks do while the game runs. You
+  need them today because being hidden *sticks*: once a sprite has hidden
+  itself it stays hidden, the green flag will not bring it back, and you
+  can't click a sprite you can't see. If a sprite disappears off the stage
+  and won't come back, click it in the sprite list and click the open eye.
+  Check the exact spot in your editor, since it can look a little different
+  depending on the version.
 - **Clone** - a copy of a sprite that the game makes for itself while it's
   running, out of nothing, as many times as you ask. A clone is not a new
   sprite in the sprite list and you can't see it in the editor. It has its
@@ -227,8 +236,15 @@ back when you've seen enough.
   `hide` and the `forever` in it. Drag its `when green flag clicked` block
   onto the palette - everything below it comes along in the same drag, so
   the whole script goes at once and the scripts `Cookie` already had are
-  left alone. Then click `Special Cookie` in the sprite list and do steps 26
-  to 41 again there.
+  left alone. **Deleting the script does not bring your big cookie back.**
+  The `hide` already happened, and a hidden sprite stays hidden - the green
+  flag won't show it again, and while it's hidden you can't click it
+  either, so the whole game is dead until you fix this. With `Cookie` still
+  selected in the sprite list, click the **show** button in the sprite info
+  panel - the open eye, next to the eye with a line through it - and your
+  big cookie comes back on the stage. Check the exact spot in your editor,
+  since it can look a little different depending on the version. Then click
+  `Special Cookie` in the sprite list and do steps 26 to 41 again there.
 - No golden cookie ever appears, however long you wait - three things to
   check, in this order. First, the `show` block: if it's missing from the
   `when I start as a clone` script, every clone is made invisible and stays

@@ -23,7 +23,7 @@ table below.
 | `if <> then` | Runs the blocks inside it only when the condition is true. |
 | `create clone of [myself]` | Makes a brand-new copy of this sprite. |
 | `when I start as a clone` | Starts this script for a clone the moment it's created. |
-| `delete this clone` | Removes this clone for good — a clone script must always end with one. |
+| `delete this clone` | Removes this clone for good. Every clone script in this course ends with one, so clones don't pile up on the stage. |
 
 ## Motion (blue)
 
@@ -64,7 +64,7 @@ table below.
 | `() - ()` | Subtracts the second number from the first. |
 | `() * ()` | Multiplies the two numbers together. |
 | `not <>` | Flips true to false and false to true. |
-| `and <>` | True only when both conditions inside it are true. Only needed if a golden cookie turns out not to respond to being clicked. |
+| `<> and <>` | True only when both conditions inside it are true. Only needed if a golden cookie turns out not to respond to being clicked. |
 | `pick random () to ()` | Picks a random number between the two numbers, every time it runs. |
 
 ## Variables (orange)
