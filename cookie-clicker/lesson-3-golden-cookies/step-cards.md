@@ -156,9 +156,11 @@ next script has to tell each clone where to go and to show itself.
 cookie should disappear from the stage the moment you do, and stay gone.
 That's your `hide` block working, and it's the only part of this script you
 can see from the outside - the clones are being made, but nothing has told
-them to show themselves yet, so they arrive invisible. If the gold cookie is
-still sitting there after the green flag, read the first thing in the
-`Stuck?` box at the end of this milestone before you build the next script.
+them to show themselves yet, so they arrive invisible. Your big cookie
+should still be sitting there, exactly as it was. If the gold cookie is
+still there after the green flag, or the big one has gone, read the first
+two things in the `Stuck?` box at the end of this milestone before you build
+the next script.
 
 42. Drag a `when I start as a clone` block into another empty spot in the
     code area.
@@ -217,6 +219,16 @@ back when you've seen enough.
   `hide` only runs when the green flag runs it. If it's still sitting there
   after the green flag, the `hide` block isn't in that script. It has to sit
   between `when green flag clicked` and the `forever`.
+- The gold cookie is still sitting there after the green flag *and* your big
+  cookie has vanished - the script went onto the wrong sprite. It's on
+  `Cookie`, so `Cookie` is the one hiding itself, and the real
+  `Special Cookie` was never told to hide at all. Click `Cookie` in the
+  sprite list and find the script you built in steps 26 to 41, the one with
+  `hide` and the `forever` in it. Drag its `when green flag clicked` block
+  onto the palette - everything below it comes along in the same drag, so
+  the whole script goes at once and the scripts `Cookie` already had are
+  left alone. Then click `Special Cookie` in the sprite list and do steps 26
+  to 41 again there.
 - No golden cookie ever appears, however long you wait - three things to
   check, in this order. First, the `show` block: if it's missing from the
   `when I start as a clone` script, every clone is made invisible and stays
@@ -746,6 +758,15 @@ for three seconds, and then never again.
   `wait (10) seconds` inside the `when I receive [sugar rush v]` script.
 - What announces a rush? A different sound, different words in the speech
   bubble, a different backdrop - or all three at once.
+- What tells you a rush is *over*? Right now `bonus` just drops quietly back
+  to 1 and nothing marks it. Give the end its own signal at the bottom of
+  the `when I receive [sugar rush v]` script, under `set [bonus v] to (1)` -
+  and make it different from whatever marks the start, so the two moments
+  don't feel the same.
+- What happens at an even bigger number? `Cookie Master!` fires once, just
+  past 1000. Build a second `wait until <>` script for a bigger number of
+  your own, with a message name of your own - just don't call it
+  `cookie master` again, or you'll be answering the wrong shout.
 - What does a golden cookie look like? Open `Special Cookie`'s Costumes tab
   and draw on it: a star, a crown, a shine.
 

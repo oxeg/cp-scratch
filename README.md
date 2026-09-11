@@ -8,7 +8,7 @@ written to be run by volunteers at a coding club.
 | Course | Lessons | What the kids build |
 |---|---|---|
 | [**space-shooter**](space-shooter/) | 3 × 90 min | A top-down space shooter — fly a ship, shoot asteroids, fight an enemy |
-| **cookie-clicker** | — | Not written yet |
+| [**cookie-clicker**](cookie-clicker/) | 3 × 90 min | An idle cookie-clicker game — click a cookie, buy helpers who bake for you, catch golden cookies for a bonus |
 
 Each course directory has its own README covering what that course delivers
 and what to check before teaching it. **Start there, not here.**

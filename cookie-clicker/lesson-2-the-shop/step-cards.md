@@ -394,6 +394,13 @@ buy him with 20 cookies. Put the number back to `500` afterwards.
   shop, or `1.5` for a gentle one.
 - What is your Baker worth? Try a different number in
   `change [per second v] by (10)`.
+- What does Grandma do when you buy her? Right now she takes your cookies in
+  total silence. Give her something to say with a `say [] for () seconds`
+  block from the *purple* Looks category, dropped into the mouth of the `if`
+  on her script.
+- Who else could your shop sell? Add a third shopkeeper, built the same way
+  the `Baker` was - a new sprite, a new cost variable, and the same script
+  shape - and decide for yourself what he costs and what he earns.
 - Where does your shop live? Drag Grandma and the Baker around the stage,
   and drag the number readouts wherever you want them to sit.
 

@@ -46,6 +46,7 @@ table below.
 | Block | What it means |
 |---|---|
 | `start sound [sound]` | Plays that sound once and keeps running the rest of the script straight away. |
+| `play sound until done [sound]` | Plays that sound and makes the script sit and wait until it has finished. Not used anywhere in this course — it is the one the step cards warn you about picking by mistake, because a clicking game that waits for its own sound stalls. |
 
 ## Sensing (pale blue)
 

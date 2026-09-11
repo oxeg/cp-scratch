@@ -364,6 +364,14 @@ Four things to say while you build it:
   the stage is a clone and the clone shows itself. The card makes that second
   one a deliberate look-at-the-script check rather than pretending it can be
   played.
+- **The whole spawn script built on `Cookie` instead of `Special Cookie`.**
+  The green-flag check after step 41 catches this one too, and it looks
+  almost the same from across the room: the gold cookie is still sitting
+  there. The tell is the other half of the stage - the big cookie has
+  vanished, because `Cookie` is now the sprite hiding itself, and it can't
+  be clicked while it is hidden. The card's fix is to throw the new script
+  away in one drag and rebuild it on `Special Cookie`; steps 26 to 41 take
+  about seven minutes the second time.
 - **The `wait` block above the `forever` instead of in its mouth.** The loop
   runs flat out and the stage fills with golden cookies within a second of
   the green flag. It cannot be *below* the `forever` - nothing can - so the
@@ -456,7 +464,7 @@ Cut in this order:
    and leave the speech bubble - steps 1 to 17 are eight minutes and still
    give the rush a sound and something to see.
 3. **"Make it yours" at 1:17** - shorten it to two or three minutes, or read
-   out one prompt instead of six.
+   out one prompt instead of eight.
 
 **Milestones 1 and 2 are the floor and neither can go.** Milestone 2 is what
 makes the golden cookie worth clicking; a kid who goes home after Milestone
@@ -480,6 +488,15 @@ is the outcome the 0:05 announcement promised.
   `wait (10) seconds` inside the `when I receive [sugar rush v]` script."
 - "What announces a rush? A different sound, different words in the bubble,
   a different backdrop - or all three at once."
+- "What tells you a rush is *over*? Right now `bonus` just drops quietly
+  back to 1 and nothing marks it. Give the end its own signal at the bottom
+  of the `when I receive [sugar rush v]` script, under
+  `set [bonus v] to (1)` - and make it different from whatever marks the
+  start."
+- "What happens at an even bigger number? `Cookie Master!` fires once, just
+  past 1000. Build a second `wait until <>` script for a bigger number of
+  your own, with a message name of your own - just don't call it
+  `cookie master` again, or you'll be answering the wrong shout."
 - "What does a golden cookie look like? Open `Special Cookie`'s Costumes tab
   and draw on it: a star, a crown, a shine."
 
@@ -487,6 +504,10 @@ Two of those prompts change a number that a kid has just spent twenty
 minutes getting right, so say once, out loud, that changing `bonus` to 3 is
 allowed and changing the second `set [bonus v] to (1)` is not. Everything
 else on the list is safe to break and easy to put back.
+
+The bigger-number prompt only means anything to a kid who built Milestone 4,
+and most of the room will not have. Read it to the table that got there
+rather than to the room, or skip it.
 
 ## Wrap-up and saving (1:25-1:30)
 

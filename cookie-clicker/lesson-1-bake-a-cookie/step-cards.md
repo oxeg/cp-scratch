@@ -178,7 +178,7 @@ Your click script should now look like this:
 ```
 when this sprite clicked
 change [cookies v] by (1)
-start sound [pop v]
+start sound [the sound you read v]
 set size to (110) %
 wait (0.05) seconds
 set size to (100) %

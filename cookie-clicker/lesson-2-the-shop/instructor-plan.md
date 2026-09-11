@@ -288,7 +288,7 @@ Cut in this order:
    single `per second` variable is for. Nobody who stops after Milestone 3
    is missing anything next week.
 2. **"Make it yours" at 1:16** - shorten it to two or three minutes, or
-   read out one prompt instead of five.
+   read out one prompt instead of seven.
 3. **The demo of today's game**, if you haven't given it yet - recap only,
    and let the cards carry the surprise.
 
@@ -310,6 +310,13 @@ having to stop them.
   shop, or `1.5` for a gentle one."
 - "What's your Baker worth? Try a different number in
   `change [per second v] by (10)`."
+- "What does Grandma do when you buy her? Right now she takes your cookies
+  in total silence - give her something to say with a *purple* Looks
+  `say [] for () seconds` block, dropped into the mouth of the `if` on her
+  script."
+- "Who else could your shop sell? Add a third shopkeeper, built the same way
+  the `Baker` was - a new sprite, a new cost variable, and the same script
+  shape - and decide for yourself what he costs and what he earns."
 - "Where does your shop live? Drag Grandma and the Baker around the stage,
   and drag the number readouts wherever you want them."
 
