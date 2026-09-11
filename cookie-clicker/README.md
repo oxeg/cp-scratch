@@ -143,6 +143,13 @@ Each lesson has an `instructor-plan.md` (minute-by-minute timing, what to
 demo, sticking points, "make it yours" prompts) and a `step-cards.md`
 (numbered, one-action-per-step instructions to print and hand to each kid).
 
+**You need a finished project of your own to teach from, from minute zero.**
+Lesson 1's demo slot opens with a peek at the finished Lesson 3 game to sell
+the course, and Lessons 2 and 3 each open by recapping last week from your
+own copy. Building the game once before the first session — which the
+checklist above asks you to do anyway — produces exactly that. **Keep it,
+and keep it somewhere you can open in one click.**
+
 ## Running a session
 
 Every lesson follows the same 90-minute shape, on purpose — kids learn the
@@ -191,7 +198,11 @@ keeps their game at all.
 
 ## What kids need
 
-- Their own scratch.mit.edu account, logged in.
+- Their own scratch.mit.edu account — **created and tested before the
+  session, not in it.** Lesson 1's plan is explicit about this, and its
+  `0:10-0:25` setup slot is budgeted on the assumption that the accounts
+  already exist; forgotten passwords and accounts made last term and never
+  used since are what eats that slot.
 - **A mouse, or a trackpad. That is the whole list of input.** Once a kid is
   logged in, nothing in the finished game is triggered by a key — every
   cookie, shopkeeper and golden cookie is clicked. The course survives a
