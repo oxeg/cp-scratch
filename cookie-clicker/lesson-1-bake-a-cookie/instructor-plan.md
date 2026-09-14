@@ -232,6 +232,25 @@ Cut in this order:
 - "Where do you want the score to sit on the stage? Drag the readout
   wherever you like."
 
+## Kids who finish early
+
+Point them at `reference/extra-challenges.md` the moment their **Check it
+works** passes while others are still building - not at the end of the
+lesson. A kid with twenty spare minutes and nothing in front of them is the
+one who starts poking at somebody else's keyboard.
+
+**Match the tier to the clock.** The three-star challenge is a fifteen to
+twenty-five minute build. Started at 1:10 it will not finish, and a kid who
+leaves part-way through is worse off than one who never started. Big things
+early in their spare time; the one-star tweaks near the end.
+
+**On work you have not prepared.** The three-star challenges, and everything
+in `reference/bonus-ideas.md`, are things nobody has built - including
+whoever wrote them. When one does not work, the answer is "show me what you
+tried", not you debugging something you have never seen. That is the honest
+position at one volunteer per six kids, and saying it out loud costs you
+nothing.
+
 ## Wrap-up and saving (1:25-1:30)
 
 The step cards end with a numbered save step (**File -> Save now**). Don't

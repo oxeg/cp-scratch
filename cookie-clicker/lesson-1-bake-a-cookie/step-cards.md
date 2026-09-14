@@ -282,6 +282,12 @@ however many times you click it.
 - Decide what your `Special Cookie` is worth: 10 is only a suggestion.
 - Drag the `cookies` readout on the stage to wherever you want it to sit.
 
+**Got through all of those?** There are more in
+`reference/extra-challenges.md`, sorted by how hard they are. The three-star
+one is a build of your own: you get a goal and a rule, and the rest is yours
+to work out. If you finish those too, `reference/bonus-ideas.md` has
+directions nobody has built yet - including whoever wrote them.
+
 ## Before you log off
 
 Do this every week, and do it now even if you're mid-milestone. Next week's
