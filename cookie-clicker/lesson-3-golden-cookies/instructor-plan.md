@@ -19,6 +19,22 @@ than during it: **the clone-click risk**, which can affect the whole room at
 once and has a full fallback written out below, and **the hedge in Milestone
 1**, where some kids have a `Special Cookie` from Lesson 1 and some do not.
 
+**Driving the slide deck.** `slides.html` in this folder is the deck for the
+room: one slide a milestone, with the finished scripts drawn as blocks. Two
+things to know before you stand in front of it.
+
+- **It does not fit a 1080p projector in fullscreen.** Milestone 2 legitimately
+  carries five scripts, and every slide is as tall as the tallest, so all four
+  are about 1340px tall against roughly 980px of usable height. The
+  "you'll know it worked" strip at the foot of each slide lands about 180px
+  below the fold. **Scroll to the bottom of the slide before you read that line
+  out**, on every milestone, including the three with obvious empty space.
+  Zooming the browser out one step (Ctrl+minus, or Cmd+minus) brings the whole
+  slide into view if you would rather not scroll.
+- **The clone-click fallback is drawn out on Milestone 4's slide**, marked as a
+  fallback rather than as something everyone builds. If the whole-room check in
+  Milestone 2 goes against you, jump to that slide and build from it.
+
 ## Timing
 
 | Time | Activity |
@@ -317,6 +333,10 @@ forever
     broadcast [sugar rush v]
     delete this clone
 ```
+
+That script is drawn as blocks on **Milestone 4's slide** in `slides.html`,
+under a dashed rule and labelled as the Milestone 2 fallback. Put that slide
+on the wall and build from it.
 
 Building order on the projector: `when I start as a clone` hat into an empty
 spot; `forever` snapped under it; `if <> then` into the mouth of the

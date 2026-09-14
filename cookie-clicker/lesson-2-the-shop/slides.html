@@ -209,6 +209,12 @@
     padding:.14em .7em;border-radius:999px;font-size:.92em;white-space:nowrap;
   }
   .num{background:#fff;color:#1b1a2e;border:1px solid rgba(0,0,0,.12)}
+  /* a text field is a rounded rectangle; only number fields are full pills */
+  .txt{
+    font-family:var(--blockfont);display:inline-flex;align-items:center;
+    padding:.14em .7em;font-size:.92em;white-space:nowrap;border-radius:4px;
+    background:#fff;color:#1b1a2e;border:1px solid rgba(0,0,0,.12);
+  }
   .drop{background:var(--cd);color:#fff;gap:.4em}
   .drop::after{content:"";width:0;height:0;border:.3em solid transparent;border-top-color:#fff;margin-top:.25em}
   .rep{background:var(--variables);border:1px solid var(--variables-d);color:#fff}
@@ -275,6 +281,11 @@
     );
   }
   .cfoot.cap{clip-path:none;height:14px;border-radius:0 0 8px 8px}
+  /* a `forever` bar is only as wide as the word, and its foot matches it. Letting
+     either stretch to the mouth's width draws a block Scratch never draws. An
+     `if` bar is wide already, so it keeps the full width. */
+  .c.short > .cbar{align-self:flex-start}
+  .c.short > .cfoot{align-self:flex-start;min-width:5.5em;font-size:clamp(.92rem,1.55vw,1.22rem)}
 
   /* ---------- things that go in slots ----------
      A reporter is an oval, a boolean is six-sided, and both of them nest, so
@@ -294,7 +305,15 @@
     background:var(--bf,var(--operators));padding:.14em .65em;
     clip-path:var(--hex);white-space:nowrap;
   }
+  /* a boolean carrying its own category (a Sensing block inside a green `and`)
+     paints itself, and its dropdown, in that category's pair */
+  .bool[data-cat]{--bs:var(--cd);--bf:var(--c)}
+  /* an empty six-sided slot is a recess in the block's own colour, not a block */
+  .bool.empty{--bs:var(--cd);--bf:var(--cd)}
   .bool.empty > span{min-width:2em;min-height:1.15em}
+  /* a boolean holding other booleans must be allowed to break at narrow widths,
+     or the card scrolls sideways on a phone. Leaf booleans stay on one line. */
+  .bool.wrap > span{flex-wrap:wrap;white-space:normal}
   .slot{
     display:inline-block;width:1.7em;height:1.1em;border-radius:999px;
     background:#fff;border:1px solid rgba(0,0,0,.12);vertical-align:middle;
@@ -446,7 +465,7 @@
               <div class="stack">
                 <div class="blk hat" data-cat="events">when this sprite clicked</div>
                 <div class="c" data-cat="control">
-                  <div class="cbar">if <span class="bool"><span>not <span class="bool"><span><span class="rep">cookies</span> &lt; <span class="rep">grandma cost</span></span></span></span></span> then</div>
+                  <div class="cbar">if <span class="bool wrap"><span>not <span class="bool"><span><span class="rep">cookies</span> &lt; <span class="rep">grandma cost</span></span></span></span></span> then</div>
                   <div class="cmouth">
                     <div class="blk" data-cat="variables">set <span class="drop">cookies</span> to <span class="op"><span class="rep">cookies</span> - <span class="rep">grandma cost</span></span></div>
                     <div class="blk" data-cat="variables">change <span class="drop">per second</span> by <span class="num">1</span></div>
@@ -474,7 +493,6 @@
           <p class="label">New blocks</p>
           <div class="chips">
             <div class="chipwrap"><div class="chip" data-cat="control">forever</div><span class="catname">Control</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="control">wait <span class="num">1</span> seconds</div><span class="catname">Control</span></div>
           </div>
           <p class="none" style="margin-top:16px">A sprite is allowed more than one <b>when green flag clicked</b>. Press the flag and every one of them starts, all at the same time.</p>
           <p class="none" style="margin-top:16px">Look at the bottom edge of a <b>forever</b>: no bump. <b>Nothing can ever be attached under it</b> &mdash; it is always the last block in its script.</p>
@@ -485,7 +503,7 @@
               <p class="label">Cookie &mdash; a third script, well clear of the other two</p>
               <div class="stack">
                 <div class="blk hat" data-cat="events">when green flag clicked</div>
-                <div class="c" data-cat="control">
+                <div class="c short" data-cat="control">
                   <div class="cbar">forever</div>
                   <div class="cmouth">
                     <div class="blk" data-cat="control">wait <span class="num">1</span> seconds</div>
@@ -533,7 +551,7 @@
               <div class="stack">
                 <div class="blk hat" data-cat="events">when this sprite clicked</div>
                 <div class="c" data-cat="control">
-                  <div class="cbar">if <span class="bool"><span>not <span class="bool"><span><span class="rep">cookies</span> &lt; <span class="rep">baker cost</span></span></span></span></span> then</div>
+                  <div class="cbar">if <span class="bool wrap"><span>not <span class="bool"><span><span class="rep">cookies</span> &lt; <span class="rep">baker cost</span></span></span></span></span> then</div>
                   <div class="cmouth">
                     <div class="blk" data-cat="variables">set <span class="drop">cookies</span> to <span class="op"><span class="rep">cookies</span> - <span class="rep">baker cost</span></span></div>
                     <div class="blk" data-cat="variables">change <span class="drop">per second</span> by <span class="num">10</span></div>

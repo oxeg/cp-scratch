@@ -136,10 +136,13 @@
   @media (max-width:820px){.cols{grid-template-columns:1fr}}
   /* the sugar-rush milestone carries five scripts: give it more of the card */
   .cols.wide{grid-template-columns:minmax(0,.72fr) minmax(0,1.9fr)}
-  @media (max-width:820px){.cols.wide{grid-template-columns:1fr}}
+  /* Milestone 4 carries the Milestone 2 fallback as well, so its scripts want
+     two columns wide enough that none of them wraps */
+  .cols.widest{grid-template-columns:minmax(0,.55fr) minmax(0,2.2fr)}
+  @media (max-width:820px){.cols.wide,.cols.widest{grid-template-columns:1fr}}
   /* this lesson's scripts are wide - in "show all four" the cards are half the
      page, so the two columns stack there however wide the window is */
-  .deck.all .cols,.deck.all .cols.wide{grid-template-columns:1fr}
+  .deck.all .cols,.deck.all .cols.wide,.deck.all .cols.widest{grid-template-columns:1fr}
 
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 4px}
   .none{color:var(--ink-soft);font-size:.95rem;margin:0;max-width:40ch}
@@ -212,6 +215,12 @@
     padding:.14em .7em;border-radius:999px;font-size:.92em;white-space:nowrap;
   }
   .num{background:#fff;color:#1b1a2e;border:1px solid rgba(0,0,0,.12)}
+  /* a text field is a rounded rectangle; only number fields are full pills */
+  .txt{
+    font-family:var(--blockfont);display:inline-flex;align-items:center;
+    padding:.14em .7em;font-size:.92em;white-space:nowrap;border-radius:4px;
+    background:#fff;color:#1b1a2e;border:1px solid rgba(0,0,0,.12);
+  }
   .drop{background:var(--cd);color:#fff;gap:.4em}
   .drop::after{content:"";width:0;height:0;border:.3em solid transparent;border-top-color:#fff;margin-top:.25em}
   .rep{background:var(--variables);border:1px solid var(--variables-d);color:#fff}
@@ -278,6 +287,11 @@
     );
   }
   .cfoot.cap{clip-path:none;height:14px;border-radius:0 0 8px 8px}
+  /* a `forever` bar is only as wide as the word, and its foot matches it. Letting
+     either stretch to the mouth's width draws a block Scratch never draws. An
+     `if` bar is wide already, so it keeps the full width. */
+  .c.short > .cbar{align-self:flex-start}
+  .c.short > .cfoot{align-self:flex-start;min-width:5.5em;font-size:clamp(.92rem,1.55vw,1.22rem)}
 
   /* ---------- things that go in slots ----------
      A reporter is an oval, a boolean is six-sided, and both of them nest, so
@@ -297,7 +311,15 @@
     background:var(--bf,var(--operators));padding:.14em .65em;
     clip-path:var(--hex);white-space:nowrap;
   }
+  /* a boolean carrying its own category (a Sensing block inside a green `and`)
+     paints itself, and its dropdown, in that category's pair */
+  .bool[data-cat]{--bs:var(--cd);--bf:var(--c)}
+  /* an empty six-sided slot is a recess in the block's own colour, not a block */
+  .bool.empty{--bs:var(--cd);--bf:var(--cd)}
   .bool.empty > span{min-width:2em;min-height:1.15em}
+  /* a boolean holding other booleans must be allowed to break at narrow widths,
+     or the card scrolls sideways on a phone. Leaf booleans stay on one line. */
+  .bool.wrap > span{flex-wrap:wrap;white-space:normal}
   .slot{
     display:inline-block;width:1.7em;height:1.1em;border-radius:999px;
     background:#fff;border:1px solid rgba(0,0,0,.12);vertical-align:middle;
@@ -320,6 +342,10 @@
   .script.span{grid-column:1/-1}   /* for a script too wide to sit in one column */
   .script.edit{border-left:3px solid var(--accent);padding-left:14px}
   .label.editnote{color:var(--accent)}
+  /* nobody builds this unless a version quirk forces it: a dashed rule, so it
+     reads as neither a new script nor an edit to one */
+  .script.fallback{border-left:3px dashed var(--ink-faint);padding-left:14px}
+  .label.fallnote{color:var(--ink-soft)}
   /* the blocks a script carries on with, left out of the picture on purpose */
   .more{
     font-family:"IBM Plex Sans",sans-serif;font-size:.8rem;color:var(--ink-soft);
@@ -426,7 +452,7 @@
               <div class="stack">
                 <div class="blk hat" data-cat="events">when green flag clicked</div>
                 <div class="blk" data-cat="looks">hide</div>
-                <div class="c" data-cat="control">
+                <div class="c short" data-cat="control">
                   <div class="cbar">forever</div>
                   <div class="cmouth">
                     <div class="blk" data-cat="control">wait <span class="op">pick random <span class="num">15</span> to <span class="num">30</span></span> seconds</div>
@@ -460,7 +486,7 @@
     <section class="slide" data-i="1">
       <div class="eyebrow"><span>Milestone 2 of 4</span><span class="tag">sprites: Special Cookie, Cookie</span></div>
       <h2>Click one for a sugar rush</h2>
-      <p class="sub">A <b>broadcast</b> is a shout: one sprite shouts, every sprite hears it. The golden cookie shouts <b>sugar rush</b>, and <b>Cookie</b> doubles everything for ten seconds.</p>
+      <p class="sub">A <b>broadcast</b> is a shout: every sprite hears it. The golden cookie shouts <b>sugar rush</b>, and <b>Cookie</b> doubles everything for ten seconds.</p>
       <div class="cols wide">
         <div>
           <p class="label">New blocks</p>
@@ -468,9 +494,9 @@
             <div class="chipwrap"><div class="chip" data-cat="events">broadcast <span class="drop">sugar rush</span></div><span class="catname">Events</span></div>
             <div class="chipwrap"><div class="chip" data-cat="events">when I receive <span class="drop">sugar rush</span></div><span class="catname">Events</span></div>
           </div>
-          <p class="none" style="margin-top:16px"><b>bonus</b> starts at <b>1</b>, because 1 is the number that changes nothing. A <b>set</b> block arrives from the palette saying <b>0</b>, and a bonus of 0 makes every cookie worth nothing at all &mdash; so get both those numbers right now.</p>
-          <p class="none" style="margin-top:16px">Two of these are <b>edits</b> to scripts from earlier weeks. Change the slot, leave the rest of the script exactly where it is.</p>
-          <p class="none" style="margin-top:16px">If a golden cookie doesn't react to being clicked at all, that's a version difference, not your mistake &mdash; hands up, because everybody will have it. The cards have a <b>when I start as a clone</b> version to build instead.</p>
+          <p class="none" style="margin-top:16px"><b>bonus</b> starts at <b>1</b>: the number that changes nothing. A <b>set</b> block arrives saying <b>0</b>, and a bonus of 0 makes every cookie worth nothing &mdash; get both numbers right now.</p>
+          <p class="none" style="margin-top:16px">Three of these are <b>edits</b> to scripts from earlier weeks &mdash; two change a slot, one gains a block. Edit them; don't rebuild them.</p>
+          <p class="none" style="margin-top:16px">Golden cookie ignoring your clicks? A version difference, not your mistake &mdash; hands up, everybody will have it. <b>The script to build instead is on the last slide.</b></p>
         </div>
         <div>
           <div class="scripts">
@@ -491,7 +517,7 @@
                 <div class="blk" data-cat="variables">set <span class="drop">grandma cost</span> to <span class="num">50</span></div>
                 <div class="blk" data-cat="variables"><span class="nb">new</span>set <span class="drop">bonus</span> to <span class="num">1</span></div>
               </div>
-              <p class="none" style="margin-top:14px">Built the Baker last week? There's a <b>set baker cost to 500</b> in there too, just above the new one. Leave it alone.</p>
+              <p class="none" style="margin-top:14px">Built the Baker? <b>set baker cost to 500</b> sits just above the new block &mdash; leave it alone.</p>
             </div>
             <div class="script">
               <p class="label">Cookie &mdash; the sprite that listens</p>
@@ -514,7 +540,7 @@
               <p class="label editnote">Cookie &mdash; the forever script, one slot changed</p>
               <div class="stack">
                 <div class="blk hat" data-cat="events">when green flag clicked</div>
-                <div class="c" data-cat="control">
+                <div class="c short" data-cat="control">
                   <div class="cbar">forever</div>
                   <div class="cmouth">
                     <div class="blk" data-cat="control">wait <span class="num">1</span> seconds</div>
@@ -542,7 +568,7 @@
           <p class="label">New blocks</p>
           <div class="chips">
             <div class="chipwrap"><div class="chip" data-cat="sound">start sound <span class="drop">the sound you picked</span></div><span class="catname">Sound</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="looks">say <span class="num">Hello!</span> for <span class="num">2</span> seconds</div><span class="catname">Looks</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="looks">say <span class="txt">Hello!</span> for <span class="num">2</span> seconds</div><span class="catname">Looks</span></div>
             <div class="chipwrap"><div class="chip" data-cat="looks">switch backdrop to <span class="drop">a backdrop of yours</span></div><span class="catname">Looks</span></div>
           </div>
           <p class="none" style="margin-top:16px">Both signals are <b>edits</b> to the <b>when I receive sugar rush</b> script you built in Milestone 2. <b>Pick one</b> &mdash; you only need one. Come back for the other if there's time.</p>
@@ -557,7 +583,7 @@
                 <div class="blk hat" data-cat="events">when I receive <span class="drop">sugar rush</span></div>
                 <div class="blk" data-cat="variables">set <span class="drop">bonus</span> to <span class="num">2</span></div>
                 <div class="blk" data-cat="sound"><span class="nb">new</span>start sound <span class="drop">the sound you picked</span></div>
-                <div class="blk" data-cat="looks"><span class="nb">new</span>say <span class="num">SUGAR RUSH!</span> for <span class="num">2</span> seconds</div>
+                <div class="blk" data-cat="looks"><span class="nb">new</span>say <span class="txt">SUGAR RUSH!</span> for <span class="num">2</span> seconds</div>
                 <div class="blk" data-cat="control">wait <span class="num">10</span> seconds</div>
                 <div class="blk" data-cat="variables">set <span class="drop">bonus</span> to <span class="num">1</span></div>
               </div>
@@ -589,7 +615,7 @@
       <div class="eyebrow"><span>Milestone 4 of 4</span><span class="tag bonus">further target</span><span class="tag">sprite: Cookie</span></div>
       <h2>Cookie Master</h2>
       <p class="sub">One more broadcast, to celebrate getting past a thousand cookies. It fires once a game, and once is right.</p>
-      <div class="cols">
+      <div class="cols widest">
         <div>
           <p class="label">New blocks</p>
           <div class="chips">
@@ -615,9 +641,30 @@
               <p class="label">Cookie &mdash; the one that celebrates</p>
               <div class="stack">
                 <div class="blk hat" data-cat="events">when I receive <span class="drop">cookie master</span></div>
-                <div class="blk" data-cat="looks">say <span class="num">Cookie Master!</span> for <span class="num">3</span> seconds</div>
+                <div class="blk" data-cat="looks">say <span class="txt">Cookie Master!</span> for <span class="num">3</span> seconds</div>
               </div>
               <p class="none" style="margin-top:14px">Check that dropdown says <b>cookie master</b>, not <b>sugar rush</b> &mdash; answering the wrong shout is the usual bug here.</p>
+            </div>
+            <div class="script fallback span">
+              <p class="label fallnote">Milestone 2 fallback &mdash; only if golden cookies ignore clicks</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="control">when I start as a clone</div>
+                <div class="c short" data-cat="control">
+                  <div class="cbar">forever</div>
+                  <div class="cmouth">
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool wrap"><span><span class="bool" data-cat="sensing"><span>touching <span class="drop">mouse-pointer</span> ?</span></span> and <span class="bool" data-cat="sensing"><span>mouse down?</span></span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="events">broadcast <span class="drop">sugar rush</span></div>
+                        <div class="blk" data-cat="control">delete this clone</div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot cap"></div>
+                </div>
+              </div>
+              <p class="none" style="margin-top:14px">On <b>Special Cookie</b>, in place of its <b>when this sprite clicked</b> script. A sprite may have two <b>when I start as a clone</b> hats, so <b>leave the go to / show / wait / delete this clone script alone</b>.</p>
             </div>
           </div>
         </div>
