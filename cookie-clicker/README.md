@@ -118,6 +118,14 @@ Commands 1, 2 and 4 want a `step-cards.md`; command 3 wants an
 material teaches well, is correct about Scratch, or fits in 90 minutes.**
 Passing these checks is not a substitute for the checklist above.
 
+**Two documents are deliberately outside this shape, and should stay that
+way.** `reference/extra-challenges.md` and `reference/bonus-ideas.md` are not
+lessons: they have no milestones, no **Check it works**, no **Stuck?** and no
+timing table, and `bonus-ideas.md` has no numbered steps and no difficulty
+stars either. That is the design, not an omission — a page whose whole job is
+to be unfinishable cannot carry a completion check. Do not "fix" them into
+lesson shape.
+
 ## The three lessons
 
 | | New idea | Take-home game |
@@ -195,6 +203,10 @@ keeps their game at all.
 - **`reference/block-cheat-sheet.md`** — one copy per table. Every block
   used across all three lessons, grouped by palette colour, with a
   one-line plain-English meaning.
+- **`reference/extra-challenges.md`** — one copy per table. What a kid does
+  when they finish a milestone before the room does.
+- **`reference/bonus-ideas.md`** — one copy per table. The overflow for kids
+  who get through the challenges too.
 
 ## What kids need
 
@@ -227,3 +239,52 @@ Fast kids go *wider*, not *ahead* — point them at
 difficulty. Each one names the blocks that might help and never the order
 they go in, so a kid who finishes one has worked something out rather than
 followed another card.
+
+The three tiers do different jobs, and it is worth knowing which to suggest:
+
+| | What it is | How long |
+|---|---|---|
+| ★ | Change a number or a picture. No new thinking. | Minutes |
+| ★★ | Needs a block used a way they haven't used it, or a small idea. | ~10 min |
+| ★★★ | A side feature they build themselves, on their own sprite, from a goal and a constraint rather than a hint. | 15–25 min |
+
+**Match the tier to the clock.** A ★★★ started ten minutes before the end
+does not finish, and a kid who leaves part-way through is worse off than one
+who never started. Each instructor plan says the same thing in its **Kids who
+finish early** section, along with when to point a kid at the sheet at all.
+
+**For a kid who exhausts even that**, `reference/bonus-ideas.md` holds
+unbounded directions — no hints, no difficulty stars, no right answer, and
+nothing on it can be finished. It is deliberately the end of the line.
+
+Three rules on the challenges sheet keep all of this safe: build it on a new
+sprite of its own, don't change the blocks the cards told you to build, and
+some things are for later. They exist because Lesson 2 appends to scripts
+Lesson 1 built and Lesson 3 rewrites them — a fast kid who edits the wrong
+script in week 1 meets a contradiction in week 3.
+
+## An optional fourth session
+
+The course is complete at three lessons. If your club has a spare week,
+`reference/bonus-ideas.md` will carry one — but run it as a workshop, not a
+lesson.
+
+There is no timing table for it because there is no fixed content to time.
+The shape that works:
+
+- **Recap.** Each kid says in one sentence what their game does now. They
+  have all built the same game and personalised it differently, and hearing
+  that is what makes the next part feel possible.
+- **Everyone picks a direction** from `bonus-ideas.md`. Not a challenge — a
+  direction. Nobody should finish.
+- **A long build**, most of the session, with you circulating.
+- **Show each other.** Ten minutes at the end, everyone's screen, no
+  presentation. This is the part to protect if the build overruns.
+
+**Nobody has built any of it, including whoever wrote the page.** When a kid
+is stuck on something they invented, the answer is *"show me what you tried"*
+rather than you debugging it cold. Say that at the start and it lands as
+honesty rather than as a shrug.
+
+If a kid would rather keep polishing the game they already have, that is a
+fine way to spend the session too.
