@@ -5,19 +5,17 @@ challenge below.
 
 **Every challenge here is optional.** None of them are needed to finish the
 course or to keep up next week — the game you build from the step cards is
-the whole game. These are extra: a chance to go *wider* with what you already
-know, not a race to get ahead. Do one, do all of them, or do none — it's your
-game.
+the whole game. These are extra: a chance to make your *game* wider, not a
+race to get ahead. Some of them do reach for a block you haven't met yet,
+and that's fine — meeting one early spoils nothing about the week it turns
+up in. Do one, do all of them, or do none — it's your game.
 
 Nobody is telling you exactly which blocks to snap together. Each challenge
 gives you a job to do and a hint about which blocks might help — the rest is
 for you to work out. That's the fun part.
 
-**Three rules.** A challenge that tells you exactly which script to add to
-has already been checked against next week's cards — those ones are safe.
-But the best ideas on this page are the ones you think up yourself, and
-nobody has checked those. When you're building something of your own, these
-three keep it from getting in the way of next week:
+**Three rules.** These are for the ideas you think up yourself; every
+challenge on this page has already been checked.
 
 1. **Build it on a new sprite of its own.** Not on `Cookie` — your own
    sprite, with its own scripts. It keeps your game tidy, and it means
@@ -29,9 +27,6 @@ three keep it from getting in the way of next week:
    appears on its own and gives you a bonus — good instinct. That's what
    weeks 2 and 3 are. Pick something else for now and you'll build it with
    everyone else.
-
-Numbers, colours and pictures are always yours to play with — that's what
-the ★ challenges are. The rules are about blocks.
 
 **Difficulty:**
 - **★** — change a number or a picture. Minutes. No new thinking.
@@ -65,6 +60,10 @@ whatever feels satisfying to click — and read its name once you've picked
 it. Then point the *pink* Sound `start sound` block's dropdown at that name
 instead of the old one.
 
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
+
 ### ★ Tune how it feels
 
 Decide exactly how hard your cookie squashes when you click it, and what
@@ -74,6 +73,10 @@ your `Special Cookie` is worth.
 `set size to (110) %` — further from 100 makes a bigger squash, closer to
 100 a tinier one. What `Special Cookie` earns is the number on its own
 `change [cookies v] by (10)` block; 10 was only ever a suggestion.
+
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
 
 ### ★★ Show your best score
 
@@ -87,15 +90,16 @@ the *orange* Variables palette, **For all sprites** chosen, exactly how you
 made `cookies`. Something has to keep an eye on `cookies` the whole time
 the game is running, so the blocks in play are the *amber* Control ones
 `forever` and `if <> then`, a *green* Operators `() > ()` to do the
-comparing, and an orange `set` block to write a new record down. Give it a
-sprite of its own to live on: draw a rosette or a trophy, or find something
+comparing, and an orange `set` block to write a new record down. It needs a
+*yellow* Events `when green flag clicked` on it as well: a stack with no hat
+block never starts by itself, and you'd be left staring at blocks that do
+nothing. Give it a sprite of its own to live on: draw a rosette or a trophy, or find something
 prize-shaped in the sprite library and check what it's actually called once
 you're browsing.
 
-**The interesting part:** nothing anywhere in your game sets `best` back to
-0. That isn't something you forgot — it is the entire reason this works.
-The green flag only clears the numbers that something *tells* it to clear,
-and `best` was never on that list.
+**Worth noticing:** go looking for the block that puts `best` back to 0.
+There isn't one anywhere in your game — work out why that's the whole
+trick.
 
 ### ★★ Your cookie has opinions
 
@@ -110,13 +114,17 @@ browsing, since it may not be called what you expect. The *purple* Looks
 block `say [] for () seconds` is how it talks. Working out *when* it talks
 is a *green* Operators `() > ()`, the `(cookies)` oval, and an *amber*
 Control `if <> then` — and something has to keep that checking going all
-game long, which is what `forever` is for.
+game long, which is what `forever` is for. It wants a *yellow* Events
+`when green flag clicked` on top, the same as every script that has to start
+on its own.
 
-**Watch out:** a `forever` loop comes round about thirty times a second, so
-a character with nothing to slow it down talks over itself non-stop and you
-can't read a word of it. An *amber* Control `wait () seconds` is the block
-that fixes that. How long your character stays quiet between remarks is
-your call.
+**Watch out:** `say [] for () seconds` holds up its own script for the whole
+time the bubble is showing, so the loop can't race ahead of it. What happens
+instead is quieter and easier to miss: a character with nothing else to slow
+it down starts the same sentence again the instant it finishes, so the
+bubble never leaves the screen. An *amber* Control `wait () seconds` is the
+block that fixes that. How long your character stays quiet between remarks
+is your call.
 
 ### ★★★ How fast can you click?
 
@@ -127,8 +135,9 @@ nothing the moment you stop.
 **Hint:** Two variables, both made the way you made `cookies`, both **For
 all sprites**. `click speed` is the one you show off. `last count` is the
 awkward one: it holds what `cookies` said a second ago. The blocks in play
-are a *green* Operators `() - ()`, orange `set` blocks, and the *amber*
-Control pair `wait () seconds` and `forever`. Give the whole thing a sprite
+are a *yellow* Events `when green flag clicked`, a *green* Operators
+`() - ()`, orange `set` blocks, and the *amber* Control pair
+`wait () seconds` and `forever`. Give the whole thing a sprite
 of its own to sit on — a dial, a speedometer, a little sign beside the
 readout.
 
@@ -170,6 +179,10 @@ the same way, with its own number, and you can set the two differently if
 you want one of them to get expensive faster than the other. What the
 `Baker` earns is the number on his `change [per second v] by (10)` block.
 
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
+
 ### ★★ Make Grandma say thanks
 
 Right now, buying `Grandma` or the `Baker` happens in total silence —
@@ -180,6 +193,10 @@ them something to say when they're bought.
 It belongs somewhere inside the mouth of the `if` on the shopkeeper's
 `when this sprite clicked` script — the same `if` that already takes their
 payment and raises their price.
+
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
 
 ### ★★ A sign that lights up
 
@@ -196,10 +213,11 @@ is the one you wrestled with in Milestone 2, unchanged:
 dropped into it. That is what makes this challenge worth doing — the exact
 test that decides whether a purchase goes through also decides whether a
 sign is worth showing, and it has no idea it's doing a second job. The
-*purple* Looks blocks `show` and `hide` do the appearing and disappearing,
-an *amber* Control `forever` keeps the sign paying attention, and two
+*purple* Looks blocks `show` and `hide` do the appearing and disappearing, a
+*yellow* Events `when green flag clicked` gets the whole thing running, an
+*amber* Control `forever` keeps the sign paying attention, and two
 `if <> then` blocks with opposite conditions are enough — there's no block
-here you haven't met.
+here that isn't on your cheat sheet.
 
 **Watch out:** hiding *sticks*. A sprite that has hidden itself stays
 hidden. The green flag does not undo it — only a `show` block that
@@ -235,6 +253,10 @@ in `Special Cookie`'s `when green flag clicked` script. How long one
 lingers is the `5` in `wait (5) seconds`, in its `when I start as a clone`
 script.
 
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
+
 ### ★ Tune the sugar rush
 
 Decide how big a sugar rush should be, and how long one should last.
@@ -243,6 +265,10 @@ Decide how big a sugar rush should be, and how long one should last.
 `when I receive [sugar rush v]` script — leave the other
 `set [bonus v] to (1)` alone, since 1 is what "no rush" means. How long it
 lasts is the `10` in that same script's `wait (10) seconds`.
+
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
 
 ### ★ Give your golden cookie a look of its own
 
@@ -268,6 +294,10 @@ the bottom of that script, where `bonus` is set back to `1` — just make
 them different from whatever marks the start, so the two moments don't feel
 the same.
 
+**Checked for you:** this one does change a script the cards built. That's
+fine here because somebody has checked it against the rest of the course —
+it isn't something to do off your own bat.
+
 ### ★★ A bigger milestone
 
 `cookie master` fires once, just past 1000 cookies. Add a second message
@@ -280,6 +310,10 @@ for an even bigger number.
 `say [] for () seconds` block works, or anything else you fancy. Pick your
 own bigger number and your own message name — just don't call it
 `cookie master` again, or you'll be answering the wrong shout.
+
+**Checked for you:** this one lives on `Cookie` rather than a sprite of its
+own. That's fine here because somebody has checked it against the rest of
+the course — it isn't something to do off your own bat.
 
 ### ★★★ A second kind of golden cookie
 
