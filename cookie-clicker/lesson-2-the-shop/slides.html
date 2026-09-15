@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Shop</title>
 <!--
   Lesson 2's slide deck. The other two sit beside their own lessons:
@@ -10,6 +15,13 @@
   fill/stroke pairs, the block font, and the interlocking .blk/.chip geometry) is
   copied into all three decks and must be kept in step. Change it in one, change
   it in all three, or a kid comparing two lessons sees two different Scratches.
+
+  This file is a complete standalone document - doctype, html, head, body -
+  because GitHub Pages serves it raw. It was first built for a platform that
+  wrapped fragments in a skeleton at publish time; nothing does that now. The
+  doctype is what keeps the browser out of quirks mode, and the viewport meta
+  is what makes the narrow widths above work on a phone rather than being laid
+  out at a fake 980px and zoomed out. Don't tidy the wrapper away.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -412,7 +424,8 @@
     .slide{box-shadow:none;border-color:#ccc;margin-bottom:0}
   }
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <div class="bar">
     <div class="brand">
@@ -654,3 +667,5 @@
   render();
 })();
 </script>
+</body>
+</html>
