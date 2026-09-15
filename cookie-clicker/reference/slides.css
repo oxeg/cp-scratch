@@ -545,6 +545,9 @@
   }
 
   /* ---------- a bonus direction: one provocation, nothing else ---------- */
+  /* a direction slide carries one idea and nothing else, so centre it in the
+     space rather than letting it sit in the top-left of an empty card */
+  .dirwrap{flex:1;display:flex;align-items:center;min-height:clamp(180px,26vh,320px)}
   .dir{max-width:26ch;margin:0}
   .dir b{
     display:block;font-family:"Baloo 2",cursive;font-weight:700;
