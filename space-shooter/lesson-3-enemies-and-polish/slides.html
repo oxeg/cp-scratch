@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enemies and Polish</title>
+<!--
+  Lesson 3's slide deck. Sits beside:
+    space-shooter/lesson-1-fly-the-ship/slides.html
+    space-shooter/lesson-2-shoot-and-survive/slides.html
+
+  Links the course-shared space-shooter/reference/slides.css rather than
+  inlining it, per SLIDE-DECKS.md ("Where the stylesheet goes"). "New blocks"
+  chips only list blocks not already taught in lessons 1-2's decks.
+
+  Milestones 3 and 4 are the "Further targets (for anyone who gets there)"
+  named in this lesson's instructor-plan.md - most kids won't reach them, and
+  that's the expected outcome, not a failure. Milestone 3's third script
+  (Asteroid's spawner) and Milestone 4's Ship fragment both edit scripts
+  built in an earlier lesson, marked with .script.edit.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../reference/slides.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Enemies and Polish</b>
+      <span>Space Shooter &middot; Lesson 3</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Milestones"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
+  </div>
+
+  <div class="deck one" id="deck">
+
+    <!-- M1 -->
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>Milestone 1 of 4</span><span class="tag">sprite: Enemy</span></div>
+      <h2>An enemy ship</h2>
+      <p class="sub">Add an <b>Enemy</b> sprite that glides across the top of the stage, jumps back to the left when it's shot, and adds 5 to <b>score</b>.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="motion">x position</div><span class="catname">Motion</span></div>
+          </div>
+          <p class="none" style="margin-top:16px">Nearly everything else here reuses Lesson 2's asteroid-spawner pattern &mdash; same <b>forever</b> / <b>repeat until</b> / <b>if touching</b> shape, aimed sideways instead of down.</p>
+          <p class="none" style="margin-top:16px">An enemy sprite is a guess &mdash; search <i>space</i> and pick whatever looks like it could shoot at you (another ship, a saucer, an alien). Library names vary by version; go by the picture.</p>
+        </div>
+        <div>
+          <p class="label">Your script ends up like this</p>
+          <div class="stack">
+            <div class="blk hat" data-cat="events">when green flag clicked</div>
+            <div class="blk" data-cat="looks">show</div>
+            <div class="c short" data-cat="control">
+              <div class="cbar">forever</div>
+              <div class="cmouth">
+                <div class="blk" data-cat="motion">go to x: <span class="num">-230</span> y: <span class="op">pick random <span class="num">90</span> to <span class="num">150</span></span></div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">repeat until <span class="bool"><span><span class="rep">x position</span> &gt; <span class="num">230</span></span></span></div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change x by <span class="num">4</span></div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>touching <span class="drop">Laser</span><span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="variables">change <span class="drop">score</span> by <span class="num">5</span></div>
+                        <div class="blk" data-cat="motion">go to x: <span class="num">-230</span> y: <span class="op">pick random <span class="num">90</span> to <span class="num">150</span></span></div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+              </div>
+              <div class="cfoot cap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>The enemy appears on the left and glides across the top. Shoot it &mdash; <b>score</b> goes up by 5 and it jumps straight back to the left edge to start again.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M2 -->
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>Milestone 2 of 4</span><span class="tag">sprites: Enemy, EnemyLaser</span></div>
+      <h2>The enemy shoots back</h2>
+      <p class="sub">Give <b>Enemy</b> a timer that broadcasts <b>enemy fire</b> every couple of seconds, and duplicate <b>Laser</b> into a new <b>EnemyLaser</b> that fires on that message and falls toward the ship.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="events">broadcast <span class="drop">enemy fire</span></div><span class="catname">Events</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="events">when I receive <span class="drop">enemy fire</span></div><span class="catname">Events</span></div>
+          </div>
+          <p class="none" style="margin-top:16px"><b>Did you do last week's fire-rate fix?</b> Then <b>EnemyLaser</b> (duplicated from <b>Laser</b>) inherits a <b>forever</b> loop instead of a <b>when space key pressed</b> hat. Either way, strip out whatever currently triggers the clone and end up with just <b>when green flag clicked</b> / <b>hide</b>, before adding the <b>when I receive</b> script below.</p>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script">
+              <p class="label">Enemy &mdash; fires the message</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="c short" data-cat="control">
+                  <div class="cbar">forever</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="control">wait <span class="op">pick random <span class="num">1</span> to <span class="num">2.5</span></span> seconds</div>
+                    <div class="blk" data-cat="events">broadcast <span class="drop">enemy fire</span></div>
+                  </div>
+                  <div class="cfoot cap"></div>
+                </div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">EnemyLaser &mdash; hides, then fires on the message</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="looks">hide</div>
+              </div>
+              <div class="stack" style="margin-top:10px">
+                <div class="blk hat" data-cat="events">when I receive <span class="drop">enemy fire</span></div>
+                <div class="blk" data-cat="control">create clone of <span class="drop">myself</span></div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">EnemyLaser's clone script &mdash; adjusted from Laser's</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="control">when I start as a clone</div>
+                <div class="blk" data-cat="motion">go to <span class="drop">Enemy</span></div>
+                <div class="blk" data-cat="looks">show</div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">repeat until <span class="bool"><span><span class="rep">y position</span> &lt; <span class="num">-175</span></span></span></div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">-8</span></div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>touching <span class="drop">Ship</span><span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="variables">change <span class="drop">lives</span> by <span class="num">-1</span></div>
+                        <div class="blk cap" data-cat="control">delete this clone</div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
+              </div>
+              <p class="none" style="margin-top:10px">Changed from <b>Laser</b>'s original: target <b>Enemy</b> not <b>Ship</b>; falls (<b>y &lt; -175</b>, <b>change y by -8</b>) instead of rising; and gained the touching-Ship check entirely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Every couple of seconds the enemy fires downward from wherever it is. A bolt hitting the ship drops <b>lives</b> by 1. This is the game everyone takes home today.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M3 -->
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>Milestone 3 of 4</span><span class="tag bonus">further target</span><span class="tag">sprites: Ship, Asteroid</span></div>
+      <h2>Getting harder</h2>
+      <p class="sub">On <b>Ship</b>, add <b>level</b> and <b>spawn gap</b> variables and a script that raises the level and shortens the gap every time <b>score</b> passes <b>level &times; 10</b> &mdash; then hand <b>Asteroid</b>'s spawn timing over to <b>spawn gap</b>.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="operators"><span class="slot"></span> &times; <span class="slot"></span></div><span class="catname">Operators</span></div>
+          </div>
+          <p class="none" style="margin-top:16px">Everything else here &mdash; <b>set</b>, <b>forever</b>, <b>if</b>, comparisons, variable reporters &mdash; was taught in Lessons 1-2. This milestone is new logic, not new vocabulary.</p>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script edit">
+              <p class="label editnote">Ship's Lesson 1 script &mdash; two new lines</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="variables">set <span class="drop">score</span> to <span class="num">0</span></div>
+                <div class="blk" data-cat="variables">set <span class="drop">lives</span> to <span class="num">3</span></div>
+                <div class="blk" data-cat="variables"><span class="nb">new</span>set <span class="drop">level</span> to <span class="num">1</span></div>
+                <div class="blk" data-cat="variables"><span class="nb">new</span>set <span class="drop">spawn gap</span> to <span class="num">1.5</span></div>
+                <div class="blk" data-cat="motion">go to x: <span class="num">0</span> y: <span class="num">-120</span></div>
+              </div>
+              <p class="none" style="margin-top:10px">Both new blocks snap in between the existing <b>set lives to 3</b> and <b>go to x:/y:</b> &mdash; then the five-<b>if</b> <b>forever</b> loop from Lesson 2 continues unchanged, underneath.</p>
+            </div>
+            <div class="script">
+              <p class="label">Ship &mdash; a brand-new second script</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="c short" data-cat="control">
+                  <div class="cbar">forever</div>
+                  <div class="cmouth">
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool"><span><span class="rep">score</span> &gt; <span class="op"><span class="rep">level</span> &times; <span class="num">10</span></span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="variables">change <span class="drop">level</span> by <span class="num">1</span></div>
+                        <div class="blk" data-cat="variables">change <span class="drop">spawn gap</span> by <span class="num">-0.2</span></div>
+                        <div class="c" data-cat="control">
+                          <div class="cbar">if <span class="bool"><span><span class="rep">spawn gap</span> &lt; <span class="num">0.4</span></span></span> then</div>
+                          <div class="cmouth">
+                            <div class="blk" data-cat="variables">set <span class="drop">spawn gap</span> to <span class="num">0.4</span></div>
+                          </div>
+                          <div class="cfoot"></div>
+                        </div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot cap"></div>
+                </div>
+              </div>
+            </div>
+            <div class="script edit">
+              <p class="label editnote">Asteroid's Lesson 2 spawner, edited</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="looks">hide</div>
+                <div class="c short" data-cat="control">
+                  <div class="cbar">forever</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="control">wait <span class="op">pick random <span class="num">0.3</span> to <span class="rep">spawn gap</span></span> seconds</div>
+                    <div class="blk" data-cat="control">create clone of <span class="drop">myself</span></div>
+                  </div>
+                  <div class="cfoot cap"></div>
+                </div>
+              </div>
+              <p class="none" style="margin-top:10px">The <b>pick random</b> block's two fields change from <b>0.5</b> / <b>1.5</b> to <b>0.3</b> and a <b>spawn gap</b> reporter &mdash; this is an edit to the script Lesson 2 built, not a new one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Watch the <b>level</b> and <b>spawn gap</b> watchers as you play. Past 10 points, <b>level</b> ticks to 2 and asteroids fall a little faster &mdash; but <b>spawn gap</b> never drops below 0.4.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M4 -->
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>Milestone 4 of 4</span><span class="tag bonus">further target</span><span class="tag">sprites: Stage, Ship</span></div>
+      <h2>A proper game over, and sound</h2>
+      <p class="sub">Build a GAME OVER backdrop the Stage switches to on a <b>game over</b> broadcast, swap <b>Ship</b>'s old <b>stop all</b> for that broadcast, then add <b>start sound</b> to the laser, hit, and crash moments.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="looks">switch backdrop to <span class="drop">game-over</span></div><span class="catname">Looks</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="sound">start sound <span class="drop">pop</span></div><span class="catname">Sound</span></div>
+          </div>
+          <p class="none" style="margin-top:16px">Build the Stage's listener <b>before</b> swapping <b>Ship</b>'s block &mdash; the game is never left unable to end, even mid-build.</p>
+          <p class="none" style="margin-top:16px">Sound names (<i>laser</i>, <i>pop</i>, <i>crash</i>) are guesses &mdash; the cards say to search and pick whatever short effect sounds right in your library.</p>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script">
+              <p class="label">Stage &mdash; shows GAME OVER and stops</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when I receive <span class="drop">game over</span></div>
+                <div class="blk" data-cat="looks">switch backdrop to <span class="drop">game-over</span></div>
+                <div class="blk cap" data-cat="control">stop <span class="drop">all</span></div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">Stage &mdash; resets the backdrop at the start</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="looks">switch backdrop to <span class="drop">your space backdrop</span></div>
+              </div>
+            </div>
+            <div class="script edit">
+              <p class="label editnote">Ship's Lesson 2 life-check, edited</p>
+              <div class="stack">
+                <div class="c" data-cat="control">
+                  <div class="cbar">if <span class="bool"><span><span class="rep">lives</span> = <span class="num">0</span></span></span> then</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="events">broadcast <span class="drop">game over</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+              </div>
+              <p class="none" style="margin-top:10px"><b>stop all</b> is deleted out of this <b>if</b> and <b>broadcast game over</b> dropped in its place &mdash; the rest of <b>Ship</b>'s script (the four arrow-key <b>if</b>s inside <b>forever</b>) is untouched.</p>
+            </div>
+          </div>
+          <p class="none" style="margin-top:16px">Then <b>start sound</b> blocks: on <b>Laser</b>, under <b>create clone of myself</b>; on <b>Asteroid</b> and <b>Enemy</b>, under their <b>change score by</b> lines; on <b>Asteroid</b> and <b>EnemyLaser</b>, under their <b>change lives by -1</b> lines. Small additions to scripts already built &mdash; no new scripts.</p>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Run out of lives &mdash; the backdrop switches to GAME OVER and everything stops. Play again from the green flag and the space backdrop is back. Lasers, hits, and crashes all make sound.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Arrow keys move between milestones. Printing gives you all four, one per page.</p>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('enemiesandpolish.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Milestone ' + (n+1));
+    if (n < 2) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('enemiesandpolish.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all four';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -157,6 +157,85 @@ single cheapest thing you can do to protect the next session.
   used across all three lessons, grouped by palette colour, with a
   one-line plain-English meaning.
 
+## Sharing the slides with GitHub Pages
+
+Each lesson has a `slides.html` beside its cards — four slides, one per
+milestone, showing the finished script as real Scratch blocks. Drive it on
+the projector; hand the link to kids who run ahead so they have it in a
+second tab.
+
+**Turning it on** is a repo setting, done once: **Settings → Pages → Build
+and deployment → Deploy from a branch**, then pick `main` and the
+`/ (root)` folder. On a free plan the repo must be **public** for Pages to
+serve it — which it needs to be anyway, so a kid can open the link without a
+GitHub account. (If cookie-clicker's Pages site is already turned on, this
+course is served from the same setting — nothing more to do.)
+
+Give it a minute after the first push, then the lesson decks are at:
+
+```
+https://oxeg.github.io/cp-scratch/space-shooter/lesson-1-fly-the-ship/slides.html
+https://oxeg.github.io/cp-scratch/space-shooter/lesson-2-shoot-and-survive/slides.html
+https://oxeg.github.io/cp-scratch/space-shooter/lesson-3-enemies-and-polish/slides.html
+```
+
+and the two reference decks — the block cheat sheet drawn as real Scratch
+blocks, and the extra challenges as hints rather than step cards — are at:
+
+```
+https://oxeg.github.io/cp-scratch/space-shooter/reference/block-cheat-sheet.html
+https://oxeg.github.io/cp-scratch/space-shooter/reference/extra-challenges.html
+```
+
+Those links are worth putting somewhere a volunteer can find in a hurry —
+the club's chat, or written on the board at the start of a session.
+
+Unlike cookie-clicker's three lesson decks, all five of these link a shared
+`reference/slides.css` rather than each inlining their own copy (see
+`SLIDE-DECKS.md` for why cookie-clicker's decks are the exception, not the
+model to copy). This course has no `bonus-ideas.md` and so no deck for one —
+that document is a cookie-clicker-specific extension.
+
+**The `.nojekyll` file in the repo root is deliberate — don't delete it.**
+Without it, GitHub runs the pages through Jekyll before serving them, which
+adds a processing step these files don't need and don't benefit from. The
+empty file switches that off, so every file is served exactly as committed.
+
+**The one thing that catches people out:** Pages serves what has been
+*pushed*, not what is on your laptop. A deck you edited this morning and
+haven't pushed is not the deck the kids are looking at. If a change doesn't
+show up, check `git status` before you go looking for anything cleverer —
+and remember a browser will happily show you a cached copy of the old one.
+
+### Keeping the reference decks and their documents in step
+
+`block-cheat-sheet.html` and `extra-challenges.html` are screen versions of
+`block-cheat-sheet.md` and `extra-challenges.md` — the Markdown stays
+authoritative on every word, so an edit to either half needs the other in
+the same commit. Run these after changing any of the four files, from
+`space-shooter/reference`:
+
+```bash
+# every block named in the cheat sheet appears in its deck, and vice versa
+diff <(grep -oE '^\| `[^`]+`' block-cheat-sheet.md | sed 's/^| `//; s/`$//' | sort) \
+     <(grep -o 'data-block="[^"]*"' block-cheat-sheet.html | cut -d'"' -f2 | sort)
+
+# 12 challenges in both
+grep -c '^### ' extra-challenges.md            # 12
+grep -c 'class="entry"' extra-challenges.html  # 12
+```
+
+Empty output on the first check and matching counts on the second mean the
+two are in step. Like cookie-clicker's cheat sheet, `sed` (not `tr -d`)
+strips the pipe and backticks, since block names contain spaces.
+
+The three lesson decks and these two reference decks all share
+`reference/slides.css`, so there is no separate cross-file palette check to
+run here the way cookie-clicker's README describes — that check exists
+there because cookie-clicker's lesson decks each carry their own inlined
+copy of the palette. If this course ever grows a deck that inlines its own
+copy too, add that check back.
+
 ## What kids need
 
 - Their own scratch.mit.edu account, logged in.

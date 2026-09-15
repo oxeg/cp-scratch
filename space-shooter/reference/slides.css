@@ -1,0 +1,557 @@
+/* Shared stylesheet for every deck in this course, per SLIDE-DECKS.md ("Where
+   the stylesheet goes"): each deck links here relatively rather than inlining
+   its own copy. That is unlike cookie-clicker's three lesson decks, which
+   inline the whole stylesheet - a legacy exception documented there and not
+   to be repeated in a new course. Currently linked by:
+     space-shooter/lesson-1-fly-the-ship/slides.html
+     space-shooter/lesson-2-shoot-and-survive/slides.html
+     space-shooter/lesson-3-enemies-and-polish/slides.html
+
+   THREE REGIONS BELOW ARE FROZEN. `BEGIN/END scratch palette`, `scratch blocks`
+   and `scratch c-blocks` must stay byte-identical to every other file in this
+   repository that carries them - a kid comparing a lesson slide to another
+   deck has to see the same Scratch. See cookie-clicker/README.md for the
+   cross-file diff check; this file mirrors cookie-clicker/reference/slides.css
+   with only this header differing.
+
+   Some rules here are unused until this course has reference decks of its own
+   - .check, .further, .script and friends belong to lesson slides. They are
+   kept so this file stays a straight copy of the cookie-clicker original. */
+
+  :root{
+    --ground:#f7f6fb;
+    --surface:#ffffff;
+    --ink:#1b1a2e;
+    --ink-soft:#5a5872;
+    --ink-faint:#8a87a3;
+    --rule:#e3e0ee;
+    --accent:#b5713c;
+    --accent-soft:#f2e4d8;
+    --shadow:0 1px 2px rgba(27,26,46,.06), 0 8px 24px rgba(27,26,46,.06);
+
+    /* BEGIN scratch palette */
+    /* Scratch 3 category palette, from the published Scratch 3 block colours:
+       fill / stroke. Like the rest of the course, unchecked against a running
+       editor - see cookie-clicker/README.md. */
+    --events:#ffbf00;      --events-d:#cc9900;
+    --variables:#ff8c1a;   --variables-d:#db6e00;
+    --looks:#9966ff;       --looks-d:#774dcb;
+    --sound:#cf63cf;       --sound-d:#bd42bd;
+    --control:#ffab19;     --control-d:#cf8b17;
+    --motion:#4c97ff;      --motion-d:#3373cc;
+    --sensing:#5cb1d6;     --sensing-d:#2e8eb8;
+    --operators:#59c059;   --operators-d:#389438;
+
+    --blockfont:"Helvetica Neue","Segoe UI",Helvetica,sans-serif;
+    /* END scratch palette */
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#17162a;
+      --surface:#211f38;
+      --ink:#eceaf6;
+      --ink-soft:#b2aecb;
+      --ink-faint:#837fa0;
+      --rule:#33305071;
+      --accent:#e0a071;
+      --accent-soft:#3a2b20;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#17162a;
+    --surface:#211f38;
+    --ink:#eceaf6;
+    --ink-soft:#b2aecb;
+    --ink-faint:#837fa0;
+    --rule:#33305071;
+    --accent:#e0a071;
+    --accent-soft:#3a2b20;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{padding-inline:20px;padding-block:8px;max-width:1180px;margin:0 auto}
+
+  /* ---------- top bar ---------- */
+  .bar{
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    padding-bottom:8px;border-bottom:1px solid var(--rule);margin-bottom:12px;
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;margin-right:auto}
+  .brand b{font-family:"Baloo 2",cursive;font-weight:800;font-size:1.15rem;letter-spacing:.01em}
+  .brand span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .pips{display:flex;gap:7px;align-items:center}
+  .pip{
+    width:11px;height:11px;border-radius:50%;border:2px solid var(--ink-faint);
+    background:transparent;padding:0;cursor:pointer;transition:transform .15s ease;
+  }
+  .pip[data-floor="yes"]{background:var(--ink-faint)}
+  .pip[aria-current="true"]{border-color:var(--accent);background:var(--accent);transform:scale(1.35)}
+  .pip:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .toggle{
+    font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.02em;
+    border:1px solid var(--rule);background:var(--surface);color:var(--ink-soft);
+    border-radius:999px;padding:7px 15px;cursor:pointer;
+  }
+  .toggle:hover{color:var(--ink);border-color:var(--ink-faint)}
+  .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- slide ----------
+     One-at-a-time mode stacks every slide in a single grid cell, so the deck
+     is always as tall as the tallest milestone and the controls never jump. */
+  .deck.one{display:grid}
+  .deck.one .slide{grid-area:1/1;visibility:hidden;pointer-events:none}
+  .deck.one .slide.on{visibility:visible;pointer-events:auto}
+  .deck.all{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(min(430px,100%),1fr))}
+  .deck.all .slide{visibility:visible;pointer-events:auto}
+
+  .slide{
+    background:var(--surface);border:1px solid var(--rule);border-radius:14px;
+    box-shadow:var(--shadow);padding:clamp(20px,3.2vw,38px);
+    display:flex;flex-direction:column;
+  }
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;color:var(--ink-faint);margin-bottom:10px;
+  }
+  .tag{
+    border:1px solid var(--rule);border-radius:999px;padding:3px 10px;
+    letter-spacing:.08em;color:var(--ink-soft);
+  }
+  .tag.bonus{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  h2{
+    font-family:"Baloo 2",cursive;font-weight:700;
+    font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.12;margin:0 0 6px;
+    text-wrap:balance;letter-spacing:-.01em;
+  }
+  .sub{color:var(--ink-soft);margin:0 0 16px;font-size:clamp(.95rem,1.4vw,1.1rem);max-width:60ch}
+
+  .label{
+    font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
+    color:var(--ink-faint);margin:0 0 12px;
+  }
+  .cols{display:grid;gap:clamp(22px,3vw,40px);grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+  @media (max-width:820px){.cols{grid-template-columns:1fr}}
+  /* the sugar-rush milestone carries five scripts: give it more of the card */
+  .cols.wide{grid-template-columns:minmax(0,.72fr) minmax(0,1.9fr)}
+  /* Milestone 4 carries the Milestone 2 fallback as well, so its scripts want
+     two columns wide enough that none of them wraps */
+  .cols.widest{grid-template-columns:minmax(0,.55fr) minmax(0,2.2fr)}
+  @media (max-width:820px){.cols.wide,.cols.widest{grid-template-columns:1fr}}
+  /* this lesson's scripts are wide - in "show all four" the cards are half the
+     page, so the two columns stack there however wide the window is */
+  .deck.all .cols,.deck.all .cols.wide,.deck.all .cols.widest{grid-template-columns:1fr}
+
+  /* BEGIN scratch blocks */
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 4px}
+  .none{color:var(--ink-soft);font-size:.95rem;margin:0;max-width:40ch}
+  .none b{color:var(--ink)}
+
+  /* ---------- scratch blocks ----------
+     Real Scratch blocks interlock: a notch cut into the top edge, a matching
+     tab on the bottom. Blocks overlap by exactly the tab depth, so the tab of
+     each block shows through the notch of the one below it, and the last
+     block in a stack keeps its tab exposed. */
+  .stack{
+    display:flex;flex-direction:column;align-items:flex-start;
+    font-family:var(--blockfont);
+    filter:drop-shadow(0 1px 1px rgba(27,26,46,.22));
+  }
+  .blk,.chip{
+    --nx:16px;   /* notch offset from the left edge */
+    --ns:5px;    /* slope either side of the notch */
+    --nw:18px;   /* flat width of the notch */
+    --nd:6px;    /* notch depth / tab height */
+    font-family:var(--blockfont);font-weight:500;color:#fff;
+    background:var(--c);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+    display:flex;align-items:center;flex-wrap:wrap;gap:.36em;
+    line-height:1.15;position:relative;
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw)) 100%,
+      calc(var(--nx) + var(--ns)) 100%,
+      var(--nx) calc(100% - var(--nd)),
+      0 calc(100% - var(--nd))
+    );
+  }
+  .blk{
+    font-size:clamp(.92rem,1.55vw,1.22rem);
+    padding:.62em .95em calc(.62em + var(--nd));
+    min-height:2.3em;
+    margin-top:calc(-1 * var(--nd));
+  }
+  .blk:first-child{margin-top:0}
+  /* hat block: domed top, no notch, tab still on the bottom */
+  .blk.hat{
+    padding-top:calc(.62em + 15px);
+    clip-path:polygon(
+      0 15px, 5% 11px, 10% 7.9px, 20% 3.8px, 30% 1.5px, 40% .3px,
+      50% 0,
+      60% .3px, 70% 1.5px, 80% 3.8px, 90% 7.9px, 95% 11px, 100% 15px,
+      100% calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw)) 100%,
+      calc(var(--nx) + var(--ns)) 100%,
+      var(--nx) calc(100% - var(--nd)),
+      0 calc(100% - var(--nd))
+    );
+  }
+  /* a cap block - `delete this clone` - has a flat bottom and no tab: nothing
+     can ever be attached below it, the same promise a `forever` foot makes */
+  .blk.cap{
+    padding-bottom:.62em;
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+  }
+  .chip{
+    font-size:clamp(.8rem,1.2vw,.95rem);
+    padding:.5em .85em calc(.5em + var(--nd));
+    filter:drop-shadow(0 1px 1px rgba(27,26,46,.18));
+  }
+  /* a cap block drawn as a chip gets the same flat bottom as .blk.cap, at the
+     chip's own padding. The strip and the stack drawing must promise the same
+     thing: a slide that says nothing attaches under a `forever` must not draw
+     one with a tab. Kept here even in decks whose strips have no cap block yet,
+     so the block CSS stays identical across all three. */
+  .chip.cap{
+    padding-bottom:.5em;
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+  }
+  .num,.drop,.rep{
+    font-family:var(--blockfont);display:inline-flex;align-items:center;
+    padding:.14em .7em;border-radius:999px;font-size:.92em;white-space:nowrap;
+  }
+  .num{background:#fff;color:#1b1a2e;border:1px solid rgba(0,0,0,.12)}
+  /* a text field is a rounded rectangle; only number fields are full pills */
+  .txt{
+    font-family:var(--blockfont);display:inline-flex;align-items:center;
+    padding:.14em .7em;font-size:.92em;white-space:nowrap;border-radius:4px;
+    background:#fff;color:#1b1a2e;border:1px solid rgba(0,0,0,.12);
+  }
+  .drop{background:var(--cd);color:#fff;gap:.4em}
+  .drop::after{content:"";width:0;height:0;border:.3em solid transparent;border-top-color:#fff;margin-top:.25em}
+  .rep{background:var(--variables);border:1px solid var(--variables-d);color:#fff}
+
+  [data-cat="events"]{--c:var(--events);--cd:var(--events-d)}
+  [data-cat="variables"]{--c:var(--variables);--cd:var(--variables-d)}
+  [data-cat="looks"]{--c:var(--looks);--cd:var(--looks-d)}
+  [data-cat="sound"]{--c:var(--sound);--cd:var(--sound-d)}
+  [data-cat="control"]{--c:var(--control);--cd:var(--control-d)}
+  [data-cat="motion"]{--c:var(--motion);--cd:var(--motion-d)}
+  [data-cat="sensing"]{--c:var(--sensing);--cd:var(--sensing-d)}
+  [data-cat="operators"]{--c:var(--operators);--cd:var(--operators-d)}
+  /* END scratch blocks */
+
+  /* BEGIN scratch c-blocks */
+  /* ---------- C blocks ----------
+     `if <> then` and `forever` hold blocks in a mouth. The top bar is the same
+     interlocking shape as a stack block, the mouth indents behind a spine of
+     the same colour, and the foot closes it off. A `forever`'s foot is flat
+     and square on purpose: nothing can ever be attached under a forever. */
+  .c{
+    --nx:16px; --ns:5px; --nw:18px; --nd:6px;
+    --mi:16px;   /* how far the mouth is indented: the tab under the top bar
+                    has to shift by exactly this to meet the notch below it */
+    display:flex;flex-direction:column;align-items:stretch;
+  }
+  .cbar{
+    font-family:var(--blockfont);font-weight:500;color:#fff;background:var(--c);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+    display:flex;align-items:center;flex-wrap:wrap;gap:.36em;line-height:1.15;
+    font-size:clamp(.92rem,1.55vw,1.22rem);
+    padding:.62em .95em calc(.62em + var(--nd));
+    min-height:2.3em;margin-top:calc(-1 * var(--nd));
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% calc(100% - var(--nd)),
+      calc(var(--mi) + var(--nx) + var(--ns) + var(--nw) + var(--ns)) calc(100% - var(--nd)),
+      calc(var(--mi) + var(--nx) + var(--ns) + var(--nw)) 100%,
+      calc(var(--mi) + var(--nx) + var(--ns)) 100%,
+      calc(var(--mi) + var(--nx)) calc(100% - var(--nd)),
+      0 calc(100% - var(--nd))
+    );
+  }
+  .c:first-child > .cbar{margin-top:0}
+  .cmouth{
+    display:flex;flex-direction:column;align-items:flex-start;
+    border-left:var(--mi) solid var(--c);margin-top:calc(-1 * var(--nd));
+  }
+  .cfoot{
+    background:var(--c);height:calc(14px + var(--nd));
+    margin-top:calc(-1 * var(--nd));
+    clip-path:polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw)) 100%,
+      calc(var(--nx) + var(--ns)) 100%,
+      var(--nx) calc(100% - var(--nd)),
+      0 calc(100% - var(--nd))
+    );
+  }
+  .cfoot.cap{clip-path:none;height:14px;border-radius:0 0 8px 8px}
+  /* a `forever` bar is only as wide as the word, and its foot matches it. Letting
+     either stretch to the mouth's width draws a block Scratch never draws. An
+     `if` bar is wide already, so it keeps the full width. */
+  .c.short > .cbar{align-self:flex-start}
+  .c.short > .cfoot{align-self:flex-start;min-width:5.1em;font-size:clamp(.92rem,1.55vw,1.22rem)}
+
+  /* ---------- things that go in slots ----------
+     A reporter is an oval, a boolean is six-sided, and both of them nest, so
+     each one is drawn as its own stroke colour with the fill inset inside it. */
+  .op{
+    font-family:var(--blockfont);display:inline-flex;align-items:center;gap:.4em;
+    background:var(--operators);border:1px solid var(--operators-d);color:#fff;
+    border-radius:999px;padding:.1em .6em;white-space:nowrap;
+  }
+  .bool{
+    --hex:polygon(0 50%, .58em 0, calc(100% - .58em) 0, 100% 50%, calc(100% - .58em) 100%, .58em 100%);
+    font-family:var(--blockfont);display:inline-flex;align-items:center;
+    background:var(--bs,var(--operators-d));padding:2px;clip-path:var(--hex);
+  }
+  .bool > span{
+    display:inline-flex;align-items:center;gap:.4em;color:#fff;
+    background:var(--bf,var(--operators));padding:.14em .65em;
+    clip-path:var(--hex);white-space:nowrap;
+  }
+  /* a boolean carrying its own category (a Sensing block inside a green `and`)
+     paints itself, and its dropdown, in that category's pair */
+  .bool[data-cat]{--bs:var(--cd);--bf:var(--c)}
+  /* an empty six-sided slot is a recess in the block's own colour, not a block */
+  .bool.empty{--bs:var(--cd);--bf:var(--cd)}
+  .bool.empty > span{min-width:2em;min-height:1.15em}
+  /* a boolean holding other booleans must be allowed to break at narrow widths,
+     or the card scrolls sideways on a phone. Leaf booleans stay on one line. */
+  .bool.wrap > span{flex-wrap:wrap;white-space:normal}
+  /* Scratch sets `touching [ v]?` tight: cancel the flex gap before the ? */
+  .tight{margin-left:-.4em}
+  .slot{
+    display:inline-block;width:1.7em;height:1.1em;border-radius:999px;
+    background:#fff;border:1px solid rgba(0,0,0,.12);vertical-align:middle;
+  }
+
+  /* a block the kid adds to a script that is already there */
+  .nb{
+    display:inline-flex;align-items:center;background:#fff;color:#1b1a2e;
+    font-family:"IBM Plex Sans",sans-serif;font-size:.56em;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;border-radius:4px;
+    padding:.3em .55em;margin-right:.1em;
+  }
+
+  /* ---------- more than one script on a slide ----------
+     Each stack gets its own caption, and a stack that is an *edit* to a script
+     built in an earlier week gets an accent rule down its side. Rebuilding one
+     of those from scratch instead of editing it leaves a broken game. */
+  .scripts{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));align-items:start}
+  .script{min-width:0}
+  .script.span{grid-column:1/-1}   /* for a script too wide to sit in one column */
+  .script.edit{border-left:3px solid var(--accent);padding-left:14px}
+  .label.editnote{color:var(--accent)}
+  /* END scratch c-blocks */
+  /* nobody builds this unless a version quirk forces it: a dashed rule, so it
+     reads as neither a new script nor an edit to one */
+  .script.fallback{border-left:3px dashed var(--ink-faint);padding-left:14px}
+  .label.fallnote{color:var(--ink-soft)}
+  /* the blocks a script carries on with, left out of the picture on purpose */
+  .more{
+    font-family:"IBM Plex Sans",sans-serif;font-size:.8rem;color:var(--ink-soft);
+    border:1px dashed var(--rule);border-radius:8px;padding:8px 12px;
+    margin:10px 0 0;max-width:36ch;
+  }
+
+  .catname{
+    display:block;font-family:"IBM Plex Sans",sans-serif;font-size:.62rem;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:600;margin-top:5px;
+  }
+  .chipwrap{display:flex;flex-direction:column}
+
+  /* ---------- check strip ---------- */
+  /* pushed to the foot of the card, so "how you know it worked" is in the
+     same place on every slide however tall the script above it is */
+  .check{
+    margin-top:auto;padding-top:12px;border-top:1px solid var(--rule);
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .cols{margin-bottom:20px}
+  .check .mark{
+    flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);
+    color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:.95rem;
+    border:1px solid var(--accent);
+  }
+  .check p{margin:0;color:var(--ink);font-size:clamp(.95rem,1.4vw,1.08rem);max-width:64ch}
+  .check p b{font-weight:600}
+
+  /* a signpost, not a feature: deliberately quieter than the check strip above
+     it, and a sibling *inside* the card's flex column so .check keeps its
+     margin-top:auto and every slide stays the same height */
+  .further{
+    margin:9px 0 0;padding-left:38px;   /* 26px mark + 12px gap: lines up under the check text */
+    color:var(--ink-faint);font-size:.8rem;line-height:1.45;max-width:92ch;
+  }
+  .further i{font-style:normal;color:var(--ink-soft)}
+  @media (max-width:480px){.further{padding-left:0}}
+
+  /* ---------- nav ---------- */
+  .nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:24px}
+  .nav button{
+    font:inherit;font-weight:600;font-size:.9rem;
+    border:1px solid var(--rule);background:var(--surface);color:var(--ink);
+    border-radius:9px;padding:11px 20px;cursor:pointer;
+  }
+  .nav button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .nav button:disabled{opacity:.35;cursor:default}
+  .nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .deck.all ~ .nav{display:none}
+  .hint{font-size:.78rem;color:var(--ink-faint);text-align:center;margin-top:14px}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  @media print{
+    .bar,.nav,.hint{display:none}
+    body{background:#fff}
+    .deck.one{display:block}
+    .deck.one .slide,.deck.all .slide{
+      visibility:visible!important;grid-area:auto!important;page-break-after:always;
+    }
+    .slide{box-shadow:none;border-color:#ccc;margin-bottom:0}
+  }
+
+  /* ==========================================================================
+     Components below this line exist only in the reference decks. No lesson
+     deck has them, so nothing above needs to stay in step with them.
+     ========================================================================== */
+
+  /* ---------- block beside meaning: the cheat sheet's row ---------- */
+  /* one grid for the whole list, not one per row, so every meaning starts at
+     the same x however wide its block is */
+  .rows{
+    display:grid;grid-template-columns:max-content minmax(0,1fr);
+    column-gap:clamp(14px,2.2vw,30px);row-gap:14px;margin:0;align-items:center;
+  }
+  .row{display:contents}
+  .row > .stack{min-width:0}
+  .row p{
+    margin:0;color:var(--ink-soft);font-size:clamp(.88rem,1.25vw,1rem);
+    line-height:1.45;max-width:52ch;
+  }
+  .row p b{color:var(--ink)}
+  /* a block the course never asks for, or only in a fallback */
+  .row.aside p{color:var(--ink-faint)}
+  @media (max-width:640px){
+    .rows{grid-template-columns:1fr;row-gap:6px}
+    .row p{margin-bottom:10px}
+  }
+  /* two palettes sharing one slide keep their own labelled group */
+  .group + .group{margin-top:clamp(20px,3vw,34px)}
+
+  /* In a script a C-block's mouth holds blocks and so has height of its own.
+     On the cheat sheet the mouth is empty, and an empty mouth collapses - which
+     hides the very thing that makes `forever` and `if` what they are. Give it a
+     floor so the C-shape is visible. Scoped to .rows so it only affects blocks
+     shown on their own, never a real script. */
+  .rows .cmouth:empty{min-height:22px}
+  /* likewise an empty number slot: give it an oval's width rather than letting
+     it shrink to a dash */
+  .rows .num:empty{min-width:1.5em}
+  .rows .txt:empty{min-width:2.4em}
+
+  /* ---------- a challenge card ---------- */
+  .entries{display:grid;gap:clamp(14px,1.6vw,20px);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+  .entry{
+    border:1px solid var(--rule);border-radius:12px;padding:clamp(14px,1.6vw,20px);
+    background:var(--surface);display:flex;flex-direction:column;gap:9px;
+  }
+  .entry .tier{
+    font-size:.95rem;letter-spacing:.08em;color:var(--accent);
+    font-family:"IBM Plex Sans",sans-serif;
+  }
+  .entry h3{
+    font-family:"Baloo 2",cursive;font-weight:700;margin:0;
+    font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.15;text-wrap:balance;
+  }
+  /* A kid scanning this page is choosing, not building: the job they would be
+     taking on carries the card, and the hint they only need after choosing sits
+     back. Nothing is hidden - the printed sheet has the same words - but the
+     hierarchy is what makes 17 cards browsable. */
+  .entry p{margin:0;color:var(--ink-soft);font-size:clamp(.82rem,1.05vw,.9rem);line-height:1.4}
+  .entry p:first-of-type{
+    color:var(--ink);font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45;
+  }
+  .entry p.hint,.entry p.notice{color:var(--ink-faint);font-size:clamp(.78rem,1vw,.85rem)}
+  .entry .chips{margin-top:auto;padding-top:4px}
+  /* the eight entries that legitimately change a script the cards built */
+  .entry .checked{
+    font-size:.78rem;color:var(--ink-faint);border-top:1px dashed var(--rule);
+    padding-top:8px;margin-top:2px;
+  }
+
+  /* the three containment rules, on the challenges deck's first slide */
+  .rules{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:12px}
+  .rules li{
+    color:var(--ink-soft);font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45;
+    max-width:46ch;
+  }
+  .rules li b{color:var(--ink)}
+  /* a block or variable named inside running prose, not drawn as a block */
+  code{
+    font-family:var(--blockfont);font-size:.92em;background:var(--accent-soft);
+    color:var(--ink);border-radius:5px;padding:.05em .4em;
+  }
+
+  /* ---------- a bonus direction: one provocation, nothing else ---------- */
+  /* a direction slide carries one idea and nothing else, so centre it in the
+     space rather than letting it sit in the top-left of an empty card */
+  .dirwrap{flex:1;display:flex;align-items:center;min-height:clamp(180px,26vh,320px)}
+  .dir{margin:0}
+  /* the provocation sets its own measure - narrow enough to read as a display
+     line, wide enough not to leave most of the slide empty beside it */
+  .dir b{
+    display:block;font-family:"Baloo 2",cursive;font-weight:700;
+    font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.08;max-width:22ch;
+    letter-spacing:-.01em;text-wrap:balance;margin-bottom:.35em;
+  }
+  .dir span{
+    display:block;color:var(--ink-soft);font-weight:400;max-width:44ch;
+    font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.45;text-wrap:pretty;
+  }

@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shoot and Survive</title>
+<!--
+  Lesson 2's slide deck. Sits beside:
+    space-shooter/lesson-1-fly-the-ship/slides.html
+    space-shooter/lesson-3-enemies-and-polish/slides.html
+
+  Links the course-shared space-shooter/reference/slides.css rather than
+  inlining it, per SLIDE-DECKS.md ("Where the stylesheet goes"). "New blocks"
+  chips only list blocks not already taught in lesson 1's deck - see that
+  file's chips for the running list this one builds on.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../reference/slides.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Shoot and Survive</b>
+      <span>Space Shooter &middot; Lesson 2</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Milestones"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
+  </div>
+
+  <div class="deck one" id="deck">
+
+    <!-- M1 -->
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>Milestone 1 of 4</span><span class="tag">sprite: Laser</span></div>
+      <h2>Shoot lasers</h2>
+      <p class="sub">Draw a laser bolt, then wire up three scripts: hide it at the start, clone it when you press space, and have each clone fly up and vanish.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="looks">hide</div><span class="catname">Looks</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="control">create clone of <span class="drop">myself</span></div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="control">when I start as a clone</div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="motion">go to <span class="drop">Ship</span></div><span class="catname">Motion</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="looks">show</div><span class="catname">Looks</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="control">repeat until <span class="bool empty"><span></span></span></div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="operators"><span class="slot"></span> &gt; <span class="slot"></span></div><span class="catname">Operators</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="motion">y position</div><span class="catname">Motion</span></div>
+            <div class="chipwrap"><div class="chip cap" data-cat="control">delete this clone</div><span class="catname">Control</span></div>
+          </div>
+          <p class="none" style="margin-top:16px">Draw the bolt small and centred right on the crosshair in the paint editor &mdash; a laser that's too big or off to one side causes problems later.</p>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script">
+              <p class="label">Stays invisible until fired</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="looks">hide</div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">Space bar fires a clone</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when <span class="drop">space</span> key pressed</div>
+                <div class="blk" data-cat="control">create clone of <span class="drop">myself</span></div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">Each clone flies up and vanishes</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="control">when I start as a clone</div>
+                <div class="blk" data-cat="motion">go to <span class="drop">Ship</span></div>
+                <div class="blk" data-cat="looks">show</div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">repeat until <span class="bool"><span><span class="rep">y position</span> &gt; <span class="num">170</span></span></span></div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">12</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Click the green flag, then press space. A bolt shoots up from the ship and disappears at the top of the stage &mdash; every press fires a new one.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M2 -->
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>Milestone 2 of 4</span><span class="tag">sprite: Asteroid</span></div>
+      <h2>Asteroids fall</h2>
+      <p class="sub">Add an asteroid sprite that spawns clones of itself at random spots along the top of the stage, and has each one fall until it's off the bottom.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="control">wait <span class="slot"></span> seconds</div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="operators">pick random <span class="num">-220</span> to <span class="num">220</span></div><span class="catname">Operators</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="operators"><span class="slot"></span> &lt; <span class="slot"></span></div><span class="catname">Operators</span></div>
+          </div>
+          <p class="none" style="margin-top:16px">A rock or asteroid sprite is a guess &mdash; the cards suggest a name like <i>Rocks</i> or <i>Meteor</i>, so check your library's real names. No luck? Search <i>ball</i> instead and recolour a round sprite in the Costumes tab.</p>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script">
+              <p class="label">Spawns a new asteroid every 0.5&ndash;1.5 seconds</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="looks">hide</div>
+                <div class="c short" data-cat="control">
+                  <div class="cbar">forever</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="control">wait <span class="op">pick random <span class="num">0.5</span> to <span class="num">1.5</span></span> seconds</div>
+                    <div class="blk" data-cat="control">create clone of <span class="drop">myself</span></div>
+                  </div>
+                  <div class="cfoot cap"></div>
+                </div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">Each clone falls until it's off-screen</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="control">when I start as a clone</div>
+                <div class="blk" data-cat="motion">go to x: <span class="op">pick random <span class="num">-220</span> to <span class="num">220</span></span> y: <span class="num">180</span></div>
+                <div class="blk" data-cat="looks">show</div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">repeat until <span class="bool"><span><span class="rep">y position</span> &lt; <span class="num">-175</span></span></span></div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">-6</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Click the green flag &mdash; asteroids appear at random spots across the top and fall off the bottom. Shooting doesn't destroy them yet; that's next.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M3 -->
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>Milestone 3 of 4</span><span class="tag">sprites: Ship, Asteroid</span></div>
+      <h2>Score points</h2>
+      <p class="sub">Make a <b>score</b> variable, reset it to 0 when the ship starts, and add 1 whenever a laser touches an asteroid &mdash; which also deletes the asteroid.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="variables">set <span class="drop">score</span> to <span class="num">0</span></div><span class="catname">Variables</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="sensing">touching <span class="drop">Laser</span><span class="tight">?</span></div><span class="catname">Sensing</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="variables">change <span class="drop">score</span> by <span class="num">1</span></div><span class="catname">Variables</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script edit">
+              <p class="label editnote">Ship's Lesson 1 script &mdash; one new line</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="variables"><span class="nb">new</span>set <span class="drop">score</span> to <span class="num">0</span></div>
+                <div class="blk" data-cat="motion">go to x: <span class="num">0</span> y: <span class="num">-120</span></div>
+              </div>
+              <p class="none" style="margin-top:10px">Snaps in right under the hat block, above the existing <b>go to x:/y:</b>. Then <b>forever</b> with the four arrow-key <b>if</b>s from Lesson 1, unchanged.</p>
+            </div>
+            <div class="script">
+              <p class="label">Asteroid's clone script &mdash; adds the scoring check</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="control">when I start as a clone</div>
+                <div class="blk" data-cat="motion">go to x: <span class="op">pick random <span class="num">-220</span> to <span class="num">220</span></span> y: <span class="num">180</span></div>
+                <div class="blk" data-cat="looks">show</div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">repeat until <span class="bool"><span><span class="rep">y position</span> &lt; <span class="num">-175</span></span></span></div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">-6</span></div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>touching <span class="drop">Laser</span><span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="variables">change <span class="drop">score</span> by <span class="num">1</span></div>
+                        <div class="blk cap" data-cat="control">delete this clone</div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Shoot a falling asteroid &mdash; it vanishes and <b>score</b> goes up by 1. This is the floor everyone should reach today: fly, shoot, dodge, and watch your score climb.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M4 -->
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>Milestone 4 of 4</span><span class="tag">sprites: Ship, Asteroid</span></div>
+      <h2>Lives and game over</h2>
+      <p class="sub">Make a <b>lives</b> variable starting at 3, lose one whenever an asteroid touches the ship, and stop the whole project the moment lives reaches 0.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="operators"><span class="slot"></span> = <span class="slot"></span></div><span class="catname">Operators</span></div>
+            <div class="chipwrap"><div class="chip cap" data-cat="control">stop <span class="drop">all</span></div><span class="catname">Control</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="scripts">
+            <div class="script edit">
+              <p class="label editnote">Ship's script &mdash; a new line and a new check</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when green flag clicked</div>
+                <div class="blk" data-cat="variables">set <span class="drop">score</span> to <span class="num">0</span></div>
+                <div class="blk" data-cat="variables"><span class="nb">new</span>set <span class="drop">lives</span> to <span class="num">3</span></div>
+                <div class="blk" data-cat="motion">go to x: <span class="num">0</span> y: <span class="num">-120</span></div>
+                <div class="c short" data-cat="control">
+                  <div class="cbar">forever</div>
+                  <div class="cmouth">
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">right arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth"><div class="blk" data-cat="motion">change x by <span class="num">5</span></div></div>
+                      <div class="cfoot"></div>
+                    </div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">left arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth"><div class="blk" data-cat="motion">change x by <span class="num">-5</span></div></div>
+                      <div class="cfoot"></div>
+                    </div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">up arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth"><div class="blk" data-cat="motion">change y by <span class="num">5</span></div></div>
+                      <div class="cfoot"></div>
+                    </div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">down arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth"><div class="blk" data-cat="motion">change y by <span class="num">-5</span></div></div>
+                      <div class="cfoot"></div>
+                    </div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar"><span class="nb">new</span>if <span class="bool"><span><span class="rep">lives</span> = <span class="num">0</span></span></span> then</div>
+                      <div class="cmouth"><div class="blk cap" data-cat="control">stop <span class="drop">all</span></div></div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot cap"></div>
+                </div>
+              </div>
+            </div>
+            <div class="script">
+              <p class="label">Asteroid's clone script &mdash; loses a life on impact</p>
+              <div class="stack">
+                <div class="blk hat" data-cat="control">when I start as a clone</div>
+                <div class="blk" data-cat="motion">go to x: <span class="op">pick random <span class="num">-220</span> to <span class="num">220</span></span> y: <span class="num">180</span></div>
+                <div class="blk" data-cat="looks">show</div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">repeat until <span class="bool"><span><span class="rep">y position</span> &lt; <span class="num">-175</span></span></span></div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">-6</span></div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>touching <span class="drop">Laser</span><span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="variables">change <span class="drop">score</span> by <span class="num">1</span></div>
+                        <div class="blk cap" data-cat="control">delete this clone</div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                    <div class="c" data-cat="control">
+                      <div class="cbar">if <span class="bool" data-cat="sensing"><span>touching <span class="drop">Ship</span><span class="tight">?</span></span></span> then</div>
+                      <div class="cmouth">
+                        <div class="blk" data-cat="variables">change <span class="drop">lives</span> by <span class="num">-1</span></div>
+                        <div class="blk cap" data-cat="control">delete this clone</div>
+                      </div>
+                      <div class="cfoot"></div>
+                    </div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Each time an asteroid touches the ship, <b>lives</b> drops by 1 &mdash; and the whole game stops dead the moment it reaches 0. It stops bluntly on purpose; next week's game gets a real GAME OVER screen.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson &mdash; including a fix for the key-repeat fire-rate rattle, if it's been bothering you.</p>
+    </section>
+
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Arrow keys move between milestones. Printing gives you all four, one per page.</p>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('shootandsurvive.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Milestone ' + (n+1));
+    if (n < 2) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('shootandsurvive.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all four';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
