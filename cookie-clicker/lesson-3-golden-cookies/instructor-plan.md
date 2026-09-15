@@ -34,7 +34,7 @@ things to know before you stand in front of it.
   Mac), which takes Chrome 100 - 90 - 80 - 75. That brings the whole slide,
   check strip and all, onto the screen with nothing to scroll. **One step is
   not enough** and two is borderline, so go to 75 and leave it there; Ctrl+0
-  puts it back.
+  (Cmd+0 on a Mac) puts it back.
 - **The clone-click fallback is drawn out on Milestone 4's slide**, marked as a
   fallback rather than as something everyone builds. If the whole-room check in
   Milestone 2 goes against you, jump to that slide and build from it.

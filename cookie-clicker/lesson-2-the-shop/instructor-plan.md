@@ -16,6 +16,20 @@ nobody goes home with something broken. Milestone 2 is where the lesson can
 be lost - budget it accordingly and read the section on explaining `not`
 before the session, not during it.
 
+**Driving the slide deck.** `slides.html` in this folder is the deck for the
+room: one slide a milestone, with the finished scripts drawn as blocks.
+
+It fits a 1080p projector in fullscreen, but only just - the "you'll know it
+worked" strip at the foot of each slide clears the bottom of the screen by
+about 18px, and that measurement was taken with fallback fonts, so treat it as
+"fits by a hair" until you have seen it on your own projector. The "Go further"
+line below it sits about 28px under the fold and you will need to scroll for
+it, though that one is a signpost rather than anything the room reads together.
+
+**If it does not fit on the day, zoom out one step** - Ctrl+minus once, or
+Cmd+minus on a Mac - which brings the whole slide comfortably onto the screen.
+Ctrl+0 (Cmd+0 on a Mac) puts it back.
+
 ## Timing
 
 | Time | Activity |

@@ -208,6 +208,45 @@ keeps their game at all.
 - **`reference/bonus-ideas.md`** — one copy per table. The overflow for kids
   who get through the challenges too.
 
+## Sharing the slides with GitHub Pages
+
+Each lesson has a `slides.html` beside its cards — four slides, one per
+milestone, showing the finished script as real Scratch blocks. Drive it on the
+projector; hand the link to kids who run ahead so they have it in a second tab.
+
+**Turning it on** is a repo setting, done once: **Settings → Pages → Build and
+deployment → Deploy from a branch**, then pick `main` and the `/ (root)`
+folder. On a free plan the repo must be **public** for Pages to serve it —
+which it needs to be anyway, so a kid can open the link without a GitHub
+account.
+
+Give it a minute after the first push, then the decks are at:
+
+```
+https://<user>.github.io/<repo>/cookie-clicker/lesson-1-bake-a-cookie/slides.html
+https://<user>.github.io/<repo>/cookie-clicker/lesson-2-the-shop/slides.html
+https://<user>.github.io/<repo>/cookie-clicker/lesson-3-golden-cookies/slides.html
+```
+
+For this repo, `<user>/<repo>` is `oxeg/cp-scratch`. Those links are worth
+putting somewhere a volunteer can find in a hurry — the club's chat, or written
+on the board at the start of a session.
+
+**The `.nojekyll` file in the repo root is deliberate — don't delete it.**
+Without it, GitHub runs the pages through Jekyll before serving them, which
+adds a processing step these files don't need and don't benefit from. The empty
+file switches that off, so every file is served exactly as committed.
+
+**The one thing that catches people out:** Pages serves what has been *pushed*,
+not what is on your laptop. A deck you edited this morning and haven't pushed is
+not the deck the kids are looking at. If a change doesn't show up, check `git
+status` before you go looking for anything cleverer — and remember a browser
+will happily show you a cached copy of the old one.
+
+None of this affects printing. The step cards and the reference sheets are
+Markdown and still print from GitHub or from your editor exactly as before; the
+decks are the screen half of the same material.
+
 ## What kids need
 
 - Their own scratch.mit.edu account — **created and tested before the
