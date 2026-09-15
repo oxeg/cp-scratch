@@ -515,12 +515,33 @@
     font-family:"Baloo 2",cursive;font-weight:700;margin:0;
     font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.15;text-wrap:balance;
   }
-  .entry p{margin:0;color:var(--ink-soft);font-size:clamp(.85rem,1.2vw,.95rem);line-height:1.45}
+  /* A kid scanning this page is choosing, not building: the job they would be
+     taking on carries the card, and the hint they only need after choosing sits
+     back. Nothing is hidden - the printed sheet has the same words - but the
+     hierarchy is what makes 17 cards browsable. */
+  .entry p{margin:0;color:var(--ink-soft);font-size:clamp(.82rem,1.05vw,.9rem);line-height:1.4}
+  .entry p:first-of-type{
+    color:var(--ink);font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45;
+  }
+  .entry p.hint,.entry p.notice{color:var(--ink-faint);font-size:clamp(.78rem,1vw,.85rem)}
   .entry .chips{margin-top:auto;padding-top:4px}
   /* the eight entries that legitimately change a script the cards built */
   .entry .checked{
     font-size:.78rem;color:var(--ink-faint);border-top:1px dashed var(--rule);
     padding-top:8px;margin-top:2px;
+  }
+
+  /* the three containment rules, on the challenges deck's first slide */
+  .rules{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:12px}
+  .rules li{
+    color:var(--ink-soft);font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45;
+    max-width:46ch;
+  }
+  .rules li b{color:var(--ink)}
+  /* a block or variable named inside running prose, not drawn as a block */
+  code{
+    font-family:var(--blockfont);font-size:.92em;background:var(--accent-soft);
+    color:var(--ink);border-radius:5px;padding:.05em .4em;
   }
 
   /* ---------- a bonus direction: one provocation, nothing else ---------- */
