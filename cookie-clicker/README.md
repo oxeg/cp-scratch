@@ -272,22 +272,21 @@ account.
 Give it a minute after the first push, then the decks are at:
 
 ```
-https://<user>.github.io/<repo>/cookie-clicker/lesson-1-bake-a-cookie/slides.html
-https://<user>.github.io/<repo>/cookie-clicker/lesson-2-the-shop/slides.html
-https://<user>.github.io/<repo>/cookie-clicker/lesson-3-golden-cookies/slides.html
+https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-1-bake-a-cookie/slides.html
+https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-2-the-shop/slides.html
+https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-3-golden-cookies/slides.html
 ```
 
 The three reference documents have decks too, sharing one stylesheet:
 
 ```
-https://<user>.github.io/<repo>/cookie-clicker/reference/block-cheat-sheet.html
-https://<user>.github.io/<repo>/cookie-clicker/reference/extra-challenges.html
-https://<user>.github.io/<repo>/cookie-clicker/reference/bonus-ideas.html
+https://oxeg.github.io/cp-scratch/cookie-clicker/reference/block-cheat-sheet.html
+https://oxeg.github.io/cp-scratch/cookie-clicker/reference/extra-challenges.html
+https://oxeg.github.io/cp-scratch/cookie-clicker/reference/bonus-ideas.html
 ```
 
-For this repo, `<user>/<repo>` is `oxeg/cp-scratch`. Those links are worth
-putting somewhere a volunteer can find in a hurry — the club's chat, or written
-on the board at the start of a session.
+Those links are worth putting somewhere a volunteer can find in a hurry — the
+club's chat, or written on the board at the start of a session.
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**
 Without it, GitHub runs the pages through Jekyll before serving them, which
