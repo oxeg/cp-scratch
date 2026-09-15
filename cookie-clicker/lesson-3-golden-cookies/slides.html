@@ -38,6 +38,7 @@
     --accent-soft:#f2e4d8;
     --shadow:0 1px 2px rgba(27,26,46,.06), 0 8px 24px rgba(27,26,46,.06);
 
+    /* BEGIN scratch palette */
     /* Scratch 3 category palette, from the published Scratch 3 block colours:
        fill / stroke. Like the rest of the course, unchecked against a running
        editor - see cookie-clicker/README.md. */
@@ -51,6 +52,7 @@
     --operators:#59c059;   --operators-d:#389438;
 
     --blockfont:"Helvetica Neue","Segoe UI",Helvetica,sans-serif;
+    /* END scratch palette */
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -158,6 +160,7 @@
      page, so the two columns stack there however wide the window is */
   .deck.all .cols,.deck.all .cols.wide,.deck.all .cols.widest{grid-template-columns:1fr}
 
+  /* BEGIN scratch blocks */
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 4px}
   .none{color:var(--ink-soft);font-size:.95rem;margin:0;max-width:40ch}
   .none b{color:var(--ink)}
@@ -280,7 +283,9 @@
   [data-cat="motion"]{--c:var(--motion);--cd:var(--motion-d)}
   [data-cat="sensing"]{--c:var(--sensing);--cd:var(--sensing-d)}
   [data-cat="operators"]{--c:var(--operators);--cd:var(--operators-d)}
+  /* END scratch blocks */
 
+  /* BEGIN scratch c-blocks */
   /* ---------- C blocks ----------
      `if <> then` and `forever` hold blocks in a mouth. The top bar is the same
      interlocking shape as a stack block, the mouth indents behind a spine of
@@ -391,6 +396,7 @@
   .script.span{grid-column:1/-1}   /* for a script too wide to sit in one column */
   .script.edit{border-left:3px solid var(--accent);padding-left:14px}
   .label.editnote{color:var(--accent)}
+  /* END scratch c-blocks */
   /* nobody builds this unless a version quirk forces it: a dashed rule, so it
      reads as neither a new script nor an edit to one */
   .script.fallback{border-left:3px dashed var(--ink-faint);padding-left:14px}

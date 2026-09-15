@@ -1,32 +1,28 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bake a Cookie</title>
-<!--
-  Lesson 1's slide deck. Two more will sit beside their own lessons:
-    cookie-clicker/lesson-2-the-shop/slides.html
-    cookie-clicker/lesson-3-golden-cookies/slides.html
+/* Shared stylesheet for the three reference decks:
+     cookie-clicker/reference/block-cheat-sheet.html
+     cookie-clicker/reference/extra-challenges.html
+     cookie-clicker/reference/bonus-ideas.html
 
-  Each deck is deliberately self-contained: one file, no shared stylesheet, so a
-  lesson directory stays movable and the deck opens offline from a second tab.
-  The price is duplication — the Scratch block palette below (the eight sampled
-  fill/stroke pairs, the block font, and the interlocking .blk/.chip geometry) is
-  copied into all three decks and must be kept in step. Change it in one, change
-  it in all three, or a kid comparing two lessons sees two different Scratches.
+   Unlike the lesson decks, which each inline their own copy, these three share
+   one file. They live in the same directory, so `reference/` still moves as a
+   unit and any of them still opens from disk with the stylesheet beside it.
 
-  This file is a complete standalone document - doctype, html, head, body -
-  because GitHub Pages serves it raw. It was first built for a platform that
-  wrapped fragments in a skeleton at publish time; nothing does that now. The
-  doctype is what keeps the browser out of quirks mode, and the viewport meta
-  is what makes the narrow widths above work on a phone rather than being laid
-  out at a fake 980px and zoomed out. Don't tidy the wrapper away.
--->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<style>
+   THREE REGIONS BELOW ARE FROZEN. `BEGIN/END scratch palette`, `scratch blocks`
+   and `scratch c-blocks` are byte-identical to the lesson decks' copies. Change
+   one and you must change all of them - a kid comparing a lesson slide to the
+   cheat sheet has to see the same Scratch. The check, from the repository root:
+
+     for R in palette blocks c-blocks; do
+       diff <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/reference/slides.css) \
+            <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/lesson-3-golden-cookies/slides.html)
+     done
+
+   Empty output means the lineages agree. Lesson 1 has no c-blocks region.
+
+   Some rules here are unused by these three decks - .check, .further, .script
+   and friends belong to lesson slides. They are kept so the two lineages stay
+   comparable, which is worth more than a shorter file. */
+
   :root{
     --ground:#f7f6fb;
     --surface:#ffffff;
@@ -150,6 +146,15 @@
   }
   .cols{display:grid;gap:clamp(22px,3vw,40px);grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
   @media (max-width:820px){.cols{grid-template-columns:1fr}}
+  /* the sugar-rush milestone carries five scripts: give it more of the card */
+  .cols.wide{grid-template-columns:minmax(0,.72fr) minmax(0,1.9fr)}
+  /* Milestone 4 carries the Milestone 2 fallback as well, so its scripts want
+     two columns wide enough that none of them wraps */
+  .cols.widest{grid-template-columns:minmax(0,.55fr) minmax(0,2.2fr)}
+  @media (max-width:820px){.cols.wide,.cols.widest{grid-template-columns:1fr}}
+  /* this lesson's scripts are wide - in "show all four" the cards are half the
+     page, so the two columns stack there however wide the window is */
+  .deck.all .cols,.deck.all .cols.wide,.deck.all .cols.widest{grid-template-columns:1fr}
 
   /* BEGIN scratch blocks */
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 4px}
@@ -276,6 +281,129 @@
   [data-cat="operators"]{--c:var(--operators);--cd:var(--operators-d)}
   /* END scratch blocks */
 
+  /* BEGIN scratch c-blocks */
+  /* ---------- C blocks ----------
+     `if <> then` and `forever` hold blocks in a mouth. The top bar is the same
+     interlocking shape as a stack block, the mouth indents behind a spine of
+     the same colour, and the foot closes it off. A `forever`'s foot is flat
+     and square on purpose: nothing can ever be attached under a forever. */
+  .c{
+    --nx:16px; --ns:5px; --nw:18px; --nd:6px;
+    --mi:16px;   /* how far the mouth is indented: the tab under the top bar
+                    has to shift by exactly this to meet the notch below it */
+    display:flex;flex-direction:column;align-items:stretch;
+  }
+  .cbar{
+    font-family:var(--blockfont);font-weight:500;color:#fff;background:var(--c);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+    display:flex;align-items:center;flex-wrap:wrap;gap:.36em;line-height:1.15;
+    font-size:clamp(.92rem,1.55vw,1.22rem);
+    padding:.62em .95em calc(.62em + var(--nd));
+    min-height:2.3em;margin-top:calc(-1 * var(--nd));
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% calc(100% - var(--nd)),
+      calc(var(--mi) + var(--nx) + var(--ns) + var(--nw) + var(--ns)) calc(100% - var(--nd)),
+      calc(var(--mi) + var(--nx) + var(--ns) + var(--nw)) 100%,
+      calc(var(--mi) + var(--nx) + var(--ns)) 100%,
+      calc(var(--mi) + var(--nx)) calc(100% - var(--nd)),
+      0 calc(100% - var(--nd))
+    );
+  }
+  .c:first-child > .cbar{margin-top:0}
+  .cmouth{
+    display:flex;flex-direction:column;align-items:flex-start;
+    border-left:var(--mi) solid var(--c);margin-top:calc(-1 * var(--nd));
+  }
+  .cfoot{
+    background:var(--c);height:calc(14px + var(--nd));
+    margin-top:calc(-1 * var(--nd));
+    clip-path:polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) calc(100% - var(--nd)),
+      calc(var(--nx) + var(--ns) + var(--nw)) 100%,
+      calc(var(--nx) + var(--ns)) 100%,
+      var(--nx) calc(100% - var(--nd)),
+      0 calc(100% - var(--nd))
+    );
+  }
+  .cfoot.cap{clip-path:none;height:14px;border-radius:0 0 8px 8px}
+  /* a `forever` bar is only as wide as the word, and its foot matches it. Letting
+     either stretch to the mouth's width draws a block Scratch never draws. An
+     `if` bar is wide already, so it keeps the full width. */
+  .c.short > .cbar{align-self:flex-start}
+  .c.short > .cfoot{align-self:flex-start;min-width:5.1em;font-size:clamp(.92rem,1.55vw,1.22rem)}
+
+  /* ---------- things that go in slots ----------
+     A reporter is an oval, a boolean is six-sided, and both of them nest, so
+     each one is drawn as its own stroke colour with the fill inset inside it. */
+  .op{
+    font-family:var(--blockfont);display:inline-flex;align-items:center;gap:.4em;
+    background:var(--operators);border:1px solid var(--operators-d);color:#fff;
+    border-radius:999px;padding:.1em .6em;white-space:nowrap;
+  }
+  .bool{
+    --hex:polygon(0 50%, .58em 0, calc(100% - .58em) 0, 100% 50%, calc(100% - .58em) 100%, .58em 100%);
+    font-family:var(--blockfont);display:inline-flex;align-items:center;
+    background:var(--bs,var(--operators-d));padding:2px;clip-path:var(--hex);
+  }
+  .bool > span{
+    display:inline-flex;align-items:center;gap:.4em;color:#fff;
+    background:var(--bf,var(--operators));padding:.14em .65em;
+    clip-path:var(--hex);white-space:nowrap;
+  }
+  /* a boolean carrying its own category (a Sensing block inside a green `and`)
+     paints itself, and its dropdown, in that category's pair */
+  .bool[data-cat]{--bs:var(--cd);--bf:var(--c)}
+  /* an empty six-sided slot is a recess in the block's own colour, not a block */
+  .bool.empty{--bs:var(--cd);--bf:var(--cd)}
+  .bool.empty > span{min-width:2em;min-height:1.15em}
+  /* a boolean holding other booleans must be allowed to break at narrow widths,
+     or the card scrolls sideways on a phone. Leaf booleans stay on one line. */
+  .bool.wrap > span{flex-wrap:wrap;white-space:normal}
+  /* Scratch sets `touching [ v]?` tight: cancel the flex gap before the ? */
+  .tight{margin-left:-.4em}
+  .slot{
+    display:inline-block;width:1.7em;height:1.1em;border-radius:999px;
+    background:#fff;border:1px solid rgba(0,0,0,.12);vertical-align:middle;
+  }
+
+  /* a block the kid adds to a script that is already there */
+  .nb{
+    display:inline-flex;align-items:center;background:#fff;color:#1b1a2e;
+    font-family:"IBM Plex Sans",sans-serif;font-size:.56em;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;border-radius:4px;
+    padding:.3em .55em;margin-right:.1em;
+  }
+
+  /* ---------- more than one script on a slide ----------
+     Each stack gets its own caption, and a stack that is an *edit* to a script
+     built in an earlier week gets an accent rule down its side. Rebuilding one
+     of those from scratch instead of editing it leaves a broken game. */
+  .scripts{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));align-items:start}
+  .script{min-width:0}
+  .script.span{grid-column:1/-1}   /* for a script too wide to sit in one column */
+  .script.edit{border-left:3px solid var(--accent);padding-left:14px}
+  .label.editnote{color:var(--accent)}
+  /* END scratch c-blocks */
+  /* nobody builds this unless a version quirk forces it: a dashed rule, so it
+     reads as neither a new script nor an edit to one */
+  .script.fallback{border-left:3px dashed var(--ink-faint);padding-left:14px}
+  .label.fallnote{color:var(--ink-soft)}
+  /* the blocks a script carries on with, left out of the picture on purpose */
+  .more{
+    font-family:"IBM Plex Sans",sans-serif;font-size:.8rem;color:var(--ink-soft);
+    border:1px dashed var(--rule);border-radius:8px;padding:8px 12px;
+    margin:10px 0 0;max-width:36ch;
+  }
+
   .catname{
     display:block;font-family:"IBM Plex Sans",sans-serif;font-size:.62rem;
     letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
@@ -333,196 +461,63 @@
     }
     .slide{box-shadow:none;border-color:#ccc;margin-bottom:0}
   }
-</style>
-</head>
-<body>
-<div class="wrap">
-  <div class="bar">
-    <div class="brand">
-      <b>Bake a Cookie</b>
-      <span>Cookie Clicker &middot; Lesson 1</span>
-    </div>
-    <div class="pips" id="pips" role="tablist" aria-label="Milestones"></div>
-    <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
-  </div>
 
-  <div class="deck one" id="deck">
+  /* ==========================================================================
+     Components below this line exist only in the reference decks. No lesson
+     deck has them, so nothing above needs to stay in step with them.
+     ========================================================================== */
 
-    <!-- M1 -->
-    <section class="slide on" data-i="0">
-      <div class="eyebrow"><span>Milestone 1 of 4</span><span class="tag">sprite: Cookie</span></div>
-      <h2>Paint your cookie and make it count</h2>
-      <p class="sub">Draw a cookie, make a variable called <b>cookies</b>, and make clicking it count.</p>
-      <div class="cols">
-        <div>
-          <p class="label">New blocks</p>
-          <div class="chips">
-            <div class="chipwrap"><div class="chip" data-cat="events">when this sprite clicked</div><span class="catname">Events</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="variables">change <span class="drop">cookies</span> by <span class="num">1</span></div><span class="catname">Variables</span></div>
-          </div>
-        </div>
-        <div>
-          <p class="label">Your script ends up like this</p>
-          <div class="stack">
-            <div class="blk hat" data-cat="events">when this sprite clicked</div>
-            <div class="blk" data-cat="variables">change <span class="drop">cookies</span> by <span class="num">1</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="check"><div class="mark">&check;</div>
-        <p>Click the cookie <b>on the stage</b> &mdash; not the thumbnail. The number goes up by one every click.</p></div>
-      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson. The &#9733;&#9733;&#9733; one isn't a number to change &mdash; it's a side feature you build yourself, on a sprite of your own.</p>
-    </section>
-
-    <!-- M2 -->
-    <section class="slide" data-i="1">
-      <div class="eyebrow"><span>Milestone 2 of 4</span><span class="tag">sprite: Cookie</span></div>
-      <h2>Make the green flag reset it</h2>
-      <p class="sub">Play once, press the green flag, and notice the number <em>doesn't</em> reset. Then fix it.</p>
-      <div class="cols">
-        <div>
-          <p class="label">New blocks</p>
-          <div class="chips">
-            <div class="chipwrap"><div class="chip" data-cat="events">when green flag clicked</div><span class="catname">Events</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="variables">set <span class="drop">cookies</span> to <span class="num">0</span></div><span class="catname">Variables</span></div>
-          </div>
-        </div>
-        <div>
-          <p class="label">Your script ends up like this</p>
-          <div class="stack">
-            <div class="blk hat" data-cat="events">when green flag clicked</div>
-            <div class="blk" data-cat="variables">set <span class="drop">cookies</span> to <span class="num">0</span></div>
-          </div>
-          <p class="none" style="margin-top:14px">This is a <b>second, separate script</b> &mdash; it doesn't join onto the clicking one.</p>
-        </div>
-      </div>
-      <div class="check"><div class="mark">&check;</div>
-        <p>Click up any score, then press the green flag. It drops to <b>0</b> and counts up again from there.</p></div>
-      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson. The &#9733;&#9733;&#9733; one isn't a number to change &mdash; it's a side feature you build yourself, on a sprite of your own.</p>
-    </section>
-
-    <!-- M3 -->
-    <section class="slide" data-i="2">
-      <div class="eyebrow"><span>Milestone 3 of 4</span><span class="tag">sprite: Cookie</span></div>
-      <h2>Make it feel good</h2>
-      <p class="sub">Add a sound and a quick squash, so clicking is satisfying. These go on the end of the script you already built.</p>
-      <div class="cols">
-        <div>
-          <p class="label">New blocks</p>
-          <div class="chips">
-            <div class="chipwrap"><div class="chip" data-cat="sound">start sound <span class="drop">pop</span></div><span class="catname">Sound</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="looks">set size to <span class="num">110</span> %</div><span class="catname">Looks</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="control">wait <span class="num">0.05</span> seconds</div><span class="catname">Control</span></div>
-          </div>
-          <p class="none" style="margin-top:16px">Use the sound name <b>your</b> Sounds tab shows &mdash; and <b>set size to</b>, never <em>change size by</em>.</p>
-        </div>
-        <div>
-          <p class="label">Your script ends up like this</p>
-          <div class="stack">
-            <div class="blk hat" data-cat="events">when this sprite clicked</div>
-            <div class="blk" data-cat="variables">change <span class="drop">cookies</span> by <span class="num">1</span></div>
-            <div class="blk" data-cat="sound">start sound <span class="drop">pop</span></div>
-            <div class="blk" data-cat="looks">set size to <span class="num">110</span> %</div>
-            <div class="blk" data-cat="control">wait <span class="num">0.05</span> seconds</div>
-            <div class="blk" data-cat="looks">set size to <span class="num">100</span> %</div>
-          </div>
-        </div>
-      </div>
-      <div class="check"><div class="mark">&check;</div>
-        <p>Click the cookie. It makes a sound and gives a quick squash, and the number <b>still</b> goes up by one.</p></div>
-      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson. The &#9733;&#9733;&#9733; one isn't a number to change &mdash; it's a side feature you build yourself, on a sprite of your own.</p>
-    </section>
-
-    <!-- M4 -->
-    <section class="slide" data-i="3">
-      <div class="eyebrow"><span>Milestone 4 of 4</span><span class="tag bonus">bonus &mdash; if you get there</span><span class="tag">sprite: Special Cookie</span></div>
-      <h2>Bonus round</h2>
-      <p class="sub">Duplicate your cookie, shrink it, park it in a corner, and make it worth ten.</p>
-      <div class="cols">
-        <div>
-          <p class="label">What's new</p>
-          <p class="none">No new blocks. You <b>duplicate the sprite</b> you already made, then take two things off the copy: its green-flag script, and its sound-and-squash blocks. Remember that dragging a block takes everything below it too.</p>
-        </div>
-        <div>
-          <p class="label">The copy ends up like this</p>
-          <div class="stack">
-            <div class="blk hat" data-cat="events">when this sprite clicked</div>
-            <div class="blk" data-cat="variables">change <span class="drop">cookies</span> by <span class="num">10</span></div>
-          </div>
-          <p class="none" style="margin-top:14px">Two blocks. Nothing else &mdash; and the same <b>cookies</b> variable as the big one.</p>
-        </div>
-      </div>
-      <div class="check"><div class="mark">&check;</div>
-        <p>The small cookie jumps by <b>10</b>. The big one still goes up by <b>1</b>, with its sound and squash. The small one <b>stays small</b>.</p></div>
-      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson. The &#9733;&#9733;&#9733; one isn't a number to change &mdash; it's a side feature you build yourself, on a sprite of your own.</p>
-    </section>
-  </div>
-
-  <div class="nav" id="nav">
-    <button id="prev" type="button">&larr; Back</button>
-    <button id="next" type="button">Next &rarr;</button>
-  </div>
-  <p class="hint">Arrow keys move between milestones. Printing gives you all four, one per page.</p>
-</div>
-
-<script>
-(function(){
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var deck = document.getElementById('deck');
-  var pipBox = document.getElementById('pips');
-  var prev = document.getElementById('prev');
-  var next = document.getElementById('next');
-  var toggle = document.getElementById('viewToggle');
-  var i = 0, all = false;
-
-  try { var s = localStorage.getItem('bakeacookie.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
-
-  slides.forEach(function(_, n){
-    var b = document.createElement('button');
-    b.className = 'pip';
-    b.type = 'button';
-    b.setAttribute('role','tab');
-    b.setAttribute('aria-label','Milestone ' + (n+1));
-    if (n < 3) b.setAttribute('data-floor','yes');
-    b.addEventListener('click', function(){ go(n); });
-    pipBox.appendChild(b);
-  });
-  var pips = Array.prototype.slice.call(pipBox.children);
-
-  function render(){
-    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
-    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
-    prev.disabled = (i === 0);
-    next.disabled = (i === slides.length - 1);
-    try { localStorage.setItem('bakeacookie.i', String(i)); } catch(e){}
+  /* ---------- block beside meaning: the cheat sheet's row ---------- */
+  .rows{display:flex;flex-direction:column;gap:14px;margin:0}
+  .row{
+    display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);
+    gap:clamp(12px,2vw,26px);align-items:start;
   }
-  function go(n){
-    i = Math.min(slides.length - 1, Math.max(0, n));
-    if (all) setAll(false);
-    render();
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  .row > .stack{min-width:0}
+  .row p{
+    margin:0;color:var(--ink-soft);font-size:clamp(.88rem,1.25vw,1rem);
+    line-height:1.45;max-width:52ch;padding-top:.35em;
   }
-  function setAll(v){
-    all = v;
-    deck.classList.toggle('all', all);
-    deck.classList.toggle('one', !all);
-    toggle.textContent = all ? 'One at a time' : 'Show all four';
-    toggle.setAttribute('aria-pressed', String(all));
-    document.getElementById('nav').style.display = all ? 'none' : 'flex';
-    if (!all) render();
+  .row p b{color:var(--ink)}
+  /* a block the course never asks for, or only in a fallback */
+  .row.aside p{color:var(--ink-faint)}
+  @media (max-width:640px){
+    .row{grid-template-columns:1fr;gap:8px}
+    .row p{padding-top:0}
+  }
+  /* two palettes sharing one slide keep their own labelled group */
+  .group + .group{margin-top:clamp(20px,3vw,34px)}
+
+  /* ---------- a challenge card ---------- */
+  .entries{display:grid;gap:clamp(14px,1.6vw,20px);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+  .entry{
+    border:1px solid var(--rule);border-radius:12px;padding:clamp(14px,1.6vw,20px);
+    background:var(--surface);display:flex;flex-direction:column;gap:9px;
+  }
+  .entry .tier{
+    font-size:.95rem;letter-spacing:.08em;color:var(--accent);
+    font-family:"IBM Plex Sans",sans-serif;
+  }
+  .entry h3{
+    font-family:"Baloo 2",cursive;font-weight:700;margin:0;
+    font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.15;text-wrap:balance;
+  }
+  .entry p{margin:0;color:var(--ink-soft);font-size:clamp(.85rem,1.2vw,.95rem);line-height:1.45}
+  .entry .chips{margin-top:auto;padding-top:4px}
+  /* the eight entries that legitimately change a script the cards built */
+  .entry .checked{
+    font-size:.78rem;color:var(--ink-faint);border-top:1px dashed var(--rule);
+    padding-top:8px;margin-top:2px;
   }
 
-  prev.addEventListener('click', function(){ go(i - 1); });
-  next.addEventListener('click', function(){ go(i + 1); });
-  toggle.addEventListener('click', function(){ setAll(!all); });
-  document.addEventListener('keydown', function(e){
-    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
-    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
-    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
-  });
-
-  render();
-})();
-</script>
-</body>
-</html>
+  /* ---------- a bonus direction: one provocation, nothing else ---------- */
+  .dir{max-width:26ch;margin:0}
+  .dir b{
+    display:block;font-family:"Baloo 2",cursive;font-weight:700;
+    font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.08;
+    letter-spacing:-.01em;text-wrap:balance;margin-bottom:.35em;
+  }
+  .dir span{
+    display:block;color:var(--ink-soft);font-weight:400;max-width:34ch;
+    font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.45;
+  }
