@@ -468,25 +468,38 @@
      ========================================================================== */
 
   /* ---------- block beside meaning: the cheat sheet's row ---------- */
-  .rows{display:flex;flex-direction:column;gap:14px;margin:0}
-  .row{
-    display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);
-    gap:clamp(12px,2vw,26px);align-items:start;
+  /* one grid for the whole list, not one per row, so every meaning starts at
+     the same x however wide its block is */
+  .rows{
+    display:grid;grid-template-columns:max-content minmax(0,1fr);
+    column-gap:clamp(14px,2.2vw,30px);row-gap:14px;margin:0;align-items:center;
   }
+  .row{display:contents}
   .row > .stack{min-width:0}
   .row p{
     margin:0;color:var(--ink-soft);font-size:clamp(.88rem,1.25vw,1rem);
-    line-height:1.45;max-width:52ch;padding-top:.35em;
+    line-height:1.45;max-width:52ch;
   }
   .row p b{color:var(--ink)}
   /* a block the course never asks for, or only in a fallback */
   .row.aside p{color:var(--ink-faint)}
   @media (max-width:640px){
-    .row{grid-template-columns:1fr;gap:8px}
-    .row p{padding-top:0}
+    .rows{grid-template-columns:1fr;row-gap:6px}
+    .row p{margin-bottom:10px}
   }
   /* two palettes sharing one slide keep their own labelled group */
   .group + .group{margin-top:clamp(20px,3vw,34px)}
+
+  /* In a script a C-block's mouth holds blocks and so has height of its own.
+     On the cheat sheet the mouth is empty, and an empty mouth collapses - which
+     hides the very thing that makes `forever` and `if` what they are. Give it a
+     floor so the C-shape is visible. Scoped to .rows so it only affects blocks
+     shown on their own, never a real script. */
+  .rows .cmouth:empty{min-height:22px}
+  /* likewise an empty number slot: give it an oval's width rather than letting
+     it shrink to a dash */
+  .rows .num:empty{min-width:1.5em}
+  .rows .txt:empty{min-width:2.4em}
 
   /* ---------- a challenge card ---------- */
   .entries{display:grid;gap:clamp(14px,1.6vw,20px);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
