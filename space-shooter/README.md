@@ -196,6 +196,55 @@ Unlike cookie-clicker's three lesson decks, all five of these link a shared
 model to copy). This course has no `bonus-ideas.md` and so no deck for one —
 that document is a cookie-clicker-specific extension.
 
+### Short URLs, for writing on a board or reading aloud
+
+The full paths above are too long to write by hand mid-session, so each deck
+also has a short redirect stub, served from this same repo under `s/` at the
+root (not inside `space-shooter/`, since it's shared plumbing for every
+course). A third-party shortener was tried first and dropped — is.gd and
+v.gd were both failing custom short-URL creation with a generic
+server-side error, unrelated to anything on our end, and a stub in our own
+repo never depends on someone else's service staying up.
+
+A stub is a tiny HTML file at `s/<slug>/index.html` that redirects to the
+real deck the instant it loads (`meta http-equiv="refresh"` plus a
+`location.replace` fallback). To add one, from the repository root:
+
+```bash
+make_redirect() {
+  local slug=$1 target=$2
+  mkdir -p "s/$slug"
+  cat > "s/$slug/index.html" <<HTML
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0; url=$target">
+<link rel="canonical" href="$target">
+<title>Redirecting</title>
+</head>
+<body>
+<p>Redirecting to <a href="$target">the slides</a>.</p>
+<script>location.replace("$target");</script>
+</body>
+</html>
+HTML
+}
+
+make_redirect cp_space_l1 https://oxeg.github.io/cp-scratch/space-shooter/lesson-1-fly-the-ship/slides.html
+```
+
+This course's short URLs, each redirecting to the matching full URL above:
+
+```
+https://oxeg.github.io/cp-scratch/s/cp_space_l1          -> lesson-1-fly-the-ship/slides.html
+https://oxeg.github.io/cp-scratch/s/cp_space_l2          -> lesson-2-shoot-and-survive/slides.html
+https://oxeg.github.io/cp-scratch/s/cp_space_l3          -> lesson-3-enemies-and-polish/slides.html
+https://oxeg.github.io/cp-scratch/s/cp_space_cheatsheet  -> reference/block-cheat-sheet.html
+https://oxeg.github.io/cp-scratch/s/cp_space_extra       -> reference/extra-challenges.html
+```
+
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**
 Without it, GitHub runs the pages through Jekyll before serving them, which
 adds a processing step these files don't need and don't benefit from. The
