@@ -269,20 +269,37 @@ folder. On a free plan the repo must be **public** for Pages to serve it —
 which it needs to be anyway, so a kid can open the link without a GitHub
 account.
 
-Give it a minute after the first push, then the decks are at:
+**This repo is served from its own domain, `cp.oxeg.dev`**, not the default
+`oxeg.github.io/cp-scratch`. The root-level `CNAME` file (containing just
+`cp.oxeg.dev`) is what tells Pages to serve it there — don't delete it, and
+don't rename it: GitHub only reads that exact filename. If the domain is
+ever pointed elsewhere or dropped, delete `CNAME` and every URL below reverts
+to living under `oxeg.github.io/cp-scratch/` instead. Two other things have
+to be true for the domain to actually work:
+
+- **DNS**, at whoever hosts `oxeg.dev` (Namecheap, at the time this was set
+  up): a `CNAME` record with **Host** `cp` and **Value**
+  `oxeg.github.io.` (the trailing dot matters to some DNS UIs, not others —
+  Namecheap doesn't require it). This is a one-time setup step outside the
+  repo; nothing here does it for you.
+- **Settings → Pages → Custom domain**, in the GitHub repo settings, set to
+  `cp.oxeg.dev` with **Enforce HTTPS** ticked once the certificate has
+  provisioned (can take up to 24 hours after the DNS record first resolves).
+
+Once both are in place, the decks are at:
 
 ```
-https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-1-bake-a-cookie/slides.html
-https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-2-the-shop/slides.html
-https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-3-golden-cookies/slides.html
+https://cp.oxeg.dev/cookie-clicker/lesson-1-bake-a-cookie/slides.html
+https://cp.oxeg.dev/cookie-clicker/lesson-2-the-shop/slides.html
+https://cp.oxeg.dev/cookie-clicker/lesson-3-golden-cookies/slides.html
 ```
 
 The three reference documents have decks too, sharing one stylesheet:
 
 ```
-https://oxeg.github.io/cp-scratch/cookie-clicker/reference/block-cheat-sheet.html
-https://oxeg.github.io/cp-scratch/cookie-clicker/reference/extra-challenges.html
-https://oxeg.github.io/cp-scratch/cookie-clicker/reference/bonus-ideas.html
+https://cp.oxeg.dev/cookie-clicker/reference/block-cheat-sheet.html
+https://cp.oxeg.dev/cookie-clicker/reference/extra-challenges.html
+https://cp.oxeg.dev/cookie-clicker/reference/bonus-ideas.html
 ```
 
 Those links are worth putting somewhere a volunteer can find in a hurry — the
@@ -290,13 +307,15 @@ club's chat, or written on the board at the start of a session.
 
 ### Short URLs, for writing on a board or reading aloud
 
-The full paths above are too long to write by hand mid-session, so each deck
-also has a short redirect stub, served from this same repo under `s/` at the
-root (not inside `cookie-clicker/`, since it's shared plumbing for every
-course). A third-party shortener was tried first and dropped — is.gd and
-v.gd were both failing custom short-URL creation with a generic
-server-side error, unrelated to anything on our end, and a stub in our own
-repo never depends on someone else's service staying up.
+The full paths above are still longer than you want to write on a board or
+read aloud, so each deck also has a short redirect stub, served from this
+same repo under `s/` at the root (not inside `cookie-clicker/`, since it's
+shared plumbing for every course). A third-party shortener was tried first
+and dropped — is.gd and v.gd were both failing custom short-URL creation
+with a generic server-side error, unrelated to anything on our end, and a
+stub in our own repo never depends on someone else's service staying up.
+Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
+that.
 
 A stub is a tiny HTML file at `s/<slug>/index.html` that redirects to the
 real deck the instant it loads (`meta http-equiv="refresh"` plus a
@@ -324,18 +343,18 @@ make_redirect() {
 HTML
 }
 
-make_redirect cp_cookie_l1 https://oxeg.github.io/cp-scratch/cookie-clicker/lesson-1-bake-a-cookie/slides.html
+make_redirect cookie_l1 https://cp.oxeg.dev/cookie-clicker/lesson-1-bake-a-cookie/slides.html
 ```
 
 This course's short URLs, each redirecting to the matching full URL above:
 
 ```
-https://oxeg.github.io/cp-scratch/s/cp_cookie_l1          -> lesson-1-bake-a-cookie/slides.html
-https://oxeg.github.io/cp-scratch/s/cp_cookie_l2          -> lesson-2-the-shop/slides.html
-https://oxeg.github.io/cp-scratch/s/cp_cookie_l3          -> lesson-3-golden-cookies/slides.html
-https://oxeg.github.io/cp-scratch/s/cp_cookie_cheatsheet  -> reference/block-cheat-sheet.html
-https://oxeg.github.io/cp-scratch/s/cp_cookie_extra       -> reference/extra-challenges.html
-https://oxeg.github.io/cp-scratch/s/cp_cookie_bonus       -> reference/bonus-ideas.html
+https://cp.oxeg.dev/s/cookie_l1          -> lesson-1-bake-a-cookie/slides.html
+https://cp.oxeg.dev/s/cookie_l2          -> lesson-2-the-shop/slides.html
+https://cp.oxeg.dev/s/cookie_l3          -> lesson-3-golden-cookies/slides.html
+https://cp.oxeg.dev/s/cookie_cheatsheet  -> reference/block-cheat-sheet.html
+https://cp.oxeg.dev/s/cookie_extra       -> reference/extra-challenges.html
+https://cp.oxeg.dev/s/cookie_bonus       -> reference/bonus-ideas.html
 ```
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**

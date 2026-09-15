@@ -171,20 +171,26 @@ serve it — which it needs to be anyway, so a kid can open the link without a
 GitHub account. (If cookie-clicker's Pages site is already turned on, this
 course is served from the same setting — nothing more to do.)
 
+**This repo is served from its own domain, `cp.oxeg.dev`**, not the default
+`oxeg.github.io/cp-scratch` — the root-level `CNAME` file plus DNS and the
+Pages custom-domain setting cover the whole repo at once. Full details and
+the DNS record are in cookie-clicker's README, under the same heading;
+nothing course-specific to redo here.
+
 Give it a minute after the first push, then the lesson decks are at:
 
 ```
-https://oxeg.github.io/cp-scratch/space-shooter/lesson-1-fly-the-ship/slides.html
-https://oxeg.github.io/cp-scratch/space-shooter/lesson-2-shoot-and-survive/slides.html
-https://oxeg.github.io/cp-scratch/space-shooter/lesson-3-enemies-and-polish/slides.html
+https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html
+https://cp.oxeg.dev/space-shooter/lesson-2-shoot-and-survive/slides.html
+https://cp.oxeg.dev/space-shooter/lesson-3-enemies-and-polish/slides.html
 ```
 
 and the two reference decks — the block cheat sheet drawn as real Scratch
 blocks, and the extra challenges as hints rather than step cards — are at:
 
 ```
-https://oxeg.github.io/cp-scratch/space-shooter/reference/block-cheat-sheet.html
-https://oxeg.github.io/cp-scratch/space-shooter/reference/extra-challenges.html
+https://cp.oxeg.dev/space-shooter/reference/block-cheat-sheet.html
+https://cp.oxeg.dev/space-shooter/reference/extra-challenges.html
 ```
 
 Those links are worth putting somewhere a volunteer can find in a hurry —
@@ -198,13 +204,15 @@ that document is a cookie-clicker-specific extension.
 
 ### Short URLs, for writing on a board or reading aloud
 
-The full paths above are too long to write by hand mid-session, so each deck
-also has a short redirect stub, served from this same repo under `s/` at the
-root (not inside `space-shooter/`, since it's shared plumbing for every
-course). A third-party shortener was tried first and dropped — is.gd and
-v.gd were both failing custom short-URL creation with a generic
-server-side error, unrelated to anything on our end, and a stub in our own
-repo never depends on someone else's service staying up.
+The full paths above are still longer than you want to write on a board or
+read aloud, so each deck also has a short redirect stub, served from this
+same repo under `s/` at the root (not inside `space-shooter/`, since it's
+shared plumbing for every course). A third-party shortener was tried first
+and dropped — is.gd and v.gd were both failing custom short-URL creation
+with a generic server-side error, unrelated to anything on our end, and a
+stub in our own repo never depends on someone else's service staying up.
+Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
+that.
 
 A stub is a tiny HTML file at `s/<slug>/index.html` that redirects to the
 real deck the instant it loads (`meta http-equiv="refresh"` plus a
@@ -232,17 +240,17 @@ make_redirect() {
 HTML
 }
 
-make_redirect cp_space_l1 https://oxeg.github.io/cp-scratch/space-shooter/lesson-1-fly-the-ship/slides.html
+make_redirect space_l1 https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html
 ```
 
 This course's short URLs, each redirecting to the matching full URL above:
 
 ```
-https://oxeg.github.io/cp-scratch/s/cp_space_l1          -> lesson-1-fly-the-ship/slides.html
-https://oxeg.github.io/cp-scratch/s/cp_space_l2          -> lesson-2-shoot-and-survive/slides.html
-https://oxeg.github.io/cp-scratch/s/cp_space_l3          -> lesson-3-enemies-and-polish/slides.html
-https://oxeg.github.io/cp-scratch/s/cp_space_cheatsheet  -> reference/block-cheat-sheet.html
-https://oxeg.github.io/cp-scratch/s/cp_space_extra       -> reference/extra-challenges.html
+https://cp.oxeg.dev/s/space_l1          -> lesson-1-fly-the-ship/slides.html
+https://cp.oxeg.dev/s/space_l2          -> lesson-2-shoot-and-survive/slides.html
+https://cp.oxeg.dev/s/space_l3          -> lesson-3-enemies-and-polish/slides.html
+https://cp.oxeg.dev/s/space_cheatsheet  -> reference/block-cheat-sheet.html
+https://cp.oxeg.dev/s/space_extra       -> reference/extra-challenges.html
 ```
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**
