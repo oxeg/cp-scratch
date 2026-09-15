@@ -38,7 +38,9 @@
     --accent-soft:#f2e4d8;
     --shadow:0 1px 2px rgba(27,26,46,.06), 0 8px 24px rgba(27,26,46,.06);
 
-    /* Scratch 3 palette, sampled from a live editor: fill / stroke */
+    /* Scratch 3 category palette, from the published Scratch 3 block colours:
+       fill / stroke. Like the rest of the course, unchecked against a running
+       editor - see cookie-clicker/README.md. */
     --events:#ffbf00;      --events-d:#cc9900;
     --variables:#ff8c1a;   --variables-d:#db6e00;
     --looks:#9966ff;       --looks-d:#774dcb;
@@ -236,6 +238,24 @@
     font-size:clamp(.8rem,1.2vw,.95rem);
     padding:.5em .85em calc(.5em + var(--nd));
     filter:drop-shadow(0 1px 1px rgba(27,26,46,.18));
+  }
+  /* a cap block drawn as a chip gets the same flat bottom as .blk.cap, at the
+     chip's own padding. The strip and the stack drawing must promise the same
+     thing: a slide that says nothing attaches under a `forever` must not draw
+     one with a tab. Kept here even in decks whose strips have no cap block yet,
+     so the block CSS stays identical across all three. */
+  .chip.cap{
+    padding-bottom:.5em;
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
   }
   .num,.drop,.rep{
     font-family:var(--blockfont);display:inline-flex;align-items:center;
@@ -467,7 +487,7 @@
             <div class="chipwrap"><div class="chip" data-cat="looks">show</div><span class="catname">Looks</span></div>
             <div class="chipwrap"><div class="chip" data-cat="control">create clone of <span class="drop">myself</span></div><span class="catname">Control</span></div>
             <div class="chipwrap"><div class="chip" data-cat="control">when I start as a clone</div><span class="catname">Control</span></div>
-            <div class="chipwrap"><div class="chip" data-cat="control">delete this clone</div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip cap" data-cat="control">delete this clone</div><span class="catname">Control</span></div>
             <div class="chipwrap"><div class="chip" data-cat="operators">pick random <span class="num">15</span> to <span class="num">30</span></div><span class="catname">Operators</span></div>
             <div class="chipwrap"><div class="chip" data-cat="motion">go to x: <span class="slot"></span> y: <span class="slot"></span></div><span class="catname">Motion</span></div>
           </div>

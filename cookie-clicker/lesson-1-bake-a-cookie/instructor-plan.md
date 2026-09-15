@@ -10,6 +10,13 @@ a corner, worth 10 a click.
 click sound it makes, how hard it squashes, what the `Special Cookie` is
 worth, and where the `cookies` readout sits on the stage.
 
+**Driving the slide deck.** `slides.html` in this folder is the deck for the
+room: one slide a milestone, with the finished scripts drawn as blocks. It
+fits a 1080p projector in fullscreen with room to spare - the "you'll know it
+worked" strip at the foot of each slide finishes about 683px down, so there is
+nothing to scroll and no reason to zoom out. Open it in a second tab before
+the room arrives, and leave the Scratch editor in the first one.
+
 ## Timing
 
 | Time | Activity |
@@ -233,6 +240,11 @@ Cut in this order:
   wherever you like."
 
 ## Kids who finish early
+
+The floor is the end of Milestone 3, so a kid whose **Check it works**
+passes there is not out of cards - Milestone 4, the `Special Cookie` bonus
+round, is the next thing to send them to, and only after that the
+challenges sheet.
 
 Point them at `reference/extra-challenges.md` the moment their **Check it
 works** passes while others are still building - not at the end of the

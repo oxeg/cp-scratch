@@ -1,8 +1,9 @@
 # Bonus ideas
 
-Finished all three lessons? Worked through `reference/extra-challenges.md`
-— more than once, maybe — and you're still waiting for the rest of the room
-to catch up? This page is for you.
+Finished all three lessons — or finished a lesson early and worked through
+the challenges for it? If you've been through `reference/extra-challenges.md`,
+maybe more than once, and you're still waiting for the rest of the room to
+catch up, this page is for you. It doesn't matter which week you're in.
 
 It isn't a lesson, and it isn't the challenges sheet either. No numbered
 steps, no milestones, no "Check it works", no "Stuck?" — none of the shape
@@ -37,6 +38,10 @@ point this time.
 >
 > **Make it a different game.** Same machinery, different pictures and
 > words. A pizza clicker. A cat clicker. Whatever you'd rather be making.
+> Change the costumes and the wording, but if you haven't done week 3 yet,
+> keep the names `Cookie`, `cookies` and `Grandma` exactly as they are —
+> next week's cards name all three, over and over, and they can't rename
+> things for you.
 
 Two things before you start.
 

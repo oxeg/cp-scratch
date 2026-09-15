@@ -780,9 +780,10 @@ for three seconds, and then never again.
   and make it different from whatever marks the start, so the two moments
   don't feel the same.
 - What happens at an even bigger number? `Cookie Master!` fires once, just
-  past 1000. Build a second `wait until <>` script for a bigger number of
-  your own, with a message name of your own - just don't call it
-  `cookie master` again, or you'll be answering the wrong shout.
+  past 1000. Build a second script for a bigger number of your own: a
+  `when green flag clicked` hat with a `wait until <>` under it, and a
+  message name of your own - just don't call it `cookie master` again, or
+  you'll be answering the wrong shout.
 - What does a golden cookie look like? Open `Special Cookie`'s Costumes tab
   and draw on it: a star, a crown, a shine.
 

@@ -238,10 +238,10 @@ adds a processing step these files don't need and don't benefit from. The empty
 file switches that off, so every file is served exactly as committed.
 
 **The one thing that catches people out:** Pages serves what has been *pushed*,
-not what is on your laptop. A deck you edited this morning and haven't pushed is
-not the deck the kids are looking at. If a change doesn't show up, check `git
-status` before you go looking for anything cleverer — and remember a browser
-will happily show you a cached copy of the old one.
+not what is on your laptop. A deck you edited this morning and haven't
+pushed is not the deck the kids are looking at. If a change doesn't show
+up, check `git status` before you go looking for anything cleverer — and
+remember a browser will happily show you a cached copy of the old one.
 
 None of this affects printing. The step cards and the reference sheets are
 Markdown and still print from GitHub or from your editor exactly as before; the

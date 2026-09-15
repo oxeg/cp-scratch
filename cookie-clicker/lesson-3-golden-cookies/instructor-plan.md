@@ -543,6 +543,11 @@ rather than to the room, or skip it.
 
 ## Kids who finish early
 
+The floor is the end of Milestone 2, so a kid whose **Check it works**
+passes there is not out of cards - Milestones 3 and 4, both further
+targets, are the next thing to send them to, and only after that the
+challenges sheet.
+
 Point them at `reference/extra-challenges.md` the moment their **Check it
 works** passes while others are still building - not at the end of the
 lesson. A kid with twenty spare minutes and nothing in front of them is the

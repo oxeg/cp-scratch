@@ -345,6 +345,10 @@ having to stop them.
 
 ## Kids who finish early
 
+The floor is the end of Milestone 3, so a kid whose **Check it works**
+passes there is not out of cards - Milestone 4, the `Baker`, is the next
+thing to send them to, and only after that the challenges sheet.
+
 Point them at `reference/extra-challenges.md` the moment their **Check it
 works** passes while others are still building - not at the end of the
 lesson. A kid with twenty spare minutes and nothing in front of them is the

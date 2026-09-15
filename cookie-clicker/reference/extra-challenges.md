@@ -93,9 +93,9 @@ the game is running, so the blocks in play are the *amber* Control ones
 comparing, and an orange `set` block to write a new record down. It needs a
 *yellow* Events `when green flag clicked` on it as well: a stack with no hat
 block never starts by itself, and you'd be left staring at blocks that do
-nothing. Give it a sprite of its own to live on: draw a rosette or a trophy, or find something
-prize-shaped in the sprite library and check what it's actually called once
-you're browsing.
+nothing. Give it a sprite of its own to live on: draw a rosette or a
+trophy, or find something prize-shaped in the sprite library and check what
+it's actually called once you're browsing.
 
 **Worth noticing:** go looking for the block that puts `best` back to 0.
 There isn't one anywhere in your game — work out why that's the whole
@@ -304,8 +304,9 @@ it isn't something to do off your own bat.
 for an even bigger number.
 
 **Hint:** The pattern is the one you already built for `cookie master`: a
-`wait until <>` block holding a *green* Operators `() > ()` block with the
-`(cookies)` oval inside it, a `broadcast` with a message of your own, and a
+*yellow* Events `when green flag clicked` with a `wait until <>` block under
+it, holding a *green* Operators `() > ()` block with the `(cookies)` oval
+inside it, then a `broadcast` with a message of your own, and a
 `when I receive` script somewhere that reacts to it — a
 `say [] for () seconds` block works, or anything else you fancy. Pick your
 own bigger number and your own message name — just don't call it
