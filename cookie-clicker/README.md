@@ -118,6 +118,49 @@ Commands 1, 2 and 4 want a `step-cards.md`; command 3 wants an
 material teaches well, is correct about Scratch, or fits in 90 minutes.**
 Passing these checks is not a substitute for the checklist above.
 
+### Keeping each reference document and its deck in step
+
+Each of the three `reference/` documents now has a deck beside it, which means
+every edit costs two edits. These checks make a lapse findable rather than
+silent — run them after changing any of the six files:
+
+```bash
+cd cookie-clicker/reference
+
+# every block named in the cheat sheet appears in its deck, and vice versa
+diff <(grep -oE '^\| `[^`]+`' block-cheat-sheet.md | sed 's/^| `//; s/`$//' | sort) \
+     <(grep -o 'data-block="[^"]*"' block-cheat-sheet.html | cut -d'"' -f2 | sort)
+
+# 17 challenges in both, and the eight "Checked for you" entries in both
+grep -c '^### ' extra-challenges.md              # 17
+grep -c 'class="entry"' extra-challenges.html    # 17
+grep -c 'Checked for you' extra-challenges.md    # 8
+grep -c 'Checked for you' extra-challenges.html  # 8
+
+# five directions in both. bonus-ideas.md has no headings at all — the five
+# live in a blockquote, each opening with a bold title — so count those.
+grep -c '^> \*\*' bonus-ideas.md                 # 5
+grep -c 'class="dir"' bonus-ideas.html           # 5
+```
+
+The first check needs `sed` rather than `tr -d` to strip the pipe and
+backticks: block names contain spaces, and stripping those would mangle them
+into a form the `data-block` values could never match.
+
+**The decks also share their Scratch palette with the lesson decks**, in three
+regions marked `BEGIN`/`END scratch palette`, `scratch blocks` and `scratch
+c-blocks`. Change one and you must change all four files, or a kid comparing a
+lesson slide to the cheat sheet sees two different Scratches:
+
+```bash
+for R in palette blocks c-blocks; do
+  diff <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/reference/slides.css) \
+       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/lesson-3-golden-cookies/slides.html)
+done
+```
+
+Empty output means they agree. Lesson 1 has no `c-blocks` region.
+
 **Two documents are deliberately outside this shape, and should stay that
 way.** `reference/extra-challenges.md` and `reference/bonus-ideas.md` are not
 lessons: they have no milestones, no **Check it works**, no **Stuck?** and no
@@ -208,6 +251,12 @@ keeps their game at all.
 - **`reference/bonus-ideas.md`** — one copy per table. The overflow for kids
   who get through the challenges too.
 
+**Print the Markdown, not the decks.** Each of those three has an HTML deck
+beside it for the screen, but paper is what a kid has open next to Scratch.
+The cheat sheet is the one worth having in both: its deck draws every block as
+a real Scratch block, so a kid matching by shape and colour can use **Show
+all** to see all thirty-one at once, which the printed table cannot do.
+
 ## Sharing the slides with GitHub Pages
 
 Each lesson has a `slides.html` beside its cards — four slides, one per
@@ -226,6 +275,14 @@ Give it a minute after the first push, then the decks are at:
 https://<user>.github.io/<repo>/cookie-clicker/lesson-1-bake-a-cookie/slides.html
 https://<user>.github.io/<repo>/cookie-clicker/lesson-2-the-shop/slides.html
 https://<user>.github.io/<repo>/cookie-clicker/lesson-3-golden-cookies/slides.html
+```
+
+The three reference documents have decks too, sharing one stylesheet:
+
+```
+https://<user>.github.io/<repo>/cookie-clicker/reference/block-cheat-sheet.html
+https://<user>.github.io/<repo>/cookie-clicker/reference/extra-challenges.html
+https://<user>.github.io/<repo>/cookie-clicker/reference/bonus-ideas.html
 ```
 
 For this repo, `<user>/<repo>` is `oxeg/cp-scratch`. Those links are worth

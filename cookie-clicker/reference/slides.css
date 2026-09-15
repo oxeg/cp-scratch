@@ -548,13 +548,15 @@
   /* a direction slide carries one idea and nothing else, so centre it in the
      space rather than letting it sit in the top-left of an empty card */
   .dirwrap{flex:1;display:flex;align-items:center;min-height:clamp(180px,26vh,320px)}
-  .dir{max-width:26ch;margin:0}
+  .dir{margin:0}
+  /* the provocation sets its own measure - narrow enough to read as a display
+     line, wide enough not to leave most of the slide empty beside it */
   .dir b{
     display:block;font-family:"Baloo 2",cursive;font-weight:700;
-    font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.08;
+    font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.08;max-width:22ch;
     letter-spacing:-.01em;text-wrap:balance;margin-bottom:.35em;
   }
   .dir span{
-    display:block;color:var(--ink-soft);font-weight:400;max-width:34ch;
-    font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.45;
+    display:block;color:var(--ink-soft);font-weight:400;max-width:44ch;
+    font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.45;text-wrap:pretty;
   }
