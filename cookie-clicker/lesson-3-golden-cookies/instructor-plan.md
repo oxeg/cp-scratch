@@ -20,17 +20,21 @@ once and has a full fallback written out below, and **the hedge in Milestone
 1**, where some kids have a `Special Cookie` from Lesson 1 and some do not.
 
 **Driving the slide deck.** `slides.html` in this folder is the deck for the
-room: one slide a milestone, with the finished scripts drawn as blocks. Two
+room: one slide a milestone, with the finished scripts drawn as blocks. Three
 things to know before you stand in front of it.
 
 - **It does not fit a 1080p projector in fullscreen.** Milestone 2 legitimately
   carries five scripts, and every slide is as tall as the tallest, so all four
-  are about 1340px tall against roughly 980px of usable height. The
-  "you'll know it worked" strip at the foot of each slide lands about 180px
-  below the fold. **Scroll to the bottom of the slide before you read that line
-  out**, on every milestone, including the three with obvious empty space.
-  Zooming the browser out one step (Ctrl+minus, or Cmd+minus) brings the whole
-  slide into view if you would rather not scroll.
+  are about 1310px tall. On a 1920x1080 screen the "you'll know it worked"
+  strip at the foot of the slide finishes about **206px** below the bottom of
+  the screen, and the "Go further" line about 252px. **Scroll to the bottom of
+  the slide before you read that line out**, on every milestone, including the
+  three with obvious empty space.
+- **Or zoom out three steps, to 75%** - Ctrl+minus three times (Cmd+minus on a
+  Mac), which takes Chrome 100 - 90 - 80 - 75. That brings the whole slide,
+  check strip and all, onto the screen with nothing to scroll. **One step is
+  not enough** and two is borderline, so go to 75 and leave it there; Ctrl+0
+  puts it back.
 - **The clone-click fallback is drawn out on Milestone 4's slide**, marked as a
   fallback rather than as something everyone builds. If the whole-room check in
   Milestone 2 goes against you, jump to that slide and build from it.

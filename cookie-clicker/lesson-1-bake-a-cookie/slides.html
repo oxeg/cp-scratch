@@ -71,12 +71,12 @@
     margin:0;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{padding-inline:20px;padding-block:18px;max-width:1180px;margin:0 auto}
+  .wrap{padding-inline:20px;padding-block:8px;max-width:1180px;margin:0 auto}
 
   /* ---------- top bar ---------- */
   .bar{
     display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-    padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:26px;
+    padding-bottom:8px;border-bottom:1px solid var(--rule);margin-bottom:12px;
   }
   .brand{display:flex;align-items:baseline;gap:10px;margin-right:auto}
   .brand b{font-family:"Baloo 2",cursive;font-weight:800;font-size:1.15rem;letter-spacing:.01em}
@@ -126,7 +126,7 @@
     font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.12;margin:0 0 6px;
     text-wrap:balance;letter-spacing:-.01em;
   }
-  .sub{color:var(--ink-soft);margin:0 0 26px;font-size:clamp(.95rem,1.4vw,1.1rem);max-width:60ch}
+  .sub{color:var(--ink-soft);margin:0 0 16px;font-size:clamp(.95rem,1.4vw,1.1rem);max-width:60ch}
 
   .label{
     font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
@@ -196,6 +196,21 @@
       0 calc(100% - var(--nd))
     );
   }
+  /* a cap block - `delete this clone` - has a flat bottom and no tab: nothing
+     can ever be attached below it, the same promise a `forever` foot makes */
+  .blk.cap{
+    padding-bottom:.62em;
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+  }
   .chip{
     font-size:clamp(.8rem,1.2vw,.95rem);
     padding:.5em .85em calc(.5em + var(--nd));
@@ -230,10 +245,10 @@
   /* pushed to the foot of the card, so "how you know it worked" is in the
      same place on every slide however tall the script above it is */
   .check{
-    margin-top:auto;padding-top:18px;border-top:1px solid var(--rule);
+    margin-top:auto;padding-top:12px;border-top:1px solid var(--rule);
     display:flex;gap:12px;align-items:flex-start;
   }
-  .cols{margin-bottom:clamp(22px,2.6vw,32px)}
+  .cols{margin-bottom:20px}
   .check .mark{
     flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);
     color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:.95rem;

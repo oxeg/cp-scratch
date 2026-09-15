@@ -71,12 +71,12 @@
     margin:0;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{padding-inline:20px;padding-block:18px;max-width:1180px;margin:0 auto}
+  .wrap{padding-inline:20px;padding-block:8px;max-width:1180px;margin:0 auto}
 
   /* ---------- top bar ---------- */
   .bar{
     display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-    padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:26px;
+    padding-bottom:8px;border-bottom:1px solid var(--rule);margin-bottom:12px;
   }
   .brand{display:flex;align-items:baseline;gap:10px;margin-right:auto}
   .brand b{font-family:"Baloo 2",cursive;font-weight:800;font-size:1.15rem;letter-spacing:.01em}
@@ -126,7 +126,7 @@
     font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.12;margin:0 0 6px;
     text-wrap:balance;letter-spacing:-.01em;
   }
-  .sub{color:var(--ink-soft);margin:0 0 26px;font-size:clamp(.95rem,1.4vw,1.1rem);max-width:60ch}
+  .sub{color:var(--ink-soft);margin:0 0 16px;font-size:clamp(.95rem,1.4vw,1.1rem);max-width:60ch}
 
   .label{
     font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
@@ -203,6 +203,21 @@
       calc(var(--nx) + var(--ns)) 100%,
       var(--nx) calc(100% - var(--nd)),
       0 calc(100% - var(--nd))
+    );
+  }
+  /* a cap block - `delete this clone` - has a flat bottom and no tab: nothing
+     can ever be attached below it, the same promise a `forever` foot makes */
+  .blk.cap{
+    padding-bottom:.62em;
+    clip-path:polygon(
+      0 0,
+      var(--nx) 0,
+      calc(var(--nx) + var(--ns)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw)) var(--nd),
+      calc(var(--nx) + var(--ns) + var(--nw) + var(--ns)) 0,
+      100% 0,
+      100% 100%,
+      0 100%
     );
   }
   .chip{
@@ -291,7 +306,7 @@
      either stretch to the mouth's width draws a block Scratch never draws. An
      `if` bar is wide already, so it keeps the full width. */
   .c.short > .cbar{align-self:flex-start}
-  .c.short > .cfoot{align-self:flex-start;min-width:5.5em;font-size:clamp(.92rem,1.55vw,1.22rem)}
+  .c.short > .cfoot{align-self:flex-start;min-width:5.1em;font-size:clamp(.92rem,1.55vw,1.22rem)}
 
   /* ---------- things that go in slots ----------
      A reporter is an oval, a boolean is six-sided, and both of them nest, so
@@ -320,6 +335,8 @@
   /* a boolean holding other booleans must be allowed to break at narrow widths,
      or the card scrolls sideways on a phone. Leaf booleans stay on one line. */
   .bool.wrap > span{flex-wrap:wrap;white-space:normal}
+  /* Scratch sets `touching [ v]?` tight: cancel the flex gap before the ? */
+  .tight{margin-left:-.4em}
   .slot{
     display:inline-block;width:1.7em;height:1.1em;border-radius:999px;
     background:#fff;border:1px solid rgba(0,0,0,.12);vertical-align:middle;
@@ -364,10 +381,10 @@
   /* pushed to the foot of the card, so "how you know it worked" is in the
      same place on every slide however tall the script above it is */
   .check{
-    margin-top:auto;padding-top:18px;border-top:1px solid var(--rule);
+    margin-top:auto;padding-top:12px;border-top:1px solid var(--rule);
     display:flex;gap:12px;align-items:flex-start;
   }
-  .cols{margin-bottom:clamp(22px,2.6vw,32px)}
+  .cols{margin-bottom:20px}
   .check .mark{
     flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);
     color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:.95rem;
@@ -470,7 +487,7 @@
                 <div class="blk" data-cat="motion">go to x: <span class="op">pick random <span class="num">-200</span> to <span class="num">200</span></span> y: <span class="op">pick random <span class="num">-120</span> to <span class="num">140</span></span></div>
                 <div class="blk" data-cat="looks">show</div>
                 <div class="blk" data-cat="control">wait <span class="num">5</span> seconds</div>
-                <div class="blk" data-cat="control">delete this clone</div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
               </div>
               <p class="none" style="margin-top:14px">Every clone script ends with <b>delete this clone</b>. One that never deletes itself hangs about for the rest of the game.</p>
             </div>
@@ -505,7 +522,7 @@
               <div class="stack">
                 <div class="blk hat" data-cat="events">when this sprite clicked</div>
                 <div class="blk" data-cat="events">broadcast <span class="drop">sugar rush</span></div>
-                <div class="blk" data-cat="control">delete this clone</div>
+                <div class="blk cap" data-cat="control">delete this clone</div>
               </div>
             </div>
             <div class="script edit">
@@ -653,10 +670,10 @@
                   <div class="cbar">forever</div>
                   <div class="cmouth">
                     <div class="c" data-cat="control">
-                      <div class="cbar">if <span class="bool wrap"><span><span class="bool" data-cat="sensing"><span>touching <span class="drop">mouse-pointer</span> ?</span></span> and <span class="bool" data-cat="sensing"><span>mouse down?</span></span></span></span> then</div>
+                      <div class="cbar">if <span class="bool wrap"><span><span class="bool" data-cat="sensing"><span>touching <span class="drop">mouse-pointer</span><span class="tight">?</span></span></span> and <span class="bool" data-cat="sensing"><span>mouse down?</span></span></span></span> then</div>
                       <div class="cmouth">
                         <div class="blk" data-cat="events">broadcast <span class="drop">sugar rush</span></div>
-                        <div class="blk" data-cat="control">delete this clone</div>
+                        <div class="blk cap" data-cat="control">delete this clone</div>
                       </div>
                       <div class="cfoot"></div>
                     </div>
@@ -664,7 +681,7 @@
                   <div class="cfoot cap"></div>
                 </div>
               </div>
-              <p class="none" style="margin-top:14px">On <b>Special Cookie</b>, in place of its <b>when this sprite clicked</b> script. A sprite may have two <b>when I start as a clone</b> hats, so <b>leave the go to / show / wait / delete this clone script alone</b>.</p>
+              <p class="none" style="margin-top:14px"><b>Nobody builds this unless clicking a golden cookie does nothing at all</b> &mdash; and then everybody does. On <b>Special Cookie</b>, in place of its <b>when this sprite clicked</b> script. A sprite may have two <b>when I start as a clone</b> hats, so <b>leave the go to / show / wait / delete this clone script alone</b>.</p>
             </div>
           </div>
         </div>
