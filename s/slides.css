@@ -1,22 +1,24 @@
-/* Shared stylesheet for every deck in this course, per SLIDE-DECKS.md ("Where
-   the stylesheet goes"): each deck links here relatively rather than inlining
-   its own copy. That is unlike cookie-clicker's three lesson decks, which
-   inline the whole stylesheet - a legacy exception documented there and not
-   to be repeated in a new course. Currently linked by:
-     space-shooter/lesson-1-fly-the-ship/slides.html
-     space-shooter/lesson-2-shoot-and-survive/slides.html
-     space-shooter/lesson-3-enemies-and-polish/slides.html
+/* The one stylesheet for every deck in this repository, both courses -
+   lesson decks and reference decks alike. Lives at s/slides.css, a sibling
+   of the decks themselves (s/<slug>/index.html), so every deck links it the
+   same way regardless of which course it belongs to:
 
-   THREE REGIONS BELOW ARE FROZEN. `BEGIN/END scratch palette`, `scratch blocks`
-   and `scratch c-blocks` must stay byte-identical to every other file in this
-   repository that carries them - a kid comparing a lesson slide to another
-   deck has to see the same Scratch. See cookie-clicker/README.md for the
-   cross-file diff check; this file mirrors cookie-clicker/reference/slides.css
-   with only this header differing.
+     <link rel="stylesheet" href="../slides.css">
 
-   Some rules here are unused until this course has reference decks of its own
-   - .check, .further, .script and friends belong to lesson slides. They are
-   kept so this file stays a straight copy of the cookie-clicker original. */
+   This used to be two nearly-identical per-course files, plus three of
+   cookie-clicker's lesson decks inlining their own copy again - three
+   lineages of the same CSS, kept in step by hand. Once every deck moved
+   into s/, that duplication stopped earning its keep: there's nothing left
+   to diff against a second copy, because there is no second copy.
+
+   The palette below (`BEGIN`/`END scratch palette`) and the block geometry
+   (`scratch blocks`, `scratch c-blocks`) are marked off as a matter of
+   convention, not because they're synchronized against anything else -
+   they're the part a subtle retyping error would take longest to notice,
+   since it wouldn't show up until a deck is on a projector. Treat them as
+   frozen regardless: the colours are the real Scratch 3 values and must
+   keep matching the editor, and the block shapes are load-bearing geometry
+   a kid reads to find a block in the palette. */
 
   :root{
     --ground:#f7f6fb;

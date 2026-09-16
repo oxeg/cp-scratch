@@ -34,7 +34,8 @@ extra-challenges, six for bonus-ideas.
 
 Two files already do all of this correctly. Begin from them:
 
-- **`cookie-clicker/reference/slides.css`** — the stylesheet. Copy it whole.
+- **`s/slides.css`** — the stylesheet, shared by every deck in the
+  repository. Copy it whole.
 - **`s/cookie_l3/index.html`** — the richest deck: C-blocks, cap blocks,
   booleans, multiple scripts on one slide, a fallback script, and edits to
   scripts from earlier weeks. Copy its structure and its `<script>` block
@@ -51,42 +52,28 @@ notices until it is on a projector.
 root, not inside the course or lesson it belongs to. This is what makes
 `https://cp.oxeg.dev/s/<slug>` a short URL with no redirect bounce — GitHub
 Pages has no server-side rewriting, so the only way for the address bar to
-show that URL with no jump is for the content to actually be there. The
-price: a lesson folder no longer contains its own deck, and every deck
-reaches back out through the repository root for its stylesheet instead of
-finding it in a sibling `reference/` folder.
+show that URL with no jump is for the content to actually be there.
 
 Pick a `slug` following the existing pattern: `<course-short-name>_l<N>` for
 a lesson deck (`cookie_l1`, `space_l2`), `<course-short-name>_<name>` for a
 reference deck (`cookie_cheatsheet`, `space_extra`). No `cp_` prefix — the
 site's own domain already says that.
 
-If the lesson or reference document you're building a deck for used to have
-one at a course-relative path (this happened once, when all eleven decks
-moved into `s/`), leave a redirect stub at the old path so a bookmark or a
-shared link still resolves — see "Publishing" below for the stub format. A
-deck that never lived anywhere else doesn't need one.
-
 ## Where the stylesheet goes
 
-**One `slides.css` per course**, at `<course>/slides.css` or
-`<course>/reference/slides.css`, with every deck in that course linking to it
-relatively. Since every deck now lives at `s/<slug>/index.html` — two levels
-below the repository root, the same depth a course's own reference/ folder
-sits at — the link reaches back through the root and into the course:
+**One `slides.css` for the whole repository**, at `s/slides.css` — a
+sibling of every deck, since every deck lives at `s/<slug>/index.html`.
+Every deck, lesson or reference, either course, links it the same way:
 
 ```html
-<link rel="stylesheet" href="../../cookie-clicker/reference/slides.css">
+<link rel="stylesheet" href="../slides.css">
 ```
 
-That keeps the Scratch palette to one copy per course.
-
-**Cookie-clicker's three lesson decks are the exception**, and you should not
-copy their arrangement. They each inline the whole stylesheet, because they
-were built before the reference decks existed and before there were enough
-decks for the duplication to hurt. They are left as they are rather than
-churned. If you are adding a deck for `cookie-clicker/`, link the existing
-`reference/slides.css`; if you are starting a new course, give it its own.
+Nothing inlines its own copy. That used to be true of cookie-clicker's three
+lesson decks specifically, back when decks lived beside their step cards and
+a shared file would have meant reaching out of the lesson directory for it —
+once every deck moved into `s/`, the inlining stopped buying anything and
+was retired.
 
 ## The shape of a slide
 
@@ -225,20 +212,14 @@ sound     #cf63cf / #bd42bd      operators  #59c059 / #389438
 A kid compares a slide to their screen, so these must match the editor
 exactly. **Never edit them.**
 
-They live inside three delimited regions that are byte-identical everywhere
-they appear — `BEGIN`/`END scratch palette`, `scratch blocks` and
-`scratch c-blocks`. Change one and you must change all of them. The check:
-
-```bash
-for R in palette blocks c-blocks; do
-  diff <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/reference/slides.css) \
-       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" s/cookie_l3/index.html)
-done
-```
-
-Empty output means they agree. A deck with no C-blocks may omit the
-`c-blocks` region. **Add your own components outside the regions**, never
-inside them.
+They live inside three delimited regions in `s/slides.css` — `BEGIN`/`END
+scratch palette`, `scratch blocks` and `scratch c-blocks` — marked off by
+convention, not because anything else needs to match them: every deck links
+this one file, so there's no second copy for a change here to drift out of
+step with. **Add your own components outside the regions**, never inside
+them; a component only reference decks use (cheat sheet rows, challenge
+cards, bonus-idea prose) is fine anywhere in the file, it just isn't part
+of what these three regions promise to hold.
 
 ## House conventions
 
@@ -384,30 +365,9 @@ every file exactly as committed — do not delete it either.
 
 **A new deck goes straight into `s/<slug>/index.html`.** Add its short URL
 to its course README, written out in full rather than as a placeholder a
-volunteer has to assemble. If it replaces a deck that used to live at a
-course-relative path, leave a redirect stub there — a tiny standalone HTML
-file, `meta http-equiv="refresh"` plus a `location.replace` fallback, no
-frozen regions, no slide markup:
-
-```html
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=TARGET">
-<link rel="canonical" href="TARGET">
-<title>Redirecting</title>
-</head>
-<body>
-<p>Redirecting to <a href="TARGET">the slides</a>.</p>
-<script>location.replace("TARGET");</script>
-</body>
-</html>
-```
-
-Either course README has a `make_redirect` shell function that generates
-this from a destination path and a target URL.
+volunteer has to assemble. There's no redirect-stub convention live in this
+repo — if a deck's slug or location ever needs to change, the old URL just
+stops resolving; decide then whether that specific move is worth a stub.
 
 **Pages serves what has been pushed**, not what is on your laptop. That is
 the thing that catches people out.

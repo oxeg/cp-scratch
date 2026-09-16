@@ -167,9 +167,9 @@ link to kids who run ahead so they have it in a second tab.
 cards.** That's deliberate, not a leftover — see cookie-clicker's README,
 under the same heading, for the full reasoning (GitHub Pages has no
 server-side rewriting, so a short URL with no redirect bounce means the
-content has to actually live there). A tiny redirect stub sits at each
-deck's old path (`lesson-1-fly-the-ship/slides.html`, etc.) so a bookmark
-or a link shared before this change still lands in the right place.
+content has to actually live there). Every deck in the repository, both
+courses, links the one shared stylesheet at `s/slides.css` the same way
+(`../slides.css`).
 
 **Turning it on** is a repo setting, done once: **Settings → Pages → Build
 and deployment → Deploy from a branch**, then pick `main` and the
@@ -207,25 +207,8 @@ Each lesson deck also has **"← Lesson N / Lesson N →" links**, appearing in
 its top bar once you reach the last milestone, so clicking on to the next
 lesson doesn't depend on knowing its slug.
 
-Unlike cookie-clicker's three lesson decks, all five of these link a shared
-`reference/slides.css` rather than each inlining their own copy (see
-`SLIDE-DECKS.md` for why cookie-clicker's decks are the exception, not the
-model to copy). This course has no `bonus-ideas.md` and so no deck for one —
-that document is a cookie-clicker-specific extension.
-
-### Redirect stubs, for old links and old bookmarks
-
-Both the pre-`cp.oxeg.dev` long paths (`space-shooter/lesson-1-fly-the-ship/slides.html`)
-and the pre-`s/` short paths this course used briefly (`s/cp_space_l1`) are
-one-line redirects now, not real content. A stub is a tiny HTML file that
-redirects to the real deck the instant it loads (`meta http-equiv="refresh"`
-plus a `location.replace` fallback). To point one at a new target, from the
-repository root — see the identical `make_redirect` function in
-cookie-clicker's README:
-
-```bash
-make_redirect space-shooter/lesson-1-fly-the-ship/slides.html https://cp.oxeg.dev/s/space_l1
-```
+This course has no `bonus-ideas.md` and so no deck for one — that document
+is a cookie-clicker-specific extension.
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**
 Without it, GitHub runs the pages through Jekyll before serving them, which
@@ -241,11 +224,12 @@ and remember a browser will happily show you a cached copy of the old one.
 ### Keeping the reference decks and their documents in step
 
 `s/space_cheatsheet` and `s/space_extra` are screen versions of
-`reference/block-cheat-sheet.md` and `reference/extra-challenges.md` — the
-Markdown stays authoritative on every word, so an edit to either half needs
-the other in the same commit. The deck no longer sits beside its document
-(see "Sharing the slides" above), so these checks name it by its `s/` path.
-Run them from the repository root after changing any of the four files:
+`space-shooter/reference/block-cheat-sheet.md` and
+`space-shooter/reference/extra-challenges.md` — the Markdown stays
+authoritative on every word, so an edit to either half needs the other in
+the same commit. The deck no longer sits beside its document (see "Sharing
+the slides" above), so these checks name it by its `s/` path. Run them from
+the repository root after changing any of the four files:
 
 ```bash
 # every block named in the cheat sheet appears in its deck, and vice versa
@@ -261,12 +245,9 @@ Empty output on the first check and matching counts on the second mean the
 two are in step. Like cookie-clicker's cheat sheet, `sed` (not `tr -d`)
 strips the pipe and backticks, since block names contain spaces.
 
-The three lesson decks and these two reference decks all share
-`reference/slides.css`, so there is no separate cross-file palette check to
-run here the way cookie-clicker's README describes — that check exists
-there because cookie-clicker's lesson decks each carry their own inlined
-copy of the palette. If this course ever grows a deck that inlines its own
-copy too, add that check back.
+All five decks in this course, and all six in cookie-clicker, link the one
+shared `s/slides.css` — see cookie-clicker's README, under "Sharing the
+slides", for where the palette lives and why no deck carries its own copy.
 
 ## What kids need
 

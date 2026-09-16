@@ -148,19 +148,11 @@ The first check needs `sed` rather than `tr -d` to strip the pipe and
 backticks: block names contain spaces, and stripping those would mangle them
 into a form the `data-block` values could never match.
 
-**The decks also share their Scratch palette with the lesson decks**, in three
+**The Scratch palette lives in one place — `s/slides.css`**, in three
 regions marked `BEGIN`/`END scratch palette`, `scratch blocks` and `scratch
-c-blocks`. Change one and you must change all four files, or a kid comparing a
-lesson slide to the cheat sheet sees two different Scratches:
-
-```bash
-for R in palette blocks c-blocks; do
-  diff <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/reference/slides.css) \
-       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" s/cookie_l3/index.html)
-done
-```
-
-Empty output means they agree. Lesson 1 has no `c-blocks` region.
+c-blocks`. Every deck in the repository, both courses, links this one file
+rather than carrying its own copy, so there's no second file for a change
+here to drift out of step with — edit it once and every deck picks it up.
 
 **Two documents are deliberately outside this shape, and should stay that
 way.** `reference/extra-challenges.md` and `reference/bonus-ideas.md` are not
@@ -269,14 +261,11 @@ link to kids who run ahead so they have it in a second tab.
 cards.** That's deliberate, not a leftover: `s/<slug>/index.html` is the
 short URL *and* the file's real location — GitHub Pages has no server-side
 rewriting, so the only way for the address bar to show a short URL with no
-redirect bounce is for the actual content to be there. The price is that a
-lesson's folder is no longer fully self-contained (its deck lives elsewhere)
-and every deck's relative link to the shared stylesheet now reaches back out
-through the repo root (`../../cookie-clicker/reference/slides.css`) instead
-of a sibling `reference/` folder. See `SLIDE-DECKS.md` for the full layout
-and how to build a new one. A tiny redirect stub sits at each deck's old
-path (`lesson-1-bake-a-cookie/slides.html`, etc.) so a bookmark or a link
-shared before this change still lands in the right place.
+redirect bounce is for the actual content to be there. Every deck in the
+repository, both courses, links the one shared stylesheet at `s/slides.css`
+the same way (`../slides.css`) — there's no per-course copy any more, and
+no lesson deck inlines its own either. See `SLIDE-DECKS.md` for the full
+layout and how to build a new one.
 
 **Turning it on** is a repo setting, done once: **Settings → Pages → Build and
 deployment → Deploy from a branch**, then pick `main` and the `/ (root)`
@@ -323,40 +312,6 @@ A third-party shortener was tried first and dropped — is.gd and v.gd were
 both failing custom short-URL creation with a generic server-side error,
 unrelated to anything on our end, and a deck served from this repo never
 depends on someone else's service staying up.
-
-### Redirect stubs, for old links and old bookmarks
-
-Both the pre-`cp.oxeg.dev` long paths (`cookie-clicker/lesson-1-bake-a-cookie/slides.html`)
-and the pre-`s/` short paths this course used briefly (`s/cp_cookie_l1`) are
-one-line redirects now, not real content. A stub is a tiny HTML file that
-redirects to the real deck the instant it loads (`meta http-equiv="refresh"`
-plus a `location.replace` fallback). To point one at a new target, from the
-repository root:
-
-```bash
-make_redirect() {
-  local dest=$1 target=$2
-  mkdir -p "$(dirname "$dest")"
-  cat > "$dest" <<HTML
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=$target">
-<link rel="canonical" href="$target">
-<title>Redirecting</title>
-</head>
-<body>
-<p>Redirecting to <a href="$target">the slides</a>.</p>
-<script>location.replace("$target");</script>
-</body>
-</html>
-HTML
-}
-
-make_redirect cookie-clicker/lesson-1-bake-a-cookie/slides.html https://cp.oxeg.dev/s/cookie_l1
-```
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**
 Without it, GitHub runs the pages through Jekyll before serving them, which
