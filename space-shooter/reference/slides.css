@@ -104,6 +104,20 @@
   .toggle:hover{color:var(--ink);border-color:var(--ink-faint)}
   .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
+  /* ---------- lesson nav ----------
+     Links to the adjacent lesson's deck, not this deck's own milestones -
+     kept visually distinct from .toggle by being a link, not a button, and
+     sitting before it in the bar. A lesson at either end of a course omits
+     the link it doesn't have rather than showing it disabled. */
+  .lessonnav{display:flex;gap:8px;align-items:center}
+  .lessonlink{
+    font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.02em;
+    border:1px solid var(--rule);background:var(--surface);color:var(--ink-soft);
+    border-radius:999px;padding:7px 15px;text-decoration:none;
+  }
+  .lessonlink:hover{color:var(--ink);border-color:var(--ink-faint)}
+  .lessonlink:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
   /* ---------- slide ----------
      One-at-a-time mode stacks every slide in a single grid cell, so the deck
      is always as tall as the tallest milestone and the controls never jump. */

@@ -159,10 +159,17 @@ single cheapest thing you can do to protect the next session.
 
 ## Sharing the slides with GitHub Pages
 
-Each lesson has a `slides.html` beside its cards — four slides, one per
-milestone, showing the finished script as real Scratch blocks. Drive it on
-the projector; hand the link to kids who run ahead so they have it in a
-second tab.
+Each lesson has a deck — four slides, one per milestone, showing the
+finished script as real Scratch blocks. Drive it on the projector; hand the
+link to kids who run ahead so they have it in a second tab.
+
+**The decks live under `s/` at the repo root, not beside their step
+cards.** That's deliberate, not a leftover — see cookie-clicker's README,
+under the same heading, for the full reasoning (GitHub Pages has no
+server-side rewriting, so a short URL with no redirect bounce means the
+content has to actually live there). A tiny redirect stub sits at each
+deck's old path (`lesson-1-fly-the-ship/slides.html`, etc.) so a bookmark
+or a link shared before this change still lands in the right place.
 
 **Turning it on** is a repo setting, done once: **Settings → Pages → Build
 and deployment → Deploy from a branch**, then pick `main` and the
@@ -180,21 +187,24 @@ nothing course-specific to redo here.
 Give it a minute after the first push, then the lesson decks are at:
 
 ```
-https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html
-https://cp.oxeg.dev/space-shooter/lesson-2-shoot-and-survive/slides.html
-https://cp.oxeg.dev/space-shooter/lesson-3-enemies-and-polish/slides.html
+https://cp.oxeg.dev/s/space_l1          Lesson 1 — Fly the Ship
+https://cp.oxeg.dev/s/space_l2          Lesson 2 — Shoot and Survive
+https://cp.oxeg.dev/s/space_l3          Lesson 3 — Enemies and Polish
 ```
 
 and the two reference decks — the block cheat sheet drawn as real Scratch
 blocks, and the extra challenges as hints rather than step cards — are at:
 
 ```
-https://cp.oxeg.dev/space-shooter/reference/block-cheat-sheet.html
-https://cp.oxeg.dev/space-shooter/reference/extra-challenges.html
+https://cp.oxeg.dev/s/space_cheatsheet  Reference — block cheat sheet
+https://cp.oxeg.dev/s/space_extra       Reference — extra challenges
 ```
 
-Those links are worth putting somewhere a volunteer can find in a hurry —
-the club's chat, or written on the board at the start of a session.
+Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
+that. Those links are worth putting somewhere a volunteer can find in a
+hurry — the club's chat, or written on the board at the start of a session.
+Each lesson deck also has **"← Lesson N / Lesson N →" links** in its top
+bar, so clicking through a course doesn't depend on knowing the next slug.
 
 Unlike cookie-clicker's three lesson decks, all five of these link a shared
 `reference/slides.css` rather than each inlining their own copy (see
@@ -202,55 +212,18 @@ Unlike cookie-clicker's three lesson decks, all five of these link a shared
 model to copy). This course has no `bonus-ideas.md` and so no deck for one —
 that document is a cookie-clicker-specific extension.
 
-### Short URLs, for writing on a board or reading aloud
+### Redirect stubs, for old links and old bookmarks
 
-The full paths above are still longer than you want to write on a board or
-read aloud, so each deck also has a short redirect stub, served from this
-same repo under `s/` at the root (not inside `space-shooter/`, since it's
-shared plumbing for every course). A third-party shortener was tried first
-and dropped — is.gd and v.gd were both failing custom short-URL creation
-with a generic server-side error, unrelated to anything on our end, and a
-stub in our own repo never depends on someone else's service staying up.
-Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
-that.
-
-A stub is a tiny HTML file at `s/<slug>/index.html` that redirects to the
-real deck the instant it loads (`meta http-equiv="refresh"` plus a
-`location.replace` fallback). To add one, from the repository root:
+Both the pre-`cp.oxeg.dev` long paths (`space-shooter/lesson-1-fly-the-ship/slides.html`)
+and the pre-`s/` short paths this course used briefly (`s/cp_space_l1`) are
+one-line redirects now, not real content. A stub is a tiny HTML file that
+redirects to the real deck the instant it loads (`meta http-equiv="refresh"`
+plus a `location.replace` fallback). To point one at a new target, from the
+repository root — see the identical `make_redirect` function in
+cookie-clicker's README:
 
 ```bash
-make_redirect() {
-  local slug=$1 target=$2
-  mkdir -p "s/$slug"
-  cat > "s/$slug/index.html" <<HTML
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=$target">
-<link rel="canonical" href="$target">
-<title>Redirecting</title>
-</head>
-<body>
-<p>Redirecting to <a href="$target">the slides</a>.</p>
-<script>location.replace("$target");</script>
-</body>
-</html>
-HTML
-}
-
-make_redirect space_l1 https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html
-```
-
-This course's short URLs, each redirecting to the matching full URL above:
-
-```
-https://cp.oxeg.dev/s/space_l1          -> lesson-1-fly-the-ship/slides.html
-https://cp.oxeg.dev/s/space_l2          -> lesson-2-shoot-and-survive/slides.html
-https://cp.oxeg.dev/s/space_l3          -> lesson-3-enemies-and-polish/slides.html
-https://cp.oxeg.dev/s/space_cheatsheet  -> reference/block-cheat-sheet.html
-https://cp.oxeg.dev/s/space_extra       -> reference/extra-challenges.html
+make_redirect space-shooter/lesson-1-fly-the-ship/slides.html https://cp.oxeg.dev/s/space_l1
 ```
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**
@@ -266,20 +239,21 @@ and remember a browser will happily show you a cached copy of the old one.
 
 ### Keeping the reference decks and their documents in step
 
-`block-cheat-sheet.html` and `extra-challenges.html` are screen versions of
-`block-cheat-sheet.md` and `extra-challenges.md` — the Markdown stays
-authoritative on every word, so an edit to either half needs the other in
-the same commit. Run these after changing any of the four files, from
-`space-shooter/reference`:
+`s/space_cheatsheet` and `s/space_extra` are screen versions of
+`reference/block-cheat-sheet.md` and `reference/extra-challenges.md` — the
+Markdown stays authoritative on every word, so an edit to either half needs
+the other in the same commit. The deck no longer sits beside its document
+(see "Sharing the slides" above), so these checks name it by its `s/` path.
+Run them from the repository root after changing any of the four files:
 
 ```bash
 # every block named in the cheat sheet appears in its deck, and vice versa
-diff <(grep -oE '^\| `[^`]+`' block-cheat-sheet.md | sed 's/^| `//; s/`$//' | sort) \
-     <(grep -o 'data-block="[^"]*"' block-cheat-sheet.html | cut -d'"' -f2 | sort)
+diff <(grep -oE '^\| `[^`]+`' space-shooter/reference/block-cheat-sheet.md | sed 's/^| `//; s/`$//' | sort) \
+     <(grep -o 'data-block="[^"]*"' s/space_cheatsheet/index.html | cut -d'"' -f2 | sort)
 
 # 12 challenges in both
-grep -c '^### ' extra-challenges.md            # 12
-grep -c 'class="entry"' extra-challenges.html  # 12
+grep -c '^### ' space-shooter/reference/extra-challenges.md  # 12
+grep -c 'class="entry"' s/space_extra/index.html               # 12
 ```
 
 Empty output on the first check and matching counts on the second mean the

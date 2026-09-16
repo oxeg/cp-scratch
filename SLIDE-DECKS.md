@@ -1,8 +1,14 @@
 # Building a slide deck for a lesson
 
 A handover document. It tells you how to turn a lesson's step cards into an
-HTML slide deck like the six already in `cookie-clicker/`, in enough detail
-that you can do it without having seen this repository before.
+HTML slide deck like the eleven already in `s/` (six for `cookie-clicker/`,
+five for `space-shooter/`), in enough detail that you can do it without
+having seen this repository before.
+
+**Decks live under `s/` at the repository root, not beside the course they
+belong to.** `s/<slug>/index.html` is both the deck's real location and its
+short URL — see "Where a deck lives" below before you go looking for one in
+a lesson folder.
 
 **Read `cookie-clicker/README.md` first** for what a course is and how a
 lesson is shaped. This document covers only the decks.
@@ -29,34 +35,57 @@ extra-challenges, six for bonus-ideas.
 Two files already do all of this correctly. Begin from them:
 
 - **`cookie-clicker/reference/slides.css`** — the stylesheet. Copy it whole.
-- **`cookie-clicker/lesson-3-golden-cookies/slides.html`** — the richest deck:
-  C-blocks, cap blocks, booleans, multiple scripts on one slide, a fallback
-  script, and edits to scripts from earlier weeks. Copy its structure and
-  its `<script>` block verbatim; replace the slides.
+- **`s/cookie_l3/index.html`** — the richest deck: C-blocks, cap blocks,
+  booleans, multiple scripts on one slide, a fallback script, and edits to
+  scripts from earlier weeks. Copy its structure and its `<script>` block
+  verbatim; replace the slides.
 
 Do not reconstruct the CSS or the navigation script from this document. They
 are long, they have been through several rounds of review, and a subtle
 retyping error in the block geometry is exactly the kind of defect nobody
 notices until it is on a projector.
 
+## Where a deck lives
+
+**Every deck's real file is at `s/<slug>/index.html`**, at the repository
+root, not inside the course or lesson it belongs to. This is what makes
+`https://cp.oxeg.dev/s/<slug>` a short URL with no redirect bounce — GitHub
+Pages has no server-side rewriting, so the only way for the address bar to
+show that URL with no jump is for the content to actually be there. The
+price: a lesson folder no longer contains its own deck, and every deck
+reaches back out through the repository root for its stylesheet instead of
+finding it in a sibling `reference/` folder.
+
+Pick a `slug` following the existing pattern: `<course-short-name>_l<N>` for
+a lesson deck (`cookie_l1`, `space_l2`), `<course-short-name>_<name>` for a
+reference deck (`cookie_cheatsheet`, `space_extra`). No `cp_` prefix — the
+site's own domain already says that.
+
+If the lesson or reference document you're building a deck for used to have
+one at a course-relative path (this happened once, when all eleven decks
+moved into `s/`), leave a redirect stub at the old path so a bookmark or a
+shared link still resolves — see "Publishing" below for the stub format. A
+deck that never lived anywhere else doesn't need one.
+
 ## Where the stylesheet goes
 
 **One `slides.css` per course**, at `<course>/slides.css` or
 `<course>/reference/slides.css`, with every deck in that course linking to it
-relatively:
+relatively. Since every deck now lives at `s/<slug>/index.html` — two levels
+below the repository root, the same depth a course's own reference/ folder
+sits at — the link reaches back through the root and into the course:
 
 ```html
-<link rel="stylesheet" href="../reference/slides.css">
+<link rel="stylesheet" href="../../cookie-clicker/reference/slides.css">
 ```
 
-That keeps the Scratch palette to one copy per course. A course still moves
-as a unit; an individual lesson directory no longer does, which is the price.
+That keeps the Scratch palette to one copy per course.
 
 **Cookie-clicker's three lesson decks are the exception**, and you should not
 copy their arrangement. They each inline the whole stylesheet, because they
 were built before the reference decks existed and before there were enough
 decks for the duplication to hurt. They are left as they are rather than
-churned. If you are adding decks to `cookie-clicker/`, link the existing
+churned. If you are adding a deck for `cookie-clicker/`, link the existing
 `reference/slides.css`; if you are starting a new course, give it its own.
 
 ## The shape of a slide
@@ -203,7 +232,7 @@ they appear — `BEGIN`/`END scratch palette`, `scratch blocks` and
 ```bash
 for R in palette blocks c-blocks; do
   diff <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/reference/slides.css) \
-       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/lesson-3-golden-cookies/slides.html)
+       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" s/cookie_l3/index.html)
 done
 ```
 
@@ -231,6 +260,14 @@ inside them.
   a new one, make that visually obvious.** A kid who rebuilds from scratch
   instead of editing ends up with a broken game. `.script.edit` gives the
   accent rule the cookie-clicker decks use.
+- **A lesson deck (not a reference deck) links its course's adjacent
+  lessons**, in a `.lessonnav` element in the top bar, between `.pips` and
+  `.toggle`: `<a class="lessonlink" href="../cookie_l2/index.html">Lesson 2
+  &rarr;</a>`. Omit the link a lesson doesn't have (Lesson 1 has no
+  "&larr; Lesson 0") rather than showing it disabled. This is separate from
+  `.toggle`/`.nav`, which move between this deck's own milestones — a kid
+  should be able to tell "next lesson" from "next milestone" at a glance,
+  which is why `.lessonlink` is a link styled like `.toggle`, not a button.
 
 ## The document wrapper
 
@@ -292,7 +329,7 @@ Measure it. If a deck does not fit:
 ## Verifying a deck
 
 ```bash
-F=<course>/<lesson>/slides.html
+F=s/<slug>/index.html
 grep -c 'class="slide' "$F"                      # one per milestone
 grep -c 'Go further' "$F"                        # one per slide
 grep -o '#4c97ff\|#9966ff\|#cf63cf\|#ffbf00\|#ffab19\|#5cb1d6\|#59c059\|#ff8c1a' "$F" | sort -u | wc -l   # 8
@@ -324,10 +361,40 @@ bottom edge against 1040px.
 
 ## Publishing
 
-Decks are served by GitHub Pages straight from the repository. The empty
-`.nojekyll` file at the root makes Pages serve every file exactly as
-committed — do not delete it. Add each new deck's URL to its course README,
-written out in full rather than as a placeholder a volunteer has to assemble.
+Decks are served by GitHub Pages straight from the repository, from its own
+domain: `https://cp.oxeg.dev/s/<slug>`, not the default
+`oxeg.github.io/cp-scratch`. The root-level `CNAME` file is what makes that
+work — do not delete or rename it. See either course README, under "Sharing
+the slides with GitHub Pages", for the DNS record and Pages setting this
+also depends on. The empty `.nojekyll` file at the root makes Pages serve
+every file exactly as committed — do not delete it either.
+
+**A new deck goes straight into `s/<slug>/index.html`.** Add its short URL
+to its course README, written out in full rather than as a placeholder a
+volunteer has to assemble. If it replaces a deck that used to live at a
+course-relative path, leave a redirect stub there — a tiny standalone HTML
+file, `meta http-equiv="refresh"` plus a `location.replace` fallback, no
+frozen regions, no slide markup:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0; url=TARGET">
+<link rel="canonical" href="TARGET">
+<title>Redirecting</title>
+</head>
+<body>
+<p>Redirecting to <a href="TARGET">the slides</a>.</p>
+<script>location.replace("TARGET");</script>
+</body>
+</html>
+```
+
+Either course README has a `make_redirect` shell function that generates
+this from a destination path and a target URL.
 
 **Pages serves what has been pushed**, not what is on your laptop. That is
 the thing that catches people out.

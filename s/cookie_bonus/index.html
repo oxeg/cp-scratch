@@ -3,12 +3,143 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=https://cp.oxeg.dev/cookie-clicker/reference/bonus-ideas.html">
-<link rel="canonical" href="https://cp.oxeg.dev/cookie-clicker/reference/bonus-ideas.html">
-<title>Redirecting</title>
+<title>Bonus Ideas</title>
+<!--
+  The screen version of cookie-clicker/reference/bonus-ideas.md, which is
+  authoritative. The two must change together - see the drift check in the
+  course README.
+
+  The five direction slides are deliberately sparse: one provocation and its
+  follow-on, and nothing else. That is the page's design, not an omission.
+  Adding "what makes this hard", a block name or a difficulty star would
+  inject exactly what this page exists to withhold. Leave them bare.
+
+  Styling is shared with the other two reference decks in slides.css.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../cookie-clicker/reference/slides.css">
 </head>
 <body>
-<p>Redirecting to <a href="https://cp.oxeg.dev/cookie-clicker/reference/bonus-ideas.html">the slides</a>.</p>
-<script>location.replace("https://cp.oxeg.dev/cookie-clicker/reference/bonus-ideas.html");</script>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Bonus Ideas</b>
+      <span>Cookie Clicker &middot; reference</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Slides"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all six</button>
+  </div>
+
+  <div class="deck one" id="deck">
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>What this page is</span><span class="tag">five directions</span><span class="tag">no stars, on purpose</span></div>
+      <h2>No sizes, no hints, no finishing</h2>
+      <p class="sub">Finished all three lessons &#8212; or finished a lesson early and worked through the challenges for it? If you've been through <code>reference/extra-challenges.md</code>, maybe more than once, and you're still waiting for the rest of the room to catch up, this page is for you. It doesn't matter which week you're in.</p>
+      <div class="cols">
+        <div><p class="label">Not a lesson, not the challenges sheet</p><p class="none">It isn't a lesson, and it isn't the challenges sheet either. No numbered steps, no milestones, no "Check it works", no "Stuck?" &#8212; none of the shape you'd expect from either of those. That's on purpose. This page isn't unfinished; it's a different kind of page.</p>
+        <p class="none" style="margin-top:14px">It has no difficulty stars, on purpose too. A star means somebody worked out roughly how big a job is before you started it. Nobody has done that for anything below &#8212; that's the whole difference from the challenges sheet. If you want a job with a known size and a hint to go with it, that's <code>reference/extra-challenges.md</code>. If you want something with no size at all, stay here.</p></div>
+        <div><p class="label">Two things before you start</p><p class="none">The three rules on <code>reference/extra-challenges.md</code> still apply here, in full &#8212; nothing on this page is checked or exempted the way an entry there can be. Read them again if you're doing this before week 3 especially: rule three is the one that matters most from here, because a direction on this page can wander straight into shop or golden-cookie territory without meaning to.</p>
+        <p class="none" style="margin-top:14px">And nobody has built any of these &#8212; not the five directions, not a sixth one you think up yourself, not whoever wrote this page. There's no worked version sitting somewhere to check your answer against, and no answer to be wrong about. If you finish all five, that isn't the end of the page &#8212; it means you've got five things to make wider, or a sixth direction of your own to go chasing. This page doesn't run out.</p></div>
+      </div>
+    </section>
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>Direction 1 of 5</span><span class="tag">no hint, on purpose</span></div>
+      <div class="dirwrap">
+        <p class="dir"><b>Give it something else to collect.</b><span>A second thing, earned a different way from cookies.</span></p>
+      </div>
+    </section>
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>Direction 2 of 5</span><span class="tag">no hint, on purpose</span></div>
+      <div class="dirwrap">
+        <p class="dir"><b>Make the cookie notice something.</b><span>Right now it knows <i>that</i> you clicked. Can it know how fast, or how long since the last one?</span></p>
+      </div>
+    </section>
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>Direction 3 of 5</span><span class="tag">no hint, on purpose</span></div>
+      <div class="dirwrap">
+        <p class="dir"><b>Sell something that isn't a Grandma.</b><span>Every shop item so far does the same job &#8212; makes cookies happen by itself. Add one that does something else.</span></p>
+      </div>
+    </section>
+    <section class="slide" data-i="4">
+      <div class="eyebrow"><span>Direction 4 of 5</span><span class="tag">no hint, on purpose</span></div>
+      <div class="dirwrap">
+        <p class="dir"><b>Make something go wrong.</b><span>Every good game has a way to lose, or at least a way to be unlucky.</span></p>
+      </div>
+    </section>
+    <section class="slide" data-i="5">
+      <div class="eyebrow"><span>Direction 5 of 5</span><span class="tag">no hint, on purpose</span></div>
+      <div class="dirwrap">
+        <p class="dir"><b>Make it a different game.</b><span>Same machinery, different pictures and words. A pizza clicker. A cat clicker. Whatever you'd rather be making. Change the costumes and the wording, but if you haven't done week 3 yet, keep the names <code>Cookie</code>, <code>cookies</code> and <code>Grandma</code> exactly as they are &#8212; next week's cards name all three, over and over, and they can't rename things for you.</span></p>
+      </div>
+    </section>
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Five directions, no hints, nothing to finish. Arrow keys move between them.</p>
+</div>
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('bonusideas.i'); if (s !== null) i = Math.min(5, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Slide ' + (n+1));
+    if (false) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('bonusideas.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all six';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>

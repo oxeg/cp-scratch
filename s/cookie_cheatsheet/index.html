@@ -3,12 +3,321 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=https://cp.oxeg.dev/cookie-clicker/reference/block-cheat-sheet.html">
-<link rel="canonical" href="https://cp.oxeg.dev/cookie-clicker/reference/block-cheat-sheet.html">
-<title>Redirecting</title>
+<title>Block Cheat Sheet</title>
+<!--
+  The screen version of cookie-clicker/reference/block-cheat-sheet.md, which is
+  authoritative: every block name and every meaning here is copied from it. The
+  two must change together - see the drift check in the course README.
+
+  Why this exists: the Markdown renders every block as monospace text, which
+  cannot show that `forever` is a cap block with no bottom bump, that `if` has a
+  mouth, that a comparison is a hexagon and a variable is an oval. Shape is how
+  a kid finds a block in the palette, so the deck draws it.
+
+  Styling is shared with the other two reference decks in slides.css.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../cookie-clicker/reference/slides.css">
 </head>
 <body>
-<p>Redirecting to <a href="https://cp.oxeg.dev/cookie-clicker/reference/block-cheat-sheet.html">the slides</a>.</p>
-<script>location.replace("https://cp.oxeg.dev/cookie-clicker/reference/block-cheat-sheet.html");</script>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Block Cheat Sheet</b>
+      <span>Cookie Clicker &middot; reference</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Palettes"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all six</button>
+  </div>
+
+  <div class="deck one" id="deck">
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>Palette 1 of 6</span><span class="tag">4 blocks</span></div>
+      <h2>Events</h2>
+      <p class="sub">What starts a script.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Events &middot; yellow</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="when green flag clicked"><div class="blk hat" data-cat="events">when green flag clicked</div></div>
+                <p>Starts this script when you click the green flag.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="when this sprite clicked"><div class="blk hat" data-cat="events">when this sprite clicked</div></div>
+                <p>Starts this script when you click this sprite.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="broadcast [message]"><div class="blk" data-cat="events">broadcast <span class="drop">message</span></div></div>
+                <p>Shouts a message to every sprite and the stage at once.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="when I receive [message]"><div class="blk hat" data-cat="events">when I receive <span class="drop">message</span></div></div>
+                <p>Starts this script when any sprite shouts that message.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>Palette 2 of 6</span><span class="tag">7 blocks</span></div>
+      <h2>Control</h2>
+      <p class="sub">Waiting, repeating, cloning.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Control &middot; amber</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="wait () seconds"><div class="blk" data-cat="control">wait <span class="num"></span> seconds</div></div>
+                <p>Pauses this script for that many seconds.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="wait until <>"><div class="blk" data-cat="control">wait until <span class="bool empty"><span></span></span></div></div>
+                <p>Pauses this script until the condition becomes true, then carries on.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="forever"><div class="c short" data-cat="control"><div class="cbar">forever</div><div class="cmouth"></div><div class="cfoot cap"></div></div></div>
+                <p>Repeats the blocks inside it for as long as the game runs.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="if <> then"><div class="c" data-cat="control"><div class="cbar">if <span class="bool empty"><span></span></span> then</div><div class="cmouth"></div><div class="cfoot"></div></div></div>
+                <p>Runs the blocks inside it only when the condition is true.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="create clone of [myself]"><div class="blk" data-cat="control">create clone of <span class="drop">myself</span></div></div>
+                <p>Makes a brand-new copy of this sprite.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="when I start as a clone"><div class="blk hat" data-cat="control">when I start as a clone</div></div>
+                <p>Starts this script for a clone the moment it's created.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="delete this clone"><div class="blk cap" data-cat="control">delete this clone</div></div>
+                <p>Removes this clone for good. Every clone script in this course ends with one, so clones don't pile up on the stage.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>Palette 3 of 6</span><span class="tag">5 blocks</span></div>
+      <h2>Looks</h2>
+      <p class="sub">How a sprite appears.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Looks &middot; purple</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="hide"><div class="blk" data-cat="looks">hide</div></div>
+                <p>Makes this sprite invisible on the stage.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="show"><div class="blk" data-cat="looks">show</div></div>
+                <p>Makes this sprite visible on the stage.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="set size to () %"><div class="blk" data-cat="looks">set size to <span class="num"></span> %</div></div>
+                <p>Sets the sprite's size to exactly that percentage &#8212; it does not add to whatever size it already was, so running it twice in a row does not make the sprite bigger twice.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="say [] for () seconds"><div class="blk" data-cat="looks">say <span class="txt"></span> for <span class="num"></span> seconds</div></div>
+                <p>Shows a speech bubble with that text for that many seconds, then carries on.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="switch backdrop to [backdrop]"><div class="blk" data-cat="looks">switch backdrop to <span class="drop">backdrop</span></div></div>
+                <p>Changes the stage's background to the one you pick.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>Palette 4 of 6</span><span class="tag">7 blocks</span></div>
+      <h2>Operators</h2>
+      <p class="sub">Maths and tests.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Operators &middot; green</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="() < ()"><span class="bool"><span><span class="num"></span> &lt; <span class="num"></span></span></span></div>
+                <p>True if the first number is smaller than the second.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() > ()"><span class="bool"><span><span class="num"></span> &gt; <span class="num"></span></span></span></div>
+                <p>True if the first number is bigger than the second.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() - ()"><span class="op"><span class="num"></span> &minus; <span class="num"></span></span></div>
+                <p>Subtracts the second number from the first.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() * ()"><span class="op"><span class="num"></span> &times; <span class="num"></span></span></div>
+                <p>Multiplies the two numbers together.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="not <>"><span class="bool"><span>not <span class="bool empty"><span></span></span></span></span></div>
+                <p>Flips true to false and false to true.</p>
+              </div>
+              <div class="row aside">
+                <div class="stack" data-block="<> and <>"><span class="bool wrap"><span><span class="bool empty"><span></span></span> and <span class="bool empty"><span></span></span></span></span></div>
+                <p>True only when both conditions inside it are true. Only needed if a golden cookie turns out not to respond to being clicked.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="pick random () to ()"><span class="op">pick random <span class="num"></span> to <span class="num"></span></span></div>
+                <p>Picks a random number between the two numbers, every time it runs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="4">
+      <div class="eyebrow"><span>Palette 5 of 6</span><span class="tag">5 blocks</span></div>
+      <h2>Variables &middot; Sound</h2>
+      <p class="sub">Numbers you keep, and noises.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Variables &middot; orange</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="set [variable] to ()"><div class="blk" data-cat="variables">set <span class="drop">variable</span> to <span class="num"></span></div></div>
+                <p>Sets the variable to exactly that value, wiping whatever it was before.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="change [variable] by ()"><div class="blk" data-cat="variables">change <span class="drop">variable</span> by <span class="num"></span></div></div>
+                <p>Adds that amount to the variable's current value (use a negative number to subtract).</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="(cookies)"><span class="rep">cookies</span> <span class="rep">per second</span> <span class="rep">grandma cost</span> <span class="rep">baker cost</span> <span class="rep">bonus</span></div>
+                <p>Each variable you make gets one of these, with its name on it. It stands for whatever that variable's number is right now. Blocks shaped like this are called <b>reporter blocks</b>: you drop one *into a slot* on another block (like <b>() < ()</b> or a <b>wait</b> block's number slot), instead of snapping it underneath one.</p>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="label">Sound &middot; pink</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="start sound [sound]"><div class="blk" data-cat="sound">start sound <span class="drop">sound</span></div></div>
+                <p>Plays that sound once and keeps running the rest of the script straight away.</p>
+              </div>
+              <div class="row aside">
+                <div class="stack" data-block="play sound [sound] until done"><div class="blk" data-cat="sound">play sound <span class="drop">sound</span> until done</div></div>
+                <p>Plays that sound and makes the script sit and wait until it has finished. Not used anywhere in this course &#8212; it is the one the step cards warn you about picking by mistake, because a clicking game that waits for its own sound stalls.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="5">
+      <div class="eyebrow"><span>Palette 6 of 6</span><span class="tag">3 blocks</span><span class="tag">only if clicks go unanswered</span></div>
+      <h2>Motion &middot; Sensing</h2>
+      <p class="sub">The ones you&rsquo;ll barely touch.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Motion &middot; blue</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="go to x: () y: ()"><div class="blk" data-cat="motion">go to x: <span class="num"></span> y: <span class="num"></span></div></div>
+                <p>Jumps straight to that exact spot on the stage.</p>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="label">Sensing &middot; pale blue</p>
+            <div class="rows">
+              <div class="row aside">
+                <div class="stack" data-block="touching [mouse-pointer]?"><span class="bool" data-cat="sensing"><span>touching <span class="drop">mouse-pointer</span><span class="tight">?</span></span></span></div>
+                <p>True while the mouse pointer is over this sprite, false otherwise. Only needed if a golden cookie turns out not to respond to being clicked.</p>
+              </div>
+              <div class="row aside">
+                <div class="stack" data-block="mouse down?"><span class="bool" data-cat="sensing"><span>mouse down?</span></span></div>
+                <p>True while the mouse button is held down, false otherwise. Only needed if a golden cookie turns out not to respond to being clicked.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="further">Both Sensing blocks, and the green <b>and</b>, exist only for Lesson 3&rsquo;s fallback &mdash; if a golden cookie turns out not to answer a click. You may never need them.</p>
+    </section>
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Blocks are grouped by the colour of their palette button. Find the colour first, then the block. Arrow keys move between palettes.</p>
+</div>
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('cheatsheet.i'); if (s !== null) i = Math.min(5, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Palette ' + (n+1));
+    if (false) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('cheatsheet.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all six';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>

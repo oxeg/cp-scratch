@@ -3,12 +3,262 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=https://cp.oxeg.dev/cookie-clicker/reference/extra-challenges.html">
-<link rel="canonical" href="https://cp.oxeg.dev/cookie-clicker/reference/extra-challenges.html">
-<title>Redirecting</title>
+<title>Extra Challenges</title>
+<!--
+  The screen version of cookie-clicker/reference/extra-challenges.md, which is
+  authoritative: every rule, title and word here is copied from it. The two must
+  change together - see the drift check in the course README.
+
+  Entries are hints, never instructions. They name blocks and never the order
+  they go in; a card that drew a finished script would turn a challenge into a
+  step card and defeat the page.
+
+  Styling is shared with the other two reference decks in slides.css.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../cookie-clicker/reference/slides.css">
 </head>
 <body>
-<p>Redirecting to <a href="https://cp.oxeg.dev/cookie-clicker/reference/extra-challenges.html">the slides</a>.</p>
-<script>location.replace("https://cp.oxeg.dev/cookie-clicker/reference/extra-challenges.html");</script>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Extra Challenges</b>
+      <span>Cookie Clicker &middot; reference</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Slides"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
+  </div>
+
+  <div class="deck one" id="deck">
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>How this page works</span><span class="tag">17 challenges</span></div>
+      <h2>Three rules, and what the stars mean</h2>
+      <p class="sub">These are for the ideas you think up yourself; every challenge on this page has already been checked.</p>
+      <div class="cols">
+        <div>
+          <p class="label">The three rules</p>
+          <ol class="rules">
+            <li><b>Build it on a new sprite of its own.</b> Not on <code>Cookie</code> &#8212; your own sprite, with its own scripts. It keeps your game tidy, and it means nothing you build here can break what you made from the cards.</li>
+            <li><b>Don't change the blocks the cards told you to build.</b> Add whatever you like alongside them &#8212; just leave those scripts as they are. Next week's cards expect to find them exactly how you left them.</li>
+            <li><b>Some things are for later.</b> If your idea is a shop, or a cookie that appears on its own and gives you a bonus &#8212; good instinct. That's what weeks 2 and 3 are. Pick something else for now and you'll build it with everyone else.</li>
+          </ol>
+        </div>
+        <div>
+          <p class="label">Difficulty</p>
+          <div class="rows">
+            <div class="row"><div class="stack"><span class="tier">&#9733;</span></div><p>change a number or a picture. Minutes. No new thinking.</p></div>
+            <div class="row"><div class="stack"><span class="tier">&#9733;&#9733;</span></div><p>needs a block you haven&rsquo;t used this way before, or a small idea. Roughly ten minutes.</p></div>
+            <div class="row"><div class="stack"><span class="tier">&#9733;&#9733;&#9733;</span></div><p>a side feature you build yourself, on your own sprite, from a goal and a constraint rather than a hint. Fifteen to twenty-five minutes. <b>This is hard mode.</b></p></div>
+          </div>
+          <p class="none" style="margin-top:18px">Nobody is telling you exactly which blocks to snap together. Each challenge gives you a job and a hint about which blocks might help &mdash; the rest is for you to work out. That&rsquo;s the fun part.</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>6 challenges</span><span class="tag">3&times;&#9733; &middot; 2&times;&#9733;&#9733; &middot; 1&times;&#9733;&#9733;&#9733;</span></div>
+      <h2>Lesson 1 &#8212; Bake a cookie</h2>
+      <div class="entries">
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Redecorate your game</h3>
+            <p>Make <code>Cookie</code> look like yours rather than the one from the step cards, and put the <code>cookies</code> readout wherever suits your stage.</p>
+            <p class="hint"><b>Hint:</b> For the cookie, open the Costumes tab and use the paint tools. If you want to experiment without losing what you've already got, right-click the costume in the Costumes list and duplicate it &#8212; a costume duplicate doesn't drag anything else along with it, so it's safe to try things on the copy. For the readout, drag it anywhere on the stage you like; right-click it there and you'll find a <b>large readout</b> option too, if you want it to stand out more.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Pick your own sound</h3>
+            <p>Give <code>Cookie</code> a click sound that's your choice, not whatever came with it.</p>
+            <p class="hint"><b>Hint:</b> Open the Sounds tab, add a new sound from the sound library &#8212; whatever feels satisfying to click &#8212; and read its name once you've picked it. Then point the <i>pink</i> Sound <code>start sound</code> block's dropdown at that name instead of the old one.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Tune how it feels</h3>
+            <p>Decide exactly how hard your cookie squashes when you click it, and what your <code>Special Cookie</code> is worth.</p>
+            <p class="hint"><b>Hint:</b> The squash lives in <code>Cookie</code>'s click script, in the number on <code>set size to (110) %</code> &#8212; further from 100 makes a bigger squash, closer to 100 a tinier one. What <code>Special Cookie</code> earns is the number on its own <code>change [cookies v] by (10)</code> block; 10 was only ever a suggestion.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Show your best score</h3>
+            <p>Your score drops to 0 every time somebody presses the green flag, and the best run of the afternoon vanishes with it. Keep a record that survives: a number showing the highest <code>cookies</code> has ever been, which stays put however many times the game starts again.</p>
+            <p class="hint"><b>Hint:</b> Make a variable called <code>best</code> &#8212; the <b>Make a Variable</b> button in the <i>orange</i> Variables palette, <b>For all sprites</b> chosen, exactly how you made <code>cookies</code>. Something has to keep an eye on <code>cookies</code> the whole time the game is running, so the blocks in play are the <i>amber</i> Control ones <code>forever</code> and <code>if <> then</code>, a <i>green</i> Operators <code>() > ()</code> to do the comparing, and an orange <code>set</code> block to write a new record down. It needs a <i>yellow</i> Events <code>when green flag clicked</code> on it as well: a stack with no hat block never starts by itself, and you'd be left staring at blocks that do nothing. Give it a sprite of its own to live on: draw a rosette or a trophy, or find something prize-shaped in the sprite library and check what it's actually called once you're browsing.</p>
+            <p class="notice"><b>Worth noticing:</b> go looking for the block that puts <code>best</code> back to 0. There isn't one anywhere in your game &#8212; work out why that's the whole trick.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Your cookie has opinions</h3>
+            <p>Give your game a character who watches the score and has something to say about it &#8212; mild encouragement at 10 cookies, disbelief at 500, something rude at 5000. The numbers are yours. What matters is that what it says changes as the score climbs.</p>
+            <p class="hint"><b>Hint:</b> Any sprite from the library will do, or draw your own &#8212; if you pick one from the library, read the name it turns out to have while you're browsing, since it may not be called what you expect. The <i>purple</i> Looks block <code>say [] for () seconds</code> is how it talks. Working out <i>when</i> it talks is a <i>green</i> Operators <code>() > ()</code>, the <code>(cookies)</code> oval, and an <i>amber</i> Control <code>if <> then</code> &#8212; and something has to keep that checking going all game long, which is what <code>forever</code> is for. It wants a <i>yellow</i> Events <code>when green flag clicked</code> on top, the same as every script that has to start on its own.</p>
+            <p><b>Watch out:</b> <code>say [] for () seconds</code> holds up its own script for the whole time the bubble is showing, so the loop can't race ahead of it. What happens instead is quieter and easier to miss: a character with nothing else to slow it down starts the same sentence again the instant it finishes, so the bubble never leaves the screen. An <i>amber</i> Control <code>wait () seconds</code> is the block that fixes that. How long your character stays quiet between remarks is your call.</p>
+          </article>
+          <article class="entry" data-tier="3">
+            <span class="tier">&#9733;&#9733;&#9733;</span>
+            <h3>How fast can you click?</h3>
+            <p>Build a meter that shows how many cookies the last second earned you &#8212; a number that leaps while you're hammering the cookie and sinks back to nothing the moment you stop.</p>
+            <p class="hint"><b>Hint:</b> Two variables, both made the way you made <code>cookies</code>, both <b>For all sprites</b>. <code>click speed</code> is the one you show off. <code>last count</code> is the awkward one: it holds what <code>cookies</code> said a second ago. The blocks in play are a <i>yellow</i> Events <code>when green flag clicked</code>, a <i>green</i> Operators <code>() - ()</code>, orange <code>set</code> blocks, and the <i>amber</i> Control pair <code>wait () seconds</code> and <code>forever</code>. Give the whole thing a sprite of its own to sit on &#8212; a dial, a speedometer, a little sign beside the readout.</p>
+            <p><b>Why this is the week's hard one:</b> nothing in a computer remembers a second ago unless something wrote it down. Your meter is the difference between what <code>cookies</code> is now and what <code>cookies</code> was &#8212; which means <code>last count</code> has to be brought up to date every single time round the loop, or the meter is measuring the wrong gap and the number only ever climbs. Keep <code>last count</code> ticked on the stage while you're testing so you can watch it move; untick it once you trust it and leave just the meter showing.</p>
+            <p><b>Once your shop exists:</b> helpers bake cookies too, so what this really measures is everything the last second earned &#8212; your clicks and your Grandmas together. Whether that's a bug or a feature is for you to decide.</p>
+          </article>
+      </div>
+    </section>
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>5 challenges</span><span class="tag">2&times;&#9733; &middot; 2&times;&#9733;&#9733; &middot; 1&times;&#9733;&#9733;&#9733;</span></div>
+      <h2>Lesson 2 &#8212; The shop</h2>
+      <div class="entries">
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Dress up your shop</h3>
+            <p>Choose what your shopkeeper looks like, and decide where everything on your stage lives.</p>
+            <p class="hint"><b>Hint:</b> <code>Grandma</code> can wear a different look &#8212; open her Costumes tab and either edit the costume she has or choose a new one from the costume library. Once she looks the part, drag her, the <code>Baker</code>, and the number readouts anywhere on the stage that suits your layout.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Tune the shop's economy</h3>
+            <p>Decide how much <code>Grandma</code> costs to start with, how steeply prices climb every time someone buys her or the <code>Baker</code>, and how much the <code>Baker</code> earns you.</p>
+            <p class="hint"><b>Hint:</b> Her starting price is the number on <code>Cookie</code>'s <code>set [grandma cost v] to (50)</code> block. How steeply prices climb is the <code>2</code> inside <code>set [grandma cost v] to ((grandma cost) * (2))</code>, on her own <code>when this sprite clicked</code> script &#8212; the <code>Baker</code> has a script shaped just the same way, with its own number, and you can set the two differently if you want one of them to get expensive faster than the other. What the <code>Baker</code> earns is the number on his <code>change [per second v] by (10)</code> block.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Make Grandma say thanks</h3>
+            <p>Right now, buying <code>Grandma</code> or the <code>Baker</code> happens in total silence &#8212; nothing on the stage marks it, beyond the numbers changing. Give one of them something to say when they're bought.</p>
+            <p class="hint"><b>Hint:</b> The <i>purple</i> Looks category has a <code>say [] for () seconds</code> block. It belongs somewhere inside the mouth of the <code>if</code> on the shopkeeper's <code>when this sprite clicked</code> script &#8212; the same <code>if</code> that already takes their payment and raises their price.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>A sign that lights up</h3>
+            <p>Put a sign on your stage that shows itself only while you can actually afford a Grandma, and takes itself away again the moment you can't. Nobody clicks it and it buys nothing &#8212; its whole job is to tell you, from across the room, that the shop is worth a look.</p>
+            <p class="hint"><b>Hint:</b> Draw your own sign sprite &#8212; "GRANDMA!", a big arrow, a light, whatever you'd notice out of the corner of your eye. The condition you need is the one you wrestled with in Milestone 2, unchanged: <code><not <(cookies) < (grandma cost)>></code>, built from the <i>green</i> Operators <code>not <></code> and <code>() < ()</code> with the <code>(cookies)</code> and <code>(grandma cost)</code> ovals dropped into it. That is what makes this challenge worth doing &#8212; the exact test that decides whether a purchase goes through also decides whether a sign is worth showing, and it has no idea it's doing a second job. The <i>purple</i> Looks blocks <code>show</code> and <code>hide</code> do the appearing and disappearing, a <i>yellow</i> Events <code>when green flag clicked</code> gets the whole thing running, an <i>amber</i> Control <code>forever</code> keeps the sign paying attention, and two <code>if <> then</code> blocks with opposite conditions are enough &#8212; there's no block here that isn't on your cheat sheet.</p>
+            <p><b>Watch out:</b> hiding <i>sticks</i>. A sprite that has hidden itself stays hidden. The green flag does not undo it &#8212; only a <code>show</code> block that actually runs, or the button below, puts a sprite back on the stage. If you want your sign visible again while you're editing, click it in the sprite list and use the open-eye <b>show</b> button in the sprite info panel, the strip above the sprite list &#8212; check the exact spot in your editor, since it can look a little different depending on the version.</p>
+          </article>
+          <article class="entry" data-tier="3">
+            <span class="tier">&#9733;&#9733;&#9733;</span>
+            <h3>A third shopkeeper</h3>
+            <p>Add a third thing to buy in your shop &#8212; a new helper who bakes even more cookies a second, at a price of their own.</p>
+            <p class="hint"><b>Hint:</b> You've already built this shape of script once, when the <code>Baker</code> was made from a copy of <code>Grandma</code>, so the same trick works again: a new sprite, a new cost variable made "for all sprites" (Grandma's <code>grandma cost</code> and the Baker's <code>baker cost</code> are your models), and the same <code>if <not <() < ()>> then</code> pattern with its <code>() - ()</code> and <code>() * ()</code> blocks pointing at your new cost variable instead of either of theirs. Decide for yourself what he costs to start, how steeply that price climbs, and how many cookies a second he adds to <code>per second</code>.</p>
+          </article>
+      </div>
+    </section>
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>6 challenges</span><span class="tag">3&times;&#9733; &middot; 2&times;&#9733;&#9733; &middot; 1&times;&#9733;&#9733;&#9733;</span></div>
+      <h2>Lesson 3 &#8212; Golden cookies</h2>
+      <div class="entries">
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Tune when golden cookies show up</h3>
+            <p>Decide how often a golden cookie appears, and how long one sits there before it vanishes.</p>
+            <p class="hint"><b>Hint:</b> How often is the two numbers inside <code>pick random (15) to (30)</code>, in <code>Special Cookie</code>'s <code>when green flag clicked</code> script. How long one lingers is the <code>5</code> in <code>wait (5) seconds</code>, in its <code>when I start as a clone</code> script.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Tune the sugar rush</h3>
+            <p>Decide how big a sugar rush should be, and how long one should last.</p>
+            <p class="hint"><b>Hint:</b> How big it is the <code>2</code> in <code>set [bonus v] to (2)</code>, inside <code>Cookie</code>'s <code>when I receive [sugar rush v]</code> script &#8212; leave the other <code>set [bonus v] to (1)</code> alone, since 1 is what "no rush" means. How long it lasts is the <code>10</code> in that same script's <code>wait (10) seconds</code>.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Give your golden cookie a look of its own</h3>
+            <p>Make <code>Special Cookie</code> look like something worth chasing across the stage &#8212; a star, a crown, a shine, whatever says "grab me."</p>
+            <p class="hint"><b>Hint:</b> Open its Costumes tab and paint over the gold circle you already made there.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Give the rush a beginning and an end</h3>
+            <p>Decide what tells a player a sugar rush has started &#8212; a sound, words in a speech bubble, a change of backdrop, or all three at once &#8212; and give the end of the rush a signal of its own too, since right now <code>bonus</code> just quietly drops back to 1 with nothing marking it.</p>
+            <p class="hint"><b>Hint:</b> If you haven't built Milestone 3 yet, its pattern is the one to copy for the start: a <code>start sound</code> block (Sound) and either a <code>say [] for () seconds</code> or a <code>switch backdrop to []</code> block (Looks), living inside <code>Cookie</code>'s <code>when I receive [sugar rush v]</code> script, near where <code>bonus</code> is set to <code>2</code>. For the ending, the same kinds of blocks belong near the bottom of that script, where <code>bonus</code> is set back to <code>1</code> &#8212; just make them different from whatever marks the start, so the two moments don't feel the same.</p>
+            <p class="checked"><b>Checked for you:</b> this one does change a script the cards built. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>A bigger milestone</h3>
+            <p><code>cookie master</code> fires once, just past 1000 cookies. Add a second message for an even bigger number.</p>
+            <p class="hint"><b>Hint:</b> The pattern is the one you already built for <code>cookie master</code>: a <i>yellow</i> Events <code>when green flag clicked</code> with a <code>wait until <></code> block under it, holding a <i>green</i> Operators <code>() > ()</code> block with the <code>(cookies)</code> oval inside it, then a <code>broadcast</code> with a message of your own, and a <code>when I receive</code> script somewhere that reacts to it &#8212; a <code>say [] for () seconds</code> block works, or anything else you fancy. Pick your own bigger number and your own message name &#8212; just don't call it <code>cookie master</code> again, or you'll be answering the wrong shout.</p>
+            <p class="checked"><b>Checked for you:</b> this one lives on <code>Cookie</code> rather than a sprite of its own. That's fine here because somebody has checked it against the rest of the course &#8212; it isn't something to do off your own bat.</p>
+          </article>
+          <article class="entry" data-tier="3">
+            <span class="tier">&#9733;&#9733;&#9733;</span>
+            <h3>A second kind of golden cookie</h3>
+            <p>Your golden cookie doubles everything for ten seconds. Add a second kind alongside it &#8212; rarer, and looking nothing like your gold one &#8212; that does something else entirely: an instant pile of cookies, the whole lot at once, the moment somebody catches it.</p>
+            <p><b>Two constraints, and they matter more than anything else on this page:</b></p>
+            <p>- It hands out its own reward, from its own click script. It may <b>not</b> shout <code>sugar rush</code>. Two things shouting the same message means you can never tell which one a rush came from. - It leaves <code>bonus</code> completely alone &#8212; doesn't set it, doesn't read it. Your click script and your per-second script both depend on <code>bonus</code>, and the <code>when I receive [sugar rush v]</code> script is the only thing in the game allowed to change it. A second sprite writing to it turns your sugar rush into something nobody can predict, including you.</p>
+            <p class="hint"><b>Hint:</b> Right-click <code>Special Cookie</code> in the sprite list, choose <b>Duplicate</b>, and give the copy a name of your own. Duplicating a <i>sprite</i> is the safe kind of duplicating &#8212; unlike duplicating a block, a sprite copy brings along nothing you didn't ask for &#8212; and your copy arrives with its own spawner, its own clone script and its own click script, none of them joined to the original's in any way. Every number in the copy is yours: the <code>pick random () to ()</code> numbers in its spawner decide how rare it is, the <code>wait () seconds</code> in its clone script decides how long you get to catch one, and its Costumes tab is where it stops being a gold circle. The reward itself is one orange <code>change [cookies v] by ()</code> block. How big the pile is, is your decision &#8212; and worth some thought, because it has to feel <i>different</i> from a sugar rush, not just better than one.</p>
+            <p><b>Watch out:</b> the copy's click script still shouts <code>sugar rush</code> today, and that <code>broadcast</code> block has <code>delete this clone</code> sitting underneath it. Dragging a block brings everything below it along, so work out what travels with what before you pull anything anywhere. And keep your hands off the real <code>Special Cookie</code> while you're in there &#8212; those are the scripts Milestone 2 built, and until you've renamed and repainted the copy, the sprite list is the only thing telling the two apart.</p>
+            <p><b>If your golden cookie needed the other shape</b> &#8212; the <code>when I start as a clone</code> version with <code>touching [mouse-pointer v]?</code> and <code>mouse down?</code> in it, from the Milestone 2 <code>Stuck?</code> box &#8212; your copy has that shape too, because a copy copies whatever was there. Both constraints above apply to it in exactly the same way.</p>
+          </article>
+      </div>
+    </section>
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Finished a milestone early? Pick a challenge. Every one is optional. Arrow keys move between lessons.</p>
+</div>
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('challenges.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Slide ' + (n+1));
+    if (false) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('challenges.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all four';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>

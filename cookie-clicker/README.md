@@ -120,27 +120,28 @@ Passing these checks is not a substitute for the checklist above.
 
 ### Keeping each reference document and its deck in step
 
-Each of the three `reference/` documents now has a deck beside it, which means
-every edit costs two edits. These checks make a lapse findable rather than
-silent — run them after changing any of the six files:
+Each of the three `reference/` documents now has a deck, which means every
+edit costs two edits. The deck no longer sits beside its document — it's at
+`s/cookie_cheatsheet`, `s/cookie_extra` and `s/cookie_bonus` respectively,
+per the "Sharing the slides" section above — so these checks name the deck
+by its `s/` path. Run them from the repository root after changing any of
+the six files:
 
 ```bash
-cd cookie-clicker/reference
-
 # every block named in the cheat sheet appears in its deck, and vice versa
-diff <(grep -oE '^\| `[^`]+`' block-cheat-sheet.md | sed 's/^| `//; s/`$//' | sort) \
-     <(grep -o 'data-block="[^"]*"' block-cheat-sheet.html | cut -d'"' -f2 | sort)
+diff <(grep -oE '^\| `[^`]+`' cookie-clicker/reference/block-cheat-sheet.md | sed 's/^| `//; s/`$//' | sort) \
+     <(grep -o 'data-block="[^"]*"' s/cookie_cheatsheet/index.html | cut -d'"' -f2 | sort)
 
 # 17 challenges in both, and the eight "Checked for you" entries in both
-grep -c '^### ' extra-challenges.md              # 17
-grep -c 'class="entry"' extra-challenges.html    # 17
-grep -c 'Checked for you' extra-challenges.md    # 8
-grep -c 'Checked for you' extra-challenges.html  # 8
+grep -c '^### ' cookie-clicker/reference/extra-challenges.md  # 17
+grep -c 'class="entry"' s/cookie_extra/index.html              # 17
+grep -c 'Checked for you' cookie-clicker/reference/extra-challenges.md  # 8
+grep -c 'Checked for you' s/cookie_extra/index.html                     # 8
 
 # five directions in both. bonus-ideas.md has no headings at all — the five
 # live in a blockquote, each opening with a bold title — so count those.
-grep -c '^> \*\*' bonus-ideas.md                 # 5
-grep -c 'class="dir"' bonus-ideas.html           # 5
+grep -c '^> \*\*' cookie-clicker/reference/bonus-ideas.md  # 5
+grep -c 'class="dir"' s/cookie_bonus/index.html              # 5
 ```
 
 The first check needs `sed` rather than `tr -d` to strip the pipe and
@@ -155,7 +156,7 @@ lesson slide to the cheat sheet sees two different Scratches:
 ```bash
 for R in palette blocks c-blocks; do
   diff <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/reference/slides.css) \
-       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" cookie-clicker/lesson-3-golden-cookies/slides.html)
+       <(sed -n "/BEGIN scratch $R/,/END scratch $R/p" s/cookie_l3/index.html)
 done
 ```
 
@@ -252,16 +253,30 @@ keeps their game at all.
   who get through the challenges too.
 
 **Print the Markdown, not the decks.** Each of those three has an HTML deck
-beside it for the screen, but paper is what a kid has open next to Scratch.
+for the screen too (see "Sharing the slides" below), but paper is what a kid
+has open next to Scratch.
 The cheat sheet is the one worth having in both: its deck draws every block as
 a real Scratch block, so a kid matching by shape and colour can use **Show
 all** to see all thirty-one at once, which the printed table cannot do.
 
 ## Sharing the slides with GitHub Pages
 
-Each lesson has a `slides.html` beside its cards — four slides, one per
-milestone, showing the finished script as real Scratch blocks. Drive it on the
-projector; hand the link to kids who run ahead so they have it in a second tab.
+Each lesson has a deck — four slides, one per milestone, showing the
+finished script as real Scratch blocks. Drive it on the projector; hand the
+link to kids who run ahead so they have it in a second tab.
+
+**The decks live under `s/` at the repo root, not beside their step
+cards.** That's deliberate, not a leftover: `s/<slug>/index.html` is the
+short URL *and* the file's real location — GitHub Pages has no server-side
+rewriting, so the only way for the address bar to show a short URL with no
+redirect bounce is for the actual content to be there. The price is that a
+lesson's folder is no longer fully self-contained (its deck lives elsewhere)
+and every deck's relative link to the shared stylesheet now reaches back out
+through the repo root (`../../cookie-clicker/reference/slides.css`) instead
+of a sibling `reference/` folder. See `SLIDE-DECKS.md` for the full layout
+and how to build a new one. A tiny redirect stub sits at each deck's old
+path (`lesson-1-bake-a-cookie/slides.html`, etc.) so a bookmark or a link
+shared before this change still lands in the right place.
 
 **Turning it on** is a repo setting, done once: **Settings → Pages → Build and
 deployment → Deploy from a branch**, then pick `main` and the `/ (root)`
@@ -289,43 +304,39 @@ to be true for the domain to actually work:
 Once both are in place, the decks are at:
 
 ```
-https://cp.oxeg.dev/cookie-clicker/lesson-1-bake-a-cookie/slides.html
-https://cp.oxeg.dev/cookie-clicker/lesson-2-the-shop/slides.html
-https://cp.oxeg.dev/cookie-clicker/lesson-3-golden-cookies/slides.html
+https://cp.oxeg.dev/s/cookie_l1          Lesson 1 — Bake a Cookie
+https://cp.oxeg.dev/s/cookie_l2          Lesson 2 — The Shop
+https://cp.oxeg.dev/s/cookie_l3          Lesson 3 — Golden Cookies
+https://cp.oxeg.dev/s/cookie_cheatsheet  Reference — block cheat sheet
+https://cp.oxeg.dev/s/cookie_extra       Reference — extra challenges
+https://cp.oxeg.dev/s/cookie_bonus       Reference — bonus ideas
 ```
 
-The three reference documents have decks too, sharing one stylesheet:
-
-```
-https://cp.oxeg.dev/cookie-clicker/reference/block-cheat-sheet.html
-https://cp.oxeg.dev/cookie-clicker/reference/extra-challenges.html
-https://cp.oxeg.dev/cookie-clicker/reference/bonus-ideas.html
-```
-
-Those links are worth putting somewhere a volunteer can find in a hurry — the
-club's chat, or written on the board at the start of a session.
-
-### Short URLs, for writing on a board or reading aloud
-
-The full paths above are still longer than you want to write on a board or
-read aloud, so each deck also has a short redirect stub, served from this
-same repo under `s/` at the root (not inside `cookie-clicker/`, since it's
-shared plumbing for every course). A third-party shortener was tried first
-and dropped — is.gd and v.gd were both failing custom short-URL creation
-with a generic server-side error, unrelated to anything on our end, and a
-stub in our own repo never depends on someone else's service staying up.
 Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
-that.
+that. Those links are worth putting somewhere a volunteer can find in a
+hurry — the club's chat, or written on the board at the start of a session.
+Each lesson deck also has **"← Lesson N / Lesson N →" links** in its top
+bar, so clicking through a course doesn't depend on knowing the next slug.
 
-A stub is a tiny HTML file at `s/<slug>/index.html` that redirects to the
-real deck the instant it loads (`meta http-equiv="refresh"` plus a
-`location.replace` fallback). To add one, from the repository root:
+A third-party shortener was tried first and dropped — is.gd and v.gd were
+both failing custom short-URL creation with a generic server-side error,
+unrelated to anything on our end, and a deck served from this repo never
+depends on someone else's service staying up.
+
+### Redirect stubs, for old links and old bookmarks
+
+Both the pre-`cp.oxeg.dev` long paths (`cookie-clicker/lesson-1-bake-a-cookie/slides.html`)
+and the pre-`s/` short paths this course used briefly (`s/cp_cookie_l1`) are
+one-line redirects now, not real content. A stub is a tiny HTML file that
+redirects to the real deck the instant it loads (`meta http-equiv="refresh"`
+plus a `location.replace` fallback). To point one at a new target, from the
+repository root:
 
 ```bash
 make_redirect() {
-  local slug=$1 target=$2
-  mkdir -p "s/$slug"
-  cat > "s/$slug/index.html" <<HTML
+  local dest=$1 target=$2
+  mkdir -p "$(dirname "$dest")"
+  cat > "$dest" <<HTML
 <!doctype html>
 <html lang="en">
 <head>
@@ -343,18 +354,7 @@ make_redirect() {
 HTML
 }
 
-make_redirect cookie_l1 https://cp.oxeg.dev/cookie-clicker/lesson-1-bake-a-cookie/slides.html
-```
-
-This course's short URLs, each redirecting to the matching full URL above:
-
-```
-https://cp.oxeg.dev/s/cookie_l1          -> lesson-1-bake-a-cookie/slides.html
-https://cp.oxeg.dev/s/cookie_l2          -> lesson-2-the-shop/slides.html
-https://cp.oxeg.dev/s/cookie_l3          -> lesson-3-golden-cookies/slides.html
-https://cp.oxeg.dev/s/cookie_cheatsheet  -> reference/block-cheat-sheet.html
-https://cp.oxeg.dev/s/cookie_extra       -> reference/extra-challenges.html
-https://cp.oxeg.dev/s/cookie_bonus       -> reference/bonus-ideas.html
+make_redirect cookie-clicker/lesson-1-bake-a-cookie/slides.html https://cp.oxeg.dev/s/cookie_l1
 ```
 
 **The `.nojekyll` file in the repo root is deliberate — don't delete it.**

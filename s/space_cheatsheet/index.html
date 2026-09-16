@@ -3,12 +3,331 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=https://cp.oxeg.dev/space-shooter/reference/block-cheat-sheet.html">
-<link rel="canonical" href="https://cp.oxeg.dev/space-shooter/reference/block-cheat-sheet.html">
-<title>Redirecting</title>
+<title>Block Cheat Sheet</title>
+<!--
+  The screen version of space-shooter/reference/block-cheat-sheet.md, which is
+  authoritative: every block name and every meaning here is copied from it. The
+  two must change together - see the drift check in space-shooter/README.md.
+
+  Why this exists: the Markdown renders every block as monospace text, which
+  cannot show that `forever` is a cap block with no bottom bump, that `if` has a
+  mouth, that a comparison is a hexagon and a variable is an oval. Shape is how
+  a kid finds a block in the palette, so the deck draws it.
+
+  Styling is shared with the other reference decks in slides.css.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../space-shooter/reference/slides.css">
 </head>
 <body>
-<p>Redirecting to <a href="https://cp.oxeg.dev/space-shooter/reference/block-cheat-sheet.html">the slides</a>.</p>
-<script>location.replace("https://cp.oxeg.dev/space-shooter/reference/block-cheat-sheet.html");</script>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Block Cheat Sheet</b>
+      <span>Space Shooter &middot; reference</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Palettes"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all six</button>
+  </div>
+
+  <div class="deck one" id="deck">
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>Palette 1 of 6</span><span class="tag">4 blocks</span></div>
+      <h2>Events</h2>
+      <p class="sub">What starts a script.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Events &middot; yellow</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="when green flag clicked"><div class="blk hat" data-cat="events">when green flag clicked</div></div>
+                <p>Starts this script when you click the green flag.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="when [key] key pressed"><div class="blk hat" data-cat="events">when <span class="drop">key</span> key pressed</div></div>
+                <p>Starts this script the moment you press that key.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="when I receive [message]"><div class="blk hat" data-cat="events">when I receive <span class="drop">message</span></div></div>
+                <p>Starts this script when any sprite shouts that message.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="broadcast [message]"><div class="blk" data-cat="events">broadcast <span class="drop">message</span></div></div>
+                <p>Shouts a message to every sprite and the stage at once.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>Palette 2 of 6</span><span class="tag">8 blocks</span></div>
+      <h2>Control</h2>
+      <p class="sub">Waiting, repeating, cloning, stopping.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Control &middot; amber</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="forever"><div class="c short" data-cat="control"><div class="cbar">forever</div><div class="cmouth"></div><div class="cfoot cap"></div></div></div>
+                <p>Repeats the blocks inside it for as long as the game runs.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="repeat until <>"><div class="c" data-cat="control"><div class="cbar">repeat until <span class="bool empty"><span></span></span></div><div class="cmouth"></div><div class="cfoot"></div></div></div>
+                <p>Repeats the blocks inside it until the condition becomes true.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="if <> then"><div class="c" data-cat="control"><div class="cbar">if <span class="bool empty"><span></span></span> then</div><div class="cmouth"></div><div class="cfoot"></div></div></div>
+                <p>Runs the blocks inside it only when the condition is true.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="wait () seconds"><div class="blk" data-cat="control">wait <span class="num"></span> seconds</div></div>
+                <p>Pauses this script for that many seconds.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="create clone of [myself]"><div class="blk" data-cat="control">create clone of <span class="drop">myself</span></div></div>
+                <p>Makes a brand-new copy of this sprite.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="when I start as a clone"><div class="blk hat" data-cat="control">when I start as a clone</div></div>
+                <p>Starts this script for a clone the moment it's created.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="delete this clone"><div class="blk cap" data-cat="control">delete this clone</div></div>
+                <p>Removes this clone for good &#8212; a clone script must always end with one.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="stop [all]"><div class="blk cap" data-cat="control">stop <span class="drop">all</span></div></div>
+                <p>Stops every script in the whole project.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>Palette 3 of 6</span><span class="tag">10 blocks</span></div>
+      <h2>Motion &middot; Sensing</h2>
+      <p class="sub">Where things are, and whether they're touching.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Motion &middot; blue</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="go to x: () y: ()"><div class="blk" data-cat="motion">go to x: <span class="num"></span> y: <span class="num"></span></div></div>
+                <p>Jumps straight to that exact spot on the stage.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="go to [sprite]"><div class="blk" data-cat="motion">go to <span class="drop">sprite</span></div></div>
+                <p>Jumps straight to wherever another sprite currently is.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="change x by ()"><div class="blk" data-cat="motion">change x by <span class="num"></span></div></div>
+                <p>Moves sideways by that many steps (right if positive, left if negative).</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="change y by ()"><div class="blk" data-cat="motion">change y by <span class="num"></span></div></div>
+                <p>Moves up/down by that many steps (up if positive, down if negative).</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="set x to ()"><div class="blk" data-cat="motion">set x to <span class="num"></span></div></div>
+                <p>Jumps sideways to that exact x position, ignoring where it was.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="set y to ()"><div class="blk" data-cat="motion">set y to <span class="num"></span></div></div>
+                <p>Jumps up/down to that exact y position, ignoring where it was.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="x position"><span class="rep" style="background:var(--motion);border-color:var(--motion-d)">x position</span></div>
+                <p>Reports how far left/right this sprite currently is. A reporter block &#8212; same oval shape as a variable, but blue for Motion instead of orange.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="y position"><span class="rep" style="background:var(--motion);border-color:var(--motion-d)">y position</span></div>
+                <p>Reports how far up/down this sprite currently is. Same idea as <b>x position</b>, for the other axis.</p>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="label">Sensing &middot; pale blue</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="key [key] pressed?"><span class="bool" data-cat="sensing"><span>key <span class="drop">key</span> pressed<span class="tight">?</span></span></span></div>
+                <p>True while that key is held down, false otherwise.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="touching [sprite]?"><span class="bool" data-cat="sensing"><span>touching <span class="drop">sprite</span><span class="tight">?</span></span></span></div>
+                <p>True while this sprite is overlapping that sprite, false otherwise.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>Palette 4 of 6</span><span class="tag">4 blocks</span></div>
+      <h2>Looks &middot; Sound</h2>
+      <p class="sub">How a sprite looks, and what it plays.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Looks &middot; purple</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="show"><div class="blk" data-cat="looks">show</div></div>
+                <p>Makes this sprite visible on the stage.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="hide"><div class="blk" data-cat="looks">hide</div></div>
+                <p>Makes this sprite invisible on the stage.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="switch backdrop to [backdrop]"><div class="blk" data-cat="looks">switch backdrop to <span class="drop">backdrop</span></div></div>
+                <p>Changes the stage's background to the one you pick.</p>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="label">Sound &middot; pink</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="start sound [sound]"><div class="blk" data-cat="sound">start sound <span class="drop">sound</span></div></div>
+                <p>Plays that sound once and keeps running the rest of the script.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="4">
+      <div class="eyebrow"><span>Palette 5 of 6</span><span class="tag">5 blocks</span></div>
+      <h2>Operators</h2>
+      <p class="sub">Maths and tests.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Operators &middot; green</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="pick random () to ()"><span class="op">pick random <span class="num"></span> to <span class="num"></span></span></div>
+                <p>Picks a random number between the two numbers, every time it runs.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() > ()"><span class="bool"><span><span class="num"></span> &gt; <span class="num"></span></span></span></div>
+                <p>True if the first number is bigger than the second.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() < ()"><span class="bool"><span><span class="num"></span> &lt; <span class="num"></span></span></span></div>
+                <p>True if the first number is smaller than the second.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() = ()"><span class="bool"><span><span class="num"></span> = <span class="num"></span></span></span></div>
+                <p>True if the two values are equal.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="() * ()"><span class="op"><span class="num"></span> &times; <span class="num"></span></span></div>
+                <p>Multiplies the two numbers together.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="5">
+      <div class="eyebrow"><span>Palette 6 of 6</span><span class="tag">3 blocks</span></div>
+      <h2>Variables</h2>
+      <p class="sub">Numbers you keep.</p>
+      <div class="cols" style="grid-template-columns:1fr">
+        <div>
+          <div class="group">
+            <p class="label">Variables &middot; orange</p>
+            <div class="rows">
+              <div class="row">
+                <div class="stack" data-block="set [variable] to ()"><div class="blk" data-cat="variables">set <span class="drop">variable</span> to <span class="num"></span></div></div>
+                <p>Sets the variable to exactly that value, wiping whatever it was before.</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="change [variable] by ()"><div class="blk" data-cat="variables">change <span class="drop">variable</span> by <span class="num"></span></div></div>
+                <p>Adds that amount to the variable's current value (use a negative number to subtract).</p>
+              </div>
+              <div class="row">
+                <div class="stack" data-block="(score)"><span class="rep">score</span> <span class="rep">lives</span> <span class="rep">level</span> <span class="rep">spawn gap</span></div>
+                <p>Each variable you make gets one of these, with its name on it. It stands for whatever that variable's number is right now. Blocks shaped like this are called <b>reporter blocks</b>: you drop one <i>into a slot</i> on another block (like <b>() &gt; ()</b> or a <b>wait</b> block's number slot), instead of snapping it underneath one. Motion's <b>x position</b> and <b>y position</b> are reporter blocks too &#8212; same shape, same idea, different colour.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Blocks are grouped by the colour of their palette button. Find the colour first, then the block. Arrow keys move between palettes.</p>
+</div>
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('ssblockcheatsheet.i'); if (s !== null) i = Math.min(5, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Palette ' + (n+1));
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('ssblockcheatsheet.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all six';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>

@@ -3,12 +3,214 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=https://cp.oxeg.dev/space-shooter/reference/extra-challenges.html">
-<link rel="canonical" href="https://cp.oxeg.dev/space-shooter/reference/extra-challenges.html">
-<title>Redirecting</title>
+<title>Extra Challenges</title>
+<!--
+  The screen version of space-shooter/reference/extra-challenges.md, which is
+  authoritative: every rule, title and word here is copied from it. The two must
+  change together - see the drift check in the course README.
+
+  Entries are hints, never instructions. They name blocks and never the order
+  they go in; a card that drew a finished script would turn a challenge into a
+  step card and defeat the page.
+
+  Styling is shared with the other decks in this course's reference/slides.css.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../space-shooter/reference/slides.css">
 </head>
 <body>
-<p>Redirecting to <a href="https://cp.oxeg.dev/space-shooter/reference/extra-challenges.html">the slides</a>.</p>
-<script>location.replace("https://cp.oxeg.dev/space-shooter/reference/extra-challenges.html");</script>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Extra Challenges</b>
+      <span>Space Shooter &middot; reference</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Slides"></div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
+  </div>
+
+  <div class="deck one" id="deck">
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>How this page works</span><span class="tag">12 challenges</span></div>
+      <h2>Optional, and what the stars mean</h2>
+      <p class="sub">Finished a milestone early? These are extra &mdash; not required to finish the course or to keep up next week.</p>
+      <div class="cols">
+        <div>
+          <p class="label">Why these exist</p>
+          <p>Finished a milestone early and waiting for everyone else to catch up? Pick a challenge below.</p>
+          <p><b>Every challenge here is optional.</b> None of them are needed to finish the course or to keep up next week &#8212; the game you build from the step cards is the whole game. These are extra: a chance to go <i>wider</i> with what you already know, not a race to get ahead. Do one, do all of them, or do none &#8212; it's your game.</p>
+        </div>
+        <div>
+          <p class="label">Difficulty</p>
+          <div class="rows">
+            <div class="row"><div class="stack"><span class="tier">&#9733;</span></div><p>quick, you'll probably have it in a couple of minutes.</p></div>
+            <div class="row"><div class="stack"><span class="tier">&#9733;&#9733;</span></div><p>takes a bit of thinking.</p></div>
+            <div class="row"><div class="stack"><span class="tier">&#9733;&#9733;&#9733;</span></div><p>a proper challenge, give yourself some time.</p></div>
+          </div>
+          <p class="none" style="margin-top:18px">Nobody is telling you exactly which blocks to snap together. Each challenge gives you a job to do and a hint about which blocks might help &mdash; the rest is for you to work out. That&rsquo;s the fun part.</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>3 challenges</span><span class="tag">2&times;&#9733; &middot; 1&times;&#9733;&#9733;</span></div>
+      <h2>Lesson 1 &#8212; Fly the ship</h2>
+      <div class="entries">
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Keep the ship on screen</h3>
+            <p>Stop <code>Ship</code> from sliding right up to (or past) the edge of the stage, so it always stays fully in view.</p>
+            <p class="hint"><b>Hint:</b> Inside the same <i>amber</i> Control <code>forever</code> loop that holds your four movement <code>if</code>s, add four more <code>if</code> checks &#8212; one per edge. Use <i>blue</i> Motion's <code>x position</code> and <code>y position</code> blocks together with <i>green</i> Operators' <code>&gt;</code> and <code>&lt;</code> blocks to test where <code>Ship</code> is, and Motion's <code>set x to ()</code> and <code>set y to ()</code> blocks to pull it back. One check looks like this: <code>if &lt;(x position) &gt; (220)&gt; then set x to (220)</code> &#8212; you need three more like it, for the left, top and bottom edges.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Add a thruster sound</h3>
+            <p>Play an engine-type sound while <code>Ship</code> is moving.</p>
+            <p class="hint"><b>Hint:</b> On the Sounds tab, open the sound library and search for something like &ldquo;thruster&rdquo; or &ldquo;engine&rdquo; &#8212; the exact name in your library might be different, so check the list and pick whichever sounds right. Then drop a <i>pink</i> Sound block inside one of your <code>if key pressed</code> checks.</p>
+            <p><b>Watch out for this one:</b> your <code>if</code> lives inside a <code>forever</code> loop, which comes round about thirty times a second, and <code>start sound</code> <i>restarts</i> the sound every single time. Held down, that isn't an engine &#8212; it's a buzz. Sound's <code>play sound () until done</code> block waits for the sound to finish before the loop moves on, which sounds much more like a real thruster. Try both and listen to the difference &#8212; then notice what <code>play sound () until done</code> does to how quickly your ship reacts to the key, and decide which trade you prefer. There isn't a single right answer here.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Give the ship a second costume</h3>
+            <p>Make <code>Ship</code> look different some of the time &#8212; for example, a costume that shows while it's turning.</p>
+            <p class="hint"><b>Hint:</b> On the Costumes tab, duplicate <code>Ship</code>'s costume and change the copy (recolour it, or use the flip tool). Then use a <i>purple</i> Looks <code>switch costume to ()</code> or <code>next costume</code> block inside your movement script to change how <code>Ship</code> looks when a key is pressed.</p>
+          </article>
+      </div>
+    </section>
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>4 challenges</span><span class="tag">2&times;&#9733; &middot; 2&times;&#9733;&#9733;</span></div>
+      <h2>Lesson 2 &#8212; Shoot and survive</h2>
+      <div class="entries">
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Fix the fire rate</h3>
+            <p>Make <code>Laser</code> fire at a steady rate instead of the rattle you get from holding space down.</p>
+            <p class="hint"><b>Hint:</b> Swap out the <i>yellow</i> Events <code>when space key pressed</code> hat block &#8212; it's why holding space rattles instead of firing steadily. Rebuild the firing script using the same kind of pattern <code>Ship</code>'s movement script already uses: Control's <code>forever</code> and <code>if</code>, with <i>pale blue</i> Sensing's <code>key space pressed?</code> block as the condition. Your existing <code>create clone of myself</code> block still does the actual firing &#8212; a Control <code>wait () seconds</code> block is what slows the rate back down. Where you put it is up to you.</p>
+            <p><b>One thing to remember:</b> next week's step cards assume <code>Laser</code> still has its <code>when space key pressed</code> block, because most people's will. If you do this challenge, yours won't. That's fine &#8212; Lesson 3's cards have a note for you at two places (just above Milestone 2's step 27, and just above Milestone 4's step 43) telling you what to do instead. Look for it rather than following the step as written.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Laser colour and speed</h3>
+            <p>Change how <code>Laser</code> looks and how fast it flies.</p>
+            <p class="hint"><b>Hint:</b> For colour, open the Costumes tab and recolour <code>Laser</code> with the paint bucket tool. For speed, open <code>Laser</code>'s <code>when I start as a clone</code> script and change the number in the <code>change y by ()</code> block &#8212; a bigger number makes it fly faster.</p>
+          </article>
+          <article class="entry" data-tier="1">
+            <span class="tier">&#9733;</span>
+            <h3>Asteroid spawn rate and fall speed</h3>
+            <p>Change how often asteroids appear, and how fast they fall once they do.</p>
+            <p class="hint"><b>Hint:</b> On <code>Asteroid</code>'s <code>when green flag clicked</code> script, change the two numbers in the <code>pick random () to ()</code> block inside <code>wait () seconds</code> to change how often a new one spawns. On the <code>when I start as a clone</code> script, change the number in <code>change y by ()</code> to change fall speed &#8212; keep it negative, or asteroids will fall upward.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Random asteroid costume</h3>
+            <p>Give <code>Asteroid</code> a second look, and have new clones pick one of the two at random.</p>
+            <p class="hint"><b>Hint:</b> On the Costumes tab, duplicate <code>Asteroid</code>'s costume and change the copy &#8212; resize or recolour it so it's clearly different. Then look at Looks' <code>switch costume to ()</code> block and Operators' <code>pick random () to ()</code> block &#8212; between the two of them, they can make a fresh clone choose one of the two costumes when it's created.</p>
+          </article>
+      </div>
+    </section>
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>5 challenges</span><span class="tag">2&times;&#9733;&#9733; &middot; 3&times;&#9733;&#9733;&#9733;</span></div>
+      <h2>Lesson 3 &#8212; Enemies and polish</h2>
+      <div class="entries">
+          <article class="entry" data-tier="3">
+            <span class="tier">&#9733;&#9733;&#9733;</span>
+            <h3>Title screen</h3>
+            <p>Show a &ldquo;press space to start&rdquo; screen before the action begins, and hold the game there until space is pressed.</p>
+            <p class="hint"><b>Hint:</b> Make a new backdrop (or duplicate an existing one) and paint your title text on it. On the Stage, switch to that backdrop on green flag, then use a Control <code>wait until &lt;&gt;</code> block with Sensing's <code>key space pressed?</code> block inside it to pause everything there. Once it moves past the <code>wait until</code>, use an Events <code>broadcast</code> block with a new message &#8212; something like <code>start game</code> &#8212; for <code>Ship</code>, <code>Asteroid</code> and <code>Enemy</code> to listen for with <code>when I receive</code> before they start moving or spawning.</p>
+          </article>
+          <article class="entry" data-tier="3">
+            <span class="tier">&#9733;&#9733;&#9733;</span>
+            <h3>Boss asteroid</h3>
+            <p>Give <code>Asteroid</code> a version that needs three hits from <code>Laser</code> to destroy, instead of one.</p>
+            <p class="hint"><b>Hint:</b> Each clone needs to keep count of its own hits, so head to the <i>orange</i> Variables category and make a new variable &#8212; set it &ldquo;for this sprite only&rdquo; on <code>Asteroid</code> (not &ldquo;for all sprites&rdquo; like <code>score</code>), so every clone gets its own copy instead of sharing one number. Where the script currently checks <code>touching [Laser v]?</code>, add <code>change [your variable v] by (1)</code> instead of deleting the clone straight away, and only run <code>delete this clone</code> once that variable reaches <code>3</code> (an Operators <code>=</code> or <code>&gt;</code> block can check that). Make it look tougher too &#8212; a bigger size or a different costume helps sell it as a boss.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>High-score variable</h3>
+            <p>Remember the best score anyone's gotten, even after the game restarts.</p>
+            <p class="hint"><b>Hint:</b> You'll need a new variable &#8212; call it something like <code>high score</code>, &ldquo;for all sprites&rdquo; (Variables' &ldquo;Make a Variable&rdquo; button). An Operators <code>&gt;</code> block will let you compare it to <code>score</code>, and <code>set [high score v] to (score)</code> is how you'd update it. Think carefully about where you reset variables to <code>0</code> on green flag &#8212; <code>high score</code> needs different treatment from <code>score</code> and <code>lives</code> if it's going to survive from one play to the next.</p>
+          </article>
+          <article class="entry" data-tier="2">
+            <span class="tier">&#9733;&#9733;</span>
+            <h3>Ship explosion animation</h3>
+            <p>Make something dramatic happen to <code>Ship</code> the moment <code>lives</code> hits <code>0</code>, before the game-over screen appears.</p>
+            <p class="hint"><b>Hint:</b> Just before the <code>broadcast [game over v]</code> block runs, add a few Looks blocks to <code>Ship</code>'s script &#8212; <code>change size by ()</code>, or a couple of <code>switch costume to ()</code> blocks in a row with short <code>wait () seconds</code> blocks between them, so it plays out like a little animation. A Sound <code>start sound</code> block helps too &#8212; search the sound library for something like &ldquo;explosion&rdquo; or &ldquo;zap&rdquo; and check the exact name once you're browsing.</p>
+          </article>
+          <article class="entry" data-tier="3">
+            <span class="tier">&#9733;&#9733;&#9733;</span>
+            <h3>Power-ups</h3>
+            <p>Add something that falls from the top and gives <code>Ship</code> a bonus &#8212; an extra life, or a speed boost &#8212; when it touches it.</p>
+            <p class="hint"><b>Hint:</b> Add a new sprite (search the sprite library for something like a star or a heart, and check the exact name once you're browsing it &#8212; it might be called something else). Build it the same way you built <code>Asteroid</code>: a spawner script that makes clones on a timer, and a clone life-story that falls down the screen and deletes itself at the bottom. Inside the clone's <code>repeat until</code>, add an <code>if &lt;touching [Ship v]?&gt;</code> check, and inside that put whatever bonus you choose &#8212; for example <code>change [lives v] by (1)</code> &#8212; before <code>delete this clone</code>.</p>
+          </article>
+      </div>
+    </section>
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Finished a milestone early? Pick a challenge. Every one is optional. Arrow keys move between lessons.</p>
+</div>
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('ssextrachallenges.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Slide ' + (n+1));
+    if (false) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('ssextrachallenges.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all four';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>

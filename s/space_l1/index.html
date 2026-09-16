@@ -3,12 +3,261 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html">
-<link rel="canonical" href="https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html">
-<title>Redirecting</title>
+<title>Fly the Ship</title>
+<!--
+  Lesson 1's slide deck. Two more sit beside their own lessons:
+    space-shooter/lesson-2-shoot-and-survive/slides.html
+    space-shooter/lesson-3-enemies-and-polish/slides.html
+
+  Unlike cookie-clicker's lesson decks, this one does not inline its
+  stylesheet - it links the course-shared space-shooter/reference/slides.css,
+  per SLIDE-DECKS.md ("Where the stylesheet goes"). Keep that link relative.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../space-shooter/reference/slides.css">
 </head>
 <body>
-<p>Redirecting to <a href="https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html">the slides</a>.</p>
-<script>location.replace("https://cp.oxeg.dev/space-shooter/lesson-1-fly-the-ship/slides.html");</script>
+<div class="wrap">
+  <div class="bar">
+    <div class="brand">
+      <b>Fly the Ship</b>
+      <span>Space Shooter &middot; Lesson 1</span>
+    </div>
+    <div class="pips" id="pips" role="tablist" aria-label="Milestones"></div>
+    <div class="lessonnav">
+      <a class="lessonlink" href="../space_l2/index.html">Lesson 2 &rarr;</a>
+    </div>
+    <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
+  </div>
+
+  <div class="deck one" id="deck">
+
+    <!-- M1 -->
+    <section class="slide on" data-i="0">
+      <div class="eyebrow"><span>Milestone 1 of 4</span><span class="tag">no code yet</span></div>
+      <h2>Set up your project</h2>
+      <p class="sub">Rename your project, pick a space backdrop, and swap the cat for a ship called <b>Ship</b>.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <p class="none">None yet. This milestone is entirely menus and libraries: renaming the project, choosing a space-themed backdrop (the cards guess it might be called something like <i>Stars</i> or <i>Galaxy</i> &mdash; check the real name in your library), deleting the cat, and adding a sprite that looks like a rocket (guessed name <i>Rocketship</i> &mdash; check yours too), renamed to <b>Ship</b>, sized to about 50, rotation style set to <b>don't rotate</b>.</p>
+        </div>
+        <div>
+          <p class="label">Your project ends up like this</p>
+          <p class="none">Nothing to build yet &mdash; there's no Code tab work in this milestone. By the end, the stage shows a space backdrop with a small <b>Ship</b> near the bottom middle, and the sprite list shows only <b>Ship</b>, no cat.</p>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Look at the stage: a space backdrop with a small ship near the bottom middle. The sprite list shows only <b>Ship</b> &mdash; no cat.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M2 -->
+    <section class="slide" data-i="1">
+      <div class="eyebrow"><span>Milestone 2 of 4</span><span class="tag">sprite: Ship</span></div>
+      <h2>Make the ship start in the right place</h2>
+      <p class="sub">Add a <b>when green flag clicked</b> hat and snap a <b>go to x: () y: ()</b> underneath, so the ship always starts at the same spot.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="events">when green flag clicked</div><span class="catname">Events</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="motion">go to x: <span class="num">0</span> y: <span class="num">-120</span></div><span class="catname">Motion</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Your script ends up like this</p>
+          <div class="stack">
+            <div class="blk hat" data-cat="events">when green flag clicked</div>
+            <div class="blk" data-cat="motion">go to x: <span class="num">0</span> y: <span class="num">-120</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Drag the ship somewhere else on the stage, then click the green flag &mdash; it should jump straight back to the bottom middle, every time.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M3 -->
+    <section class="slide" data-i="2">
+      <div class="eyebrow"><span>Milestone 3 of 4</span><span class="tag">sprite: Ship</span></div>
+      <h2>Move the ship (first try)</h2>
+      <p class="sub">Build four separate scripts, one per arrow key, so the ship nudges in that direction whenever you press it.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip" data-cat="events">when <span class="drop">right arrow</span> key pressed</div><span class="catname">Events</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="motion">change x by <span class="num">5</span></div><span class="catname">Motion</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="motion">change y by <span class="num">5</span></div><span class="catname">Motion</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Four separate scripts &mdash; not one</p>
+          <div class="scripts">
+            <div class="script">
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when <span class="drop">right arrow</span> key pressed</div>
+                <div class="blk" data-cat="motion">change x by <span class="num">5</span></div>
+              </div>
+            </div>
+            <div class="script">
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when <span class="drop">left arrow</span> key pressed</div>
+                <div class="blk" data-cat="motion">change x by <span class="num">-5</span></div>
+              </div>
+            </div>
+            <div class="script">
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when <span class="drop">up arrow</span> key pressed</div>
+                <div class="blk" data-cat="motion">change y by <span class="num">5</span></div>
+              </div>
+            </div>
+            <div class="script">
+              <div class="stack">
+                <div class="blk hat" data-cat="events">when <span class="drop">down arrow</span> key pressed</div>
+                <div class="blk" data-cat="motion">change y by <span class="num">-5</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Click the green flag, then try the arrow keys. The ship moves &mdash; but with a short pause before it starts, and no diagonal movement. That's expected, not a mistake; the next milestone fixes it.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+    <!-- M4 -->
+    <section class="slide" data-i="3">
+      <div class="eyebrow"><span>Milestone 4 of 4</span><span class="tag">sprite: Ship</span></div>
+      <h2>Make it feel good</h2>
+      <p class="sub">Delete all four Milestone 3 scripts and rebuild the same moves as one <b>forever</b> loop holding four <b>if</b> blocks, so the ship responds instantly and can move diagonally.</p>
+      <div class="cols">
+        <div>
+          <p class="label">New blocks</p>
+          <div class="chips">
+            <div class="chipwrap"><div class="chip cap" data-cat="control">forever</div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="control">if <span class="bool empty"><span></span></span> then</div><span class="catname">Control</span></div>
+            <div class="chipwrap"><div class="chip" data-cat="sensing">key <span class="drop">right arrow</span> pressed?</div><span class="catname">Sensing</span></div>
+          </div>
+          <p class="none" style="margin-top:16px">Building the four <b>if</b> blocks by right-click &rarr; <b>Duplicate</b>? Duplicate copies the block you right-click <b>and everything snapped in underneath it</b>. Always duplicate the most recently placed <b>if</b> &mdash; the one with nothing under it yet &mdash; or you'll end up with extra copies to delete.</p>
+        </div>
+        <div>
+          <p class="label">Your script ends up like this</p>
+          <div class="stack">
+            <div class="blk hat" data-cat="events">when green flag clicked</div>
+            <div class="blk" data-cat="motion">go to x: <span class="num">0</span> y: <span class="num">-120</span></div>
+            <div class="c short" data-cat="control">
+              <div class="cbar">forever</div>
+              <div class="cmouth">
+                <div class="c" data-cat="control">
+                  <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">right arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change x by <span class="num">5</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">left arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change x by <span class="num">-5</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">up arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">5</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+                <div class="c" data-cat="control">
+                  <div class="cbar">if <span class="bool" data-cat="sensing"><span>key <span class="drop">down arrow</span> pressed<span class="tight">?</span></span></span> then</div>
+                  <div class="cmouth">
+                    <div class="blk" data-cat="motion">change y by <span class="num">-5</span></div>
+                  </div>
+                  <div class="cfoot"></div>
+                </div>
+              </div>
+              <div class="cfoot cap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="check"><div class="mark">&check;</div>
+        <p>Click the green flag and hold an arrow key &mdash; the ship moves right away, with no pause. Hold two at once (like up and right) and it moves diagonally.</p></div>
+      <p class="further">Go further: <i>reference/extra-challenges.md</i> has optional challenges for this lesson.</p>
+    </section>
+
+  </div>
+
+  <div class="nav" id="nav">
+    <button id="prev" type="button">&larr; Back</button>
+    <button id="next" type="button">Next &rarr;</button>
+  </div>
+  <p class="hint">Arrow keys move between milestones. Printing gives you all four, one per page.</p>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var deck = document.getElementById('deck');
+  var pipBox = document.getElementById('pips');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var toggle = document.getElementById('viewToggle');
+  var i = 0, all = false;
+
+  try { var s = localStorage.getItem('flytheship.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'pip';
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Milestone ' + (n+1));
+    if (n < 2) b.setAttribute('data-floor','yes');
+    b.addEventListener('click', function(){ go(n); });
+    pipBox.appendChild(b);
+  });
+  var pips = Array.prototype.slice.call(pipBox.children);
+
+  function render(){
+    slides.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+    pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+    try { localStorage.setItem('flytheship.i', String(i)); } catch(e){}
+  }
+  function go(n){
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    if (all) setAll(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  function setAll(v){
+    all = v;
+    deck.classList.toggle('all', all);
+    deck.classList.toggle('one', !all);
+    toggle.textContent = all ? 'One at a time' : 'Show all four';
+    toggle.setAttribute('aria-pressed', String(all));
+    document.getElementById('nav').style.display = all ? 'none' : 'flex';
+    if (!all) render();
+  }
+
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  toggle.addEventListener('click', function(){ setAll(!all); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /^(INPUT|TEXTAREA|BUTTON)$/.test(e.target.tagName) && e.key === ' ') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { go(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(i - 1); e.preventDefault(); }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>
