@@ -114,7 +114,8 @@
      kept visually distinct from .toggle by being a link, not a button, and
      sitting before it in the bar. A lesson at either end of a course omits
      the link it doesn't have rather than showing it disabled. */
-  .lessonnav{display:flex;gap:8px;align-items:center}
+  .lessonnav{display:none;gap:8px;align-items:center}
+  .lessonnav.show{display:flex}
   .lessonlink{
     font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.02em;
     border:1px solid var(--rule);background:var(--surface);color:var(--ink-soft);

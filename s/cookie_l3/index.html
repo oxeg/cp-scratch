@@ -118,7 +118,8 @@
      kept visually distinct from .toggle by being a link, not a button, and
      sitting before it in the bar. A lesson at either end of a course omits
      the link it doesn't have rather than showing it disabled. */
-  .lessonnav{display:flex;gap:8px;align-items:center}
+  .lessonnav{display:none;gap:8px;align-items:center}
+  .lessonnav.show{display:flex}
   .lessonlink{
     font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.02em;
     border:1px solid var(--rule);background:var(--surface);color:var(--ink-soft);
@@ -490,7 +491,7 @@
     </div>
     <div class="pips" id="pips" role="tablist" aria-label="Milestones"></div>
     <div class="lessonnav">
-      <a class="lessonlink" href="../cookie_l2/index.html">&larr; Lesson 2</a>
+      <a class="lessonlink" href="https://cp.oxeg.dev/s/cookie_l2/">&larr; Lesson 2</a>
     </div>
     <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
   </div>
@@ -763,6 +764,7 @@
   var prev = document.getElementById('prev');
   var next = document.getElementById('next');
   var toggle = document.getElementById('viewToggle');
+  var lessonnav = document.querySelector('.lessonnav');
   var i = 0, all = false;
 
   try { var s = localStorage.getItem('goldencookies.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
@@ -784,6 +786,7 @@
     pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
     prev.disabled = (i === 0);
     next.disabled = (i === slides.length - 1);
+    if (lessonnav) lessonnav.classList.toggle('show', i === slides.length - 1);
     try { localStorage.setItem('goldencookies.i', String(i)); } catch(e){}
   }
   function go(n){

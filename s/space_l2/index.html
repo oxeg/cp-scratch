@@ -28,8 +28,8 @@
     </div>
     <div class="pips" id="pips" role="tablist" aria-label="Milestones"></div>
     <div class="lessonnav">
-      <a class="lessonlink" href="../space_l1/index.html">&larr; Lesson 1</a>
-      <a class="lessonlink" href="../space_l3/index.html">Lesson 3 &rarr;</a>
+      <a class="lessonlink" href="https://cp.oxeg.dev/s/space_l1/">&larr; Lesson 1</a>
+      <a class="lessonlink" href="https://cp.oxeg.dev/s/space_l3/">Lesson 3 &rarr;</a>
     </div>
     <button class="toggle" id="viewToggle" aria-pressed="false">Show all four</button>
   </div>
@@ -322,6 +322,7 @@
   var prev = document.getElementById('prev');
   var next = document.getElementById('next');
   var toggle = document.getElementById('viewToggle');
+  var lessonnav = document.querySelector('.lessonnav');
   var i = 0, all = false;
 
   try { var s = localStorage.getItem('shootandsurvive.i'); if (s !== null) i = Math.min(3, Math.max(0, parseInt(s,10) || 0)); } catch(e){}
@@ -343,6 +344,7 @@
     pips.forEach(function(p, n){ p.setAttribute('aria-current', String(n === i)); });
     prev.disabled = (i === 0);
     next.disabled = (i === slides.length - 1);
+    if (lessonnav) lessonnav.classList.toggle('show', i === slides.length - 1);
     try { localStorage.setItem('shootandsurvive.i', String(i)); } catch(e){}
   }
   function go(n){

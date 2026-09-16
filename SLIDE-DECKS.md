@@ -262,12 +262,25 @@ inside them.
   accent rule the cookie-clicker decks use.
 - **A lesson deck (not a reference deck) links its course's adjacent
   lessons**, in a `.lessonnav` element in the top bar, between `.pips` and
-  `.toggle`: `<a class="lessonlink" href="../cookie_l2/index.html">Lesson 2
-  &rarr;</a>`. Omit the link a lesson doesn't have (Lesson 1 has no
-  "&larr; Lesson 0") rather than showing it disabled. This is separate from
-  `.toggle`/`.nav`, which move between this deck's own milestones — a kid
-  should be able to tell "next lesson" from "next milestone" at a glance,
-  which is why `.lessonlink` is a link styled like `.toggle`, not a button.
+  `.toggle`: `<a class="lessonlink" href="https://cp.oxeg.dev/s/cookie_l2/">
+  Lesson 2 &rarr;</a>`. The href is the deck's full short URL, trailing
+  slash, no `index.html` — not a relative path — since it has to resolve the
+  same way whether the page is opened from `cp.oxeg.dev` or from disk. Omit
+  the link a lesson doesn't have (Lesson 1 has no "&larr; Lesson 0") rather
+  than showing it disabled. This is separate from `.toggle`/`.nav`, which
+  move between this deck's own milestones — a kid should be able to tell
+  "next lesson" from "next milestone" at a glance, which is why
+  `.lessonlink` is a link styled like `.toggle`, not a button.
+- **`.lessonnav` only shows on a lesson deck's last slide.** It's meant for
+  "I've finished this lesson, what's next", not a permanent fixture of the
+  bar — showing it throughout would compete with the milestone stepper for
+  attention on every slide. `.lessonnav{display:none}` by default,
+  `.lessonnav.show{display:flex}` toggled in `render()`:
+  `lessonnav.classList.toggle('show', i === slides.length - 1)`, the same
+  `classList.toggle` idiom the rest of the script already uses for
+  `.slide.on` and `.deck.all`/`.deck.one`. `lessonnav` is looked up once
+  with `document.querySelector('.lessonnav')` near the script's other
+  element references.
 
 ## The document wrapper
 

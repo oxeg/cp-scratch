@@ -315,8 +315,9 @@ https://cp.oxeg.dev/s/cookie_bonus       Reference — bonus ideas
 Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
 that. Those links are worth putting somewhere a volunteer can find in a
 hurry — the club's chat, or written on the board at the start of a session.
-Each lesson deck also has **"← Lesson N / Lesson N →" links** in its top
-bar, so clicking through a course doesn't depend on knowing the next slug.
+Each lesson deck also has **"← Lesson N / Lesson N →" links**, appearing in
+its top bar once you reach the last milestone, so clicking on to the next
+lesson doesn't depend on knowing its slug.
 
 A third-party shortener was tried first and dropped — is.gd and v.gd were
 both failing custom short-URL creation with a generic server-side error,

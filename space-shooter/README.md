@@ -203,8 +203,9 @@ https://cp.oxeg.dev/s/space_extra       Reference — extra challenges
 Slugs don't carry a `cp_` prefix — the `cp.oxeg.dev` domain already says
 that. Those links are worth putting somewhere a volunteer can find in a
 hurry — the club's chat, or written on the board at the start of a session.
-Each lesson deck also has **"← Lesson N / Lesson N →" links** in its top
-bar, so clicking through a course doesn't depend on knowing the next slug.
+Each lesson deck also has **"← Lesson N / Lesson N →" links**, appearing in
+its top bar once you reach the last milestone, so clicking on to the next
+lesson doesn't depend on knowing its slug.
 
 Unlike cookie-clicker's three lesson decks, all five of these link a shared
 `reference/slides.css` rather than each inlining their own copy (see
